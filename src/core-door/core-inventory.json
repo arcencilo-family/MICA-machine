@@ -1,0 +1,1293 @@
+{
+  "schema": "mica-core-door/inventory/1",
+  "scope": "src/mica",
+  "baseline": {
+    "commit": "d743ad60862dbaf2102099eeab93a5563a520d19",
+    "pinnedOn": "2026-09-22",
+    "files": {
+      "src/mica/chokepoint/chokepoint.test.ts": "b408a4cfddf35a9711e0b4f288ed57327f196d1b1c92fea87889d05f2561a579",
+      "src/mica/chokepoint/floor-trail.test.ts": "f025359ace3f1dd93c39e8dc5c5c0345b0e4ce4d2636c123520f2fec2e4c6c52",
+      "src/mica/chokepoint/floor-trail.ts": "1d26317971d2a395feff15aba2a2d1fabf0756512dbdca61a3b67c189ddfc3d8",
+      "src/mica/chokepoint/index.ts": "83196e50444959e3088cd98435e448fab3eb183634690fab827bad1f58752e5d",
+      "src/mica/chokepoint/ledger.ts": "54549de30b0c420a279b5a688d00050f6c7bc6b68d23628c83869d3af00d2e7f",
+      "src/mica/chokepoint/notifier.ts": "3d356d3aa5b9c9535519713d639dec6f4cbb297b7ce81095d43dcdfcdccfbb11",
+      "src/mica/chokepoint/types.ts": "8534dc1733003dfc6688b12dc1c024eaad17bce1b282bdc3e563472efd8a14d5",
+      "src/mica/closure.test.ts": "4dc006d3ae236696581e65263672b592275bc38b03870a243d0b9a3e58ae3727",
+      "src/mica/competence.ts": "1b22b690736f9e44865497089a62c0a587f5512e29932b8b20a517ed73c8f128",
+      "src/mica/doctor/doctor.test.ts": "a8bb66bafdc7353c39e572d049048557a8ae14f197d280b8c845a3241ff5447f",
+      "src/mica/doctor/history.ts": "eff3f06f063747daa82eaec363eda0a29ea82ccf0f3e88e140af9194133de726",
+      "src/mica/doctor/index.ts": "25e2398860406ffe003d0d74a39b3fcea85d375028d592fdebf2f303a290fea0",
+      "src/mica/doctor/latency.ts": "e9ee4e1c050af77d4ad67addaf1c727f35995f42b47942d15b01157911609548",
+      "src/mica/doctor/overlays/aggregate.ts": "1e776776ca10888742e83dc88b19a627202f96ca6ab4574720c5098ddff7d4ac",
+      "src/mica/doctor/overlays/balance.ts": "3832a4f8c7996c3f2ed5d951ba5a2c9f85102438b6234bb0688c06ead5ac9094",
+      "src/mica/doctor/overlays/covariance.ts": "1782cf84fefefd2a60a904407a575e9dd11d4e3b4ae7bf8f68771a985c67f4ad",
+      "src/mica/doctor/overlays/fragility.ts": "ef23b918e479f05529b77230232cd80cb51c583fa0c640d8dedaf2ed956b6dce",
+      "src/mica/doctor/overlays/types.ts": "2e0e9a4dbb6e229a47923bfbf8f3da83f881606cf01eabc5e7eb840d085a2322",
+      "src/mica/doctor/recorder.ts": "11d2850afd06df7401623523e3d76af567a10dd45ea81927fa832486ec748782",
+      "src/mica/eng/index.ts": "7e577a24059314273cc1e942325375ff29602e373879cce0c08d3cc6d75e3ad7",
+      "src/mica/eng-d24-imbalance-coverage.test.ts": "2194ff2cd16b6ce22228d7921cee1fe5700a9f75f4bf0ab8b12ef48f3285483b",
+      "src/mica/eng.test.ts": "9ef65151c39a3f2ec36358ed2dc2cd9075687ed63a4a122e09d586eb6e451f2c",
+      "src/mica/export/index.ts": "00c4831fef5421577a2f1951e73292c71ed068e44283e0cfc1e3089eb796e334",
+      "src/mica/export/ledger.ts": "e38d4a6179dad2cbaf232411a109f6bc0860f24d78be3311e4f438c31eab3ce3",
+      "src/mica/export.test.ts": "9a1c612acb799ff2dda2bd27b188629ea102817a1a486d0d580287cf4684ecc7",
+      "src/mica/fixture-log.ts": "4252257255cceeb0602bddd1b84dfe5150b5e757b474481136bce2e3c81672a4",
+      "src/mica/gate-ceilings.test.ts": "c18c516fa0525c6770b261b5265abdbf638809a6f8fd036c15982f897489788a",
+      "src/mica/gate1-scope/gate1-scope.test.ts": "8ee1ea311b9fd1ebd873e50019e6adc92cd1bc08809a879cd92df1e131db4d7d",
+      "src/mica/gate1-scope/index.ts": "57bc7ea249e722e8437fc2bbe36f6882d4eaf4b676b64408b92039e112cfb179",
+      "src/mica/gate2-direction/gate2-direction.test.ts": "942333e77fedd01f68469f474d6a7377ca892cd7eb73112cf9ad149e0f7651f0",
+      "src/mica/gate2-direction/index.ts": "435171f8d7208299e3cb2ad5c38624fab90a5b4872389de49a60fe608c3723ba",
+      "src/mica/gate4-sunset/gate4-sunset.test.ts": "c5be714be6dc509f147d57f3f61373ee0728476df6148566cf4b8bc925664c39",
+      "src/mica/gate4-sunset/index.ts": "33a11925c43ee0daa1fc3c79f4f729ccd0f51ea1d70dece71056463653520d05",
+      "src/mica/gate5-adaptive/gate5-adaptive.test.ts": "d16b616e66213a4a86b3921ab13cd054cd804500770a08d4174d27261398f8a2",
+      "src/mica/gate5-adaptive/index.ts": "0251e6eab67303b7ed79f8ea5156b3285e23923aa754cde57b1f9cc952236c75",
+      "src/mica/kappa/kappa.test.ts": "406d6d0ce2d56aeeea62d3d93d22908bb42d93934e85d3201a39fd9d41af2507",
+      "src/mica/kappa/kappa.ts": "bfc1a380dd38ff4f888e4e6e9eb372191dc8d42bee9d828540adb1d6f0cd9640",
+      "src/mica/load-site-guard.test.ts": "c92634f6befdb1ee25066a6d8a14c344d02ff462b0cba2c01c7c9e13fc94edd1",
+      "src/mica/log.test.ts": "a8e90437669e983ac26192212627b2b8a1fc710bc0d6e67e780c3a91657b0d90",
+      "src/mica/log.ts": "4158bd32f4c8601b53989ba0805691f98b6d4bf6e9fd66ad8c9ced87e4d00fc5",
+      "src/mica/narrow-k/index.ts": "e68de881f34b1cf5b49f9ecbf30db5e3761db7605b4253b4858503bd7d25f834",
+      "src/mica/narrow-k/narrow-k.test.ts": "c70b15f6e5e153f3df6408902020723866c4ea09ea56ee13f4dce6c1c0cd82d2",
+      "src/mica/narrow-r/index.ts": "6d4afe28c63e1f14df8e026c3c677fe44c6c85aa267ca39260d0a215ec9114ec",
+      "src/mica/narrow-r/narrow-r.test.ts": "4234a808af48969fab9a321ddca450fd9d8aa6e34a41560532e17abdfbd72fc3",
+      "src/mica/narrow-t/index.ts": "1dffb0deaaa49b26207608f0f901d0514e352e3b16bbff30c3009bf15228f977",
+      "src/mica/narrow-t/narrow-t.test.ts": "b55490462e4b0a03f7947f703ae93b191ab5d410cae652747633fcb59d082f25",
+      "src/mica/narrow-w/index.ts": "735e75fcc130cdf24203bdeb7ea286c288aef535351143a0811d7d4653519040",
+      "src/mica/narrow-w/narrow-w.test.ts": "a7eebe69c6e4b0edc46b07e68fffcce6262b8197664c464760a27b5d88ee9bc8",
+      "src/mica/narrowing.test.ts": "8141f01adf2fe92e6414cddd4ee59e0776bfebfa6e9c6392c195a41d730100d8",
+      "src/mica/notify/index.ts": "e976d91f4af306de84114c77094e6f1a670014b0068163e6835fabddc8eb0e27",
+      "src/mica/notify/notice-log.ts": "2bc718931d8bef307ad660cf565f5b0c5795b03ad42b71076a484b82238413c0",
+      "src/mica/notify/notify.test.ts": "6fa5c28f22d2c5aca284f2bd1c297139e3ebb414fc051f04e366107d98482487",
+      "src/mica/notify/types.ts": "c3a721bc557e69a42fc7e9c4e99803bea62586b83baf5e8cb9ff4d6bf638b91d",
+      "src/mica/op-ceilings.test.ts": "ab9b5e1f66e7d21b81ad2e8981e78ff43ff1d742f18c769775efee29164754eb",
+      "src/mica/op1-doctor-cadence/index.ts": "ed19194a4f43af7596b08dc5772ec84e2bb34693475590d276a9d0b740003996",
+      "src/mica/op1-doctor-cadence/op1-doctor-cadence.test.ts": "f0c520c352bb509191c412b1cbbd8988b8fd555d72fda4311815a4aec73c0416",
+      "src/mica/op2-audit-presence/index.ts": "92e77b4b3f3f22974b6a5e84a6ef262339fa5167f07b47806c8a43f44200431b",
+      "src/mica/op2-audit-presence/op2-audit-presence.test.ts": "27723f9a5d59de4b6eda4ea6e4581c5583b07d02fde9b14c791a108d338cd385",
+      "src/mica/op3-node-response/index.ts": "bfa0fd9288e7b6ed63d1993edce76e8f5abe7960728a6055a00e6432428973eb",
+      "src/mica/op3-node-response/op3-node-response.test.ts": "3c0b8395469e48f4dc4f8ac02bf0c63627ddcc36513de15cc28416aceccd91df",
+      "src/mica/operator-layer-profile.ts": "3438327db0bb6f512581b8560c58d36b764a0debc74635767ed19dee60fb0f45",
+      "src/mica/registration.test.ts": "11493e0276129bb327b29b0dacd4f30c74943376b2101c77eb7c13acbdbece6f",
+      "src/mica/scope-block-guard.test.ts": "b0bd5cdde22a81de336be5fb9d73a5b69036085a934afee4293ed5c97e2637c5",
+      "src/mica/sig/index.ts": "31ec166d2305bdef8901fe9b5cf00ff2278b997c7e2825372aeda1b4a69f2bec",
+      "src/mica/sig-f2-activation.test.ts": "84dd5bd284f54aa40767e15c378c1c883e28e31fab6ccd1abb468840204182e8",
+      "src/mica/sig-f2-d24-coverage.test.ts": "a86eebcc7d8996a2996965dcad36c4e65c2283c301654d10b75fed6fcd644932",
+      "src/mica/sig-f2-reentry.test.ts": "8400874d5c15d6bc7f96dd466e9e075aa60014b816948688e4bceae2a5c2a087",
+      "src/mica/sig-f3-clerk.test.ts": "d1d33b7e27789a4388b41e96d7f8cfe53f7e2df0d2b7ab0b8adbd2bbdaff8234",
+      "src/mica/sig-f4-probe.test.ts": "c6cc31ab3c17a2650c4b1ad77100ec220d4001324c9d9da8153a69c19d6264e0",
+      "src/mica/sig.test.ts": "0aede3100373c3fc95e8a86a9e68c64c528482cd41e8cfbf3b875025cb91c4cf",
+      "src/mica/stat/ami.ts": "885f5eab4b83dd767418c3a47ce3448875e5bba5d41b7ecc36f04b074c4cbda9",
+      "src/mica/store/append-store.test.ts": "7cdcc76e2afd31bd2f59fd50c0389c850fe89a418212ad884910c51f6a0c3a3f",
+      "src/mica/store/append-store.ts": "b2f6fedb8ef5a5c39d38d06daab5e9546b0e8e0331a422f2f4148c5f25a25e24",
+      "src/mica/store/validate.ts": "47b268f0dc7403c6fab93657f7d5f845032cbe5b36c36572b859ff6750cd355a",
+      "src/mica/substrate-snapshot.test.ts": "38084226cad271f83b6ea20ca725a578749cdc7ede0f9f48449351395178a8a5",
+      "src/mica/tuple-key.ts": "39e13f5b6c69f7c6ce6ff26ca2c537f4be122f5cfa58219d7392b8a6964d70ae",
+      "src/mica/types.ts": "ca5fa44316446e698446f363ee884f2bcd6cb0976f01f268e6adeedda11f16da",
+      "src/mica/verdict-logic.frozen.json": "e6c5b812fef6902f36645c46fa5ec355e606e78349e66f5c9649723b60cdd9f8",
+      "src/mica/verdict-logic.frozen.pre-substrate-20260819.json": "e06f990f510be6b83589d3ea4ada6a5e52654927416184a5236092bdb13a8b1b",
+      "src/mica/verdict-logic.substrate-snapshot.json": "0c55dbd0984ba99f50f71658005660c31860ba73b4833306873f2797fd7e4424",
+      "src/mica/verdict-logic.test.ts": "b579f73ad05ac452519ac2f1b82e4b63e71484475b8835096cdf0a5bb98f2e48"
+    }
+  },
+  "repins": [
+    {
+      "path": "src/mica/narrow-t/index.ts",
+      "from": "1dffb0deaaa49b26207608f0f901d0514e352e3b16bbff30c3009bf15228f977",
+      "to": "fb42b354a24c14fc2688e4aac4d05048b0a761ba84c415882bab3f3ae08f48bc",
+      "ticket": "T1-narrow-t-guard",
+      "ticketSha256": "ce9deaf1e48713eddf8a2bff72172e71ad9f17bfc8581a495237ea9afe4490c1",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/narrow-t/narrow-t.test.ts",
+      "from": "b55490462e4b0a03f7947f703ae93b191ab5d410cae652747633fcb59d082f25",
+      "to": "21e9f22353c757ee9c92c7625f77c302d70d8ecd5bbc24d6aa47b94b50e4b6ee",
+      "ticket": "T1-narrow-t-guard",
+      "ticketSha256": "ce9deaf1e48713eddf8a2bff72172e71ad9f17bfc8581a495237ea9afe4490c1",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "38084226cad271f83b6ea20ca725a578749cdc7ede0f9f48449351395178a8a5",
+      "to": "99a84f11e63afca91872ef1ec0228a3f67cce1d0dac0ed41faaa5869ad41caa3",
+      "ticket": "T1-narrow-t-guard",
+      "ticketSha256": "ce9deaf1e48713eddf8a2bff72172e71ad9f17bfc8581a495237ea9afe4490c1",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/verdict-logic.substrate-snapshot.json",
+      "from": "0c55dbd0984ba99f50f71658005660c31860ba73b4833306873f2797fd7e4424",
+      "to": "8edcee7a5f7d16ffdf27c3c03a5726a1a84d6bfe64ab7fe7806d4a5ea507ad68",
+      "ticket": "T1-narrow-t-guard",
+      "ticketSha256": "ce9deaf1e48713eddf8a2bff72172e71ad9f17bfc8581a495237ea9afe4490c1",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "33a11925c43ee0daa1fc3c79f4f729ccd0f51ea1d70dece71056463653520d05",
+      "to": "1131151b926f87df9c082c04662fbbe8cd0046fe2abaab7767323a0cc9103bf2",
+      "ticket": "T2-gate4-empty-window",
+      "ticketSha256": "88825e1a9ac6b3cb6c6d7647d89d65a71ec69da3e340955ed8f76a2054b86cbd",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "c5be714be6dc509f147d57f3f61373ee0728476df6148566cf4b8bc925664c39",
+      "to": "923d06fedd4f404d5450be3895dc6dcdc365e16bce8743755fcb1d101e0a95de",
+      "ticket": "T2-gate4-empty-window",
+      "ticketSha256": "88825e1a9ac6b3cb6c6d7647d89d65a71ec69da3e340955ed8f76a2054b86cbd",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "942333e77fedd01f68469f474d6a7377ca892cd7eb73112cf9ad149e0f7651f0",
+      "to": "c9a98341cdb2ccbcdf8d0acfad0caecae2ddc5bdccfb8a83c21b9c8d66ba1272",
+      "ticket": "T2-gate4-empty-window",
+      "ticketSha256": "88825e1a9ac6b3cb6c6d7647d89d65a71ec69da3e340955ed8f76a2054b86cbd",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "c18c516fa0525c6770b261b5265abdbf638809a6f8fd036c15982f897489788a",
+      "to": "44e9a3e8c275a93178f46d7fe9fbb2b9fb671658d86edfc8a585a198735b465b",
+      "ticket": "T2-gate4-empty-window",
+      "ticketSha256": "88825e1a9ac6b3cb6c6d7647d89d65a71ec69da3e340955ed8f76a2054b86cbd",
+      "pinnedOn": "2026-09-22"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "31ec166d2305bdef8901fe9b5cf00ff2278b997c7e2825372aeda1b4a69f2bec",
+      "to": "be3b846825cd0a6ac61ac1c6fcea2e32468031efe3d553cd87e9451cc620eff3",
+      "ticket": "T3-sig-f3-watermark",
+      "ticketSha256": "26de1986692f8b2356923d5f513e07148d8eea2c85f3806a4b38c26d5318bbbf",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "d1d33b7e27789a4388b41e96d7f8cfe53f7e2df0d2b7ab0b8adbd2bbdaff8234",
+      "to": "2f57a91d3fa932c98ada2bd316df209628171b413bb66f62bf7ad5dccbd83bad",
+      "ticket": "T3-sig-f3-watermark",
+      "ticketSha256": "26de1986692f8b2356923d5f513e07148d8eea2c85f3806a4b38c26d5318bbbf",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/sig.test.ts",
+      "from": "0aede3100373c3fc95e8a86a9e68c64c528482cd41e8cfbf3b875025cb91c4cf",
+      "to": "ac23a11e1aa6a96044c4269793f5fc3eb77b7f9e90bfc243d92506a2d5da03fb",
+      "ticket": "T3-sig-f3-watermark",
+      "ticketSha256": "26de1986692f8b2356923d5f513e07148d8eea2c85f3806a4b38c26d5318bbbf",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "99a84f11e63afca91872ef1ec0228a3f67cce1d0dac0ed41faaa5869ad41caa3",
+      "to": "621ce942ba302623a7861823df12d9cd5ad958ca113acfca38e3b4ae3a04aa69",
+      "ticket": "T3-sig-f3-watermark",
+      "ticketSha256": "26de1986692f8b2356923d5f513e07148d8eea2c85f3806a4b38c26d5318bbbf",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/verdict-logic.substrate-snapshot.json",
+      "from": "8edcee7a5f7d16ffdf27c3c03a5726a1a84d6bfe64ab7fe7806d4a5ea507ad68",
+      "to": "0128dc0f0e16682cf95a304a73052b6d1104443d29f5fdf9f930ea54bd8eeec3",
+      "ticket": "T3-sig-f3-watermark",
+      "ticketSha256": "26de1986692f8b2356923d5f513e07148d8eea2c85f3806a4b38c26d5318bbbf",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/export/index.ts",
+      "from": "00c4831fef5421577a2f1951e73292c71ed068e44283e0cfc1e3089eb796e334",
+      "to": "034b1b3881eea0a3413edcb442f9578d377ed603ae691547531abfd63b528fe4",
+      "ticket": "T5-sig-f3-export",
+      "ticketSha256": "8d9a366eb7bdeb3997a3fb227ce484147d1e90c63d6ea32ff3b259f2d5b4ce9f",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/export.test.ts",
+      "from": "9a1c612acb799ff2dda2bd27b188629ea102817a1a486d0d580287cf4684ecc7",
+      "to": "4f563897e3bbe8376124c5f7c6c464f840f674902724ea31ede1ba13a68da5a9",
+      "ticket": "T5-sig-f3-export",
+      "ticketSha256": "8d9a366eb7bdeb3997a3fb227ce484147d1e90c63d6ea32ff3b259f2d5b4ce9f",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "2f57a91d3fa932c98ada2bd316df209628171b413bb66f62bf7ad5dccbd83bad",
+      "to": "62a28e0cb77472be4c550d59ca580022d6efd5e9ab7003a4f6f7e724e24038a7",
+      "ticket": "T5-sig-f3-export",
+      "ticketSha256": "8d9a366eb7bdeb3997a3fb227ce484147d1e90c63d6ea32ff3b259f2d5b4ce9f",
+      "pinnedOn": "2026-09-23"
+    },
+    {
+      "path": "src/mica/store/append-store.ts",
+      "from": "b2f6fedb8ef5a5c39d38d06daab5e9546b0e8e0331a422f2f4148c5f25a25e24",
+      "to": "077a377693fb798e2ae4fde58b65e10e91c6edac44e3b49765fc4e9d17338869",
+      "ticket": "T4-store-blank-lines",
+      "ticketSha256": "b2647386f5981fb15d5cc5edc041aacd601878fae416b8f592518fbb3cc131d5",
+      "pinnedOn": "2026-09-24"
+    },
+    {
+      "path": "src/mica/chokepoint/ledger.ts",
+      "from": "54549de30b0c420a279b5a688d00050f6c7bc6b68d23628c83869d3af00d2e7f",
+      "to": "614a51162245cdad0785042d9cffd192a5fba6f9313dcd39ba9b807cb147fdf7",
+      "ticket": "T4-store-blank-lines",
+      "ticketSha256": "b2647386f5981fb15d5cc5edc041aacd601878fae416b8f592518fbb3cc131d5",
+      "pinnedOn": "2026-09-24"
+    },
+    {
+      "path": "src/mica/chokepoint/floor-trail.ts",
+      "from": "1d26317971d2a395feff15aba2a2d1fabf0756512dbdca61a3b67c189ddfc3d8",
+      "to": "576b0b8a0e62f815e44ee213fe1df40698d1d8f0d4bec65102c3bd82d23b35c6",
+      "ticket": "T4-store-blank-lines",
+      "ticketSha256": "b2647386f5981fb15d5cc5edc041aacd601878fae416b8f592518fbb3cc131d5",
+      "pinnedOn": "2026-09-24"
+    },
+    {
+      "path": "src/mica/notify/notice-log.ts",
+      "from": "2bc718931d8bef307ad660cf565f5b0c5795b03ad42b71076a484b82238413c0",
+      "to": "b98d6a14bbd0f2ec90e0dad9ea08780018b277091c5f01296019aa9419cfffb2",
+      "ticket": "T4-store-blank-lines",
+      "ticketSha256": "b2647386f5981fb15d5cc5edc041aacd601878fae416b8f592518fbb3cc131d5",
+      "pinnedOn": "2026-09-24"
+    },
+    {
+      "path": "src/mica/store/append-store.test.ts",
+      "from": "7cdcc76e2afd31bd2f59fd50c0389c850fe89a418212ad884910c51f6a0c3a3f",
+      "to": "c143715948904144c53a99d365426b8c3dc3b809063b84b85e1683cd17ffe7c4",
+      "ticket": "T4-store-blank-lines",
+      "ticketSha256": "b2647386f5981fb15d5cc5edc041aacd601878fae416b8f592518fbb3cc131d5",
+      "pinnedOn": "2026-09-24"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "be3b846825cd0a6ac61ac1c6fcea2e32468031efe3d553cd87e9451cc620eff3",
+      "to": "0facd6cc455614c72c8b0e0ab7857bbce477b75bb16ce765ea6b1be9e4528949",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "62a28e0cb77472be4c550d59ca580022d6efd5e9ab7003a4f6f7e724e24038a7",
+      "to": "82743c1a897c0143baf1f0abf1539d55d502e027ab9398a2a085c511f60cb298",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/sig.test.ts",
+      "from": "ac23a11e1aa6a96044c4269793f5fc3eb77b7f9e90bfc243d92506a2d5da03fb",
+      "to": "eba3abfff1dd5d7cb83332dd9234415dbe01a7dc0c9f1b043169618b54df890a",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/export.test.ts",
+      "from": "4f563897e3bbe8376124c5f7c6c464f840f674902724ea31ede1ba13a68da5a9",
+      "to": "55b16ddfbfc9ebde70fd916699415bb18e4039412d58580e898b103d561ca5a2",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "621ce942ba302623a7861823df12d9cd5ad958ca113acfca38e3b4ae3a04aa69",
+      "to": "1abd351e93579f312e0131f5606757f654e66049ab555391091aa8c8b0b3991e",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/verdict-logic.test.ts",
+      "from": "b579f73ad05ac452519ac2f1b82e4b63e71484475b8835096cdf0a5bb98f2e48",
+      "to": "65f405c0452bcc6d2949bf2eb1832e31403b0d3e1d76e29bbeb8c55d6344bb32",
+      "ticket": "T6-sig-f3-stamp-identity",
+      "ticketSha256": "cc760b0f914c83fce7d9a758b1b6293c0381427aaa3ef9b3a83268a884f48344",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "0facd6cc455614c72c8b0e0ab7857bbce477b75bb16ce765ea6b1be9e4528949",
+      "to": "881b82856503384017be6826ed9aff4ac9060eac5d610ba6e02b81376c464a94",
+      "ticket": "T7-f3-mismatch-never-tail",
+      "ticketSha256": "3dff91e6a30490178486b13685e15abe13417034b00e697568dff3cb29b361c8",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "82743c1a897c0143baf1f0abf1539d55d502e027ab9398a2a085c511f60cb298",
+      "to": "d6dbdf898e9210b180427d1f8ca21b2868211edfd1d6ca9d4fb776c58ac6cb85",
+      "ticket": "T7-f3-mismatch-never-tail",
+      "ticketSha256": "3dff91e6a30490178486b13685e15abe13417034b00e697568dff3cb29b361c8",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "1abd351e93579f312e0131f5606757f654e66049ab555391091aa8c8b0b3991e",
+      "to": "ff4ca3db6893801c22848b5e985e673aa981af8e76a8c2708054375ceee7344a",
+      "ticket": "T7-f3-mismatch-never-tail",
+      "ticketSha256": "3dff91e6a30490178486b13685e15abe13417034b00e697568dff3cb29b361c8",
+      "pinnedOn": "2026-09-28"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "881b82856503384017be6826ed9aff4ac9060eac5d610ba6e02b81376c464a94",
+      "to": "00e9e3ee357d6688d1d70f39635ff245bb65a7a213ee1950683b30ff8bae5e6f",
+      "ticket": "T8-chain-identity-mandatory",
+      "ticketSha256": "9073218c54589d26893c9c7454ecc57522b223a382aab8db8736c00fbc4c4073",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "d6dbdf898e9210b180427d1f8ca21b2868211edfd1d6ca9d4fb776c58ac6cb85",
+      "to": "68cca3e177b06ba7682dcdae65a991f0ead093e72788fa855fa29e6b521ea853",
+      "ticket": "T8-chain-identity-mandatory",
+      "ticketSha256": "9073218c54589d26893c9c7454ecc57522b223a382aab8db8736c00fbc4c4073",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "ff4ca3db6893801c22848b5e985e673aa981af8e76a8c2708054375ceee7344a",
+      "to": "01a8f43d492e30908057cbadcb62e68c3f7ac8cd8f364038eafeb246c27ec696",
+      "ticket": "T8-chain-identity-mandatory",
+      "ticketSha256": "9073218c54589d26893c9c7454ecc57522b223a382aab8db8736c00fbc4c4073",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/sig.test.ts",
+      "from": "eba3abfff1dd5d7cb83332dd9234415dbe01a7dc0c9f1b043169618b54df890a",
+      "to": "8a57ed68c3edd9187eb108c7ed36174f24ac653837aa5a83cc25f0f87c478a6a",
+      "ticket": "T8-chain-identity-mandatory",
+      "ticketSha256": "9073218c54589d26893c9c7454ecc57522b223a382aab8db8736c00fbc4c4073",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/export.test.ts",
+      "from": "55b16ddfbfc9ebde70fd916699415bb18e4039412d58580e898b103d561ca5a2",
+      "to": "964bc3bbd1d6a4c0105a4dcb24b99547ead91ca6de2f86ef794612cd19de8ade",
+      "ticket": "T8-chain-identity-mandatory",
+      "ticketSha256": "9073218c54589d26893c9c7454ecc57522b223a382aab8db8736c00fbc4c4073",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "00e9e3ee357d6688d1d70f39635ff245bb65a7a213ee1950683b30ff8bae5e6f",
+      "to": "b965891c9601d552c2f9672c7d490bff4d2c771e069b4ac7bbe9368761c39041",
+      "ticket": "T9-f1-reports-its-headroom",
+      "ticketSha256": "c88b05a8716920932d29efe1a9fb5c2d26e23f2385391d2ceb60d7005c229d7c",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/sig.test.ts",
+      "from": "8a57ed68c3edd9187eb108c7ed36174f24ac653837aa5a83cc25f0f87c478a6a",
+      "to": "fa053a82d7bdb35d299463c8ff0c179ea618b62af49679fbb5ea4305587269cc",
+      "ticket": "T9-f1-reports-its-headroom",
+      "ticketSha256": "c88b05a8716920932d29efe1a9fb5c2d26e23f2385391d2ceb60d7005c229d7c",
+      "pinnedOn": "2026-09-29"
+    },
+    {
+      "path": "src/mica/eng/index.ts",
+      "from": "7e577a24059314273cc1e942325375ff29602e373879cce0c08d3cc6d75e3ad7",
+      "to": "66cee466c4efe57629466839680a612a05e922e57cfe9b8e44a2ee60e52e1ec2",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/eng.test.ts",
+      "from": "9ef65151c39a3f2ec36358ed2dc2cd9075687ed63a4a122e09d586eb6e451f2c",
+      "to": "c26d3ead2305d9dbe9c65d9b1ed9d7284e85e18f2f1a80f5abf49e325a8790b1",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "01a8f43d492e30908057cbadcb62e68c3f7ac8cd8f364038eafeb246c27ec696",
+      "to": "36334d8f78d51ecb986c230b5a78706f18a4658f63481236b94e573a618029aa",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/verdict-logic.test.ts",
+      "from": "65f405c0452bcc6d2949bf2eb1832e31403b0d3e1d76e29bbeb8c55d6344bb32",
+      "to": "de47f52f73db2c4d5fe67a7a8798e56ecaf0718a4c50fe4cd91a096852803c96",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/verdict-logic.frozen.json",
+      "from": "e6c5b812fef6902f36645c46fa5ec355e606e78349e66f5c9649723b60cdd9f8",
+      "to": "278d3cc2f349c8976b4ef5a954648d09858d5c7cb12fa8601095367834eb4a80",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/verdict-logic.substrate-snapshot.json",
+      "from": "0128dc0f0e16682cf95a304a73052b6d1104443d29f5fdf9f930ea54bd8eeec3",
+      "to": "d91a9db3a30849c6ae83715c0b6c4379ce8c893b143885393bbdd20c6703c70e",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/chokepoint/chokepoint.test.ts",
+      "from": "b408a4cfddf35a9711e0b4f288ed57327f196d1b1c92fea87889d05f2561a579",
+      "to": "9166ccd8bdabf2e1ec9f71c28ddfb09e44925d2060a8ab10ac9d5c6897647e4e",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/export.test.ts",
+      "from": "964bc3bbd1d6a4c0105a4dcb24b99547ead91ca6de2f86ef794612cd19de8ade",
+      "to": "b3bdef1696d5782488475b67b28e015ae78401ad345cad70c239608ce19256b6",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/narrow-k/narrow-k.test.ts",
+      "from": "c70b15f6e5e153f3df6408902020723866c4ea09ea56ee13f4dce6c1c0cd82d2",
+      "to": "71effe3b6859a91acd56aea4511b6bfc985d8d826acef44d8d535eeb039123b5",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/narrow-r/narrow-r.test.ts",
+      "from": "4234a808af48969fab9a321ddca450fd9d8aa6e34a41560532e17abdfbd72fc3",
+      "to": "7a5b9771275936201fdcc64a5e83ded6dc1a534dc0b7b63ad08331cbc850945a",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/narrow-t/narrow-t.test.ts",
+      "from": "21e9f22353c757ee9c92c7625f77c302d70d8ecd5bbc24d6aa47b94b50e4b6ee",
+      "to": "a903e8b64526cdf29ca5370431ae927d5636d81a8e5c2920bf3aeda95ba04e2e",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/narrow-w/narrow-w.test.ts",
+      "from": "a7eebe69c6e4b0edc46b07e68fffcce6262b8197664c464760a27b5d88ee9bc8",
+      "to": "1092ec53778e84b2e4f879569b7bada8cea857700880600bd5fa477a477c8263",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/sig-f2-activation.test.ts",
+      "from": "84dd5bd284f54aa40767e15c378c1c883e28e31fab6ccd1abb468840204182e8",
+      "to": "df9ef599c21452710fe0dfd5b90a4daa709caaa5d89920f1a19682255b6a8480",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/sig-f2-reentry.test.ts",
+      "from": "8400874d5c15d6bc7f96dd466e9e075aa60014b816948688e4bceae2a5c2a087",
+      "to": "de925491ae3e29a29af5eecc7fe5ecb2d1e8881ae8ee8dfc26d54eea953cbd9e",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/eng-d24-imbalance-coverage.test.ts",
+      "from": "2194ff2cd16b6ce22228d7921cee1fe5700a9f75f4bf0ab8b12ef48f3285483b",
+      "to": "1824158e40cd36df961d3a3a95597903ffaed287314defc9719345879f0d088a",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/narrowing.test.ts",
+      "from": "8141f01adf2fe92e6414cddd4ee59e0776bfebfa6e9c6392c195a41d730100d8",
+      "to": "76897af4b0ee52c46293efdaec4295f0c7aa66f6bed8e19de938de99d3bbdb7e",
+      "ticket": "T11-eng-observed-coverage",
+      "ticketSha256": "ba8614b445734a6ebd09b3b32ed551cbb8bc800ed0c1b68be3bc0b737274cb33",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/eng/index.ts",
+      "from": "66cee466c4efe57629466839680a612a05e922e57cfe9b8e44a2ee60e52e1ec2",
+      "to": "a606a550591be9cc6ea1fba62dcb87002f7baf6e89c704386a9987d8972cb267",
+      "ticket": "T13-eng-class-key-collision",
+      "ticketSha256": "4337ca81b84076ad5a803312bff8d3fb0eecbe9056c861b50308e0e02544aa9c",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/eng.test.ts",
+      "from": "c26d3ead2305d9dbe9c65d9b1ed9d7284e85e18f2f1a80f5abf49e325a8790b1",
+      "to": "e3fbcdf390747e4fe1683618a977e9d7c00bbb0f87ec5318b3c7c0e0a695ecb1",
+      "ticket": "T13-eng-class-key-collision",
+      "ticketSha256": "4337ca81b84076ad5a803312bff8d3fb0eecbe9056c861b50308e0e02544aa9c",
+      "pinnedOn": "2026-10-01"
+    },
+    {
+      "path": "src/mica/eng/index.ts",
+      "from": "a606a550591be9cc6ea1fba62dcb87002f7baf6e89c704386a9987d8972cb267",
+      "to": "861da9313707d3c80249113e5b2d123da3269039ee561f42865faa1bfaf7693b",
+      "ticket": "T14-eng-class-label",
+      "ticketSha256": "cfbb35f02eea58f7caf46aa2cd45dff1426b3e89e694351c48ca55be6d36d4b6",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/eng.test.ts",
+      "from": "e3fbcdf390747e4fe1683618a977e9d7c00bbb0f87ec5318b3c7c0e0a695ecb1",
+      "to": "aa5d40c69fa1bf3478e47943285d6b95ef1cd422c4879c05d9a53459e8f5937e",
+      "ticket": "T14-eng-class-label",
+      "ticketSha256": "cfbb35f02eea58f7caf46aa2cd45dff1426b3e89e694351c48ca55be6d36d4b6",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/eng/index.ts",
+      "from": "861da9313707d3c80249113e5b2d123da3269039ee561f42865faa1bfaf7693b",
+      "to": "37bad2b86fcfc987d177b066865646183cd363c314e214dd3bb4fe1931ad44f7",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/eng.test.ts",
+      "from": "aa5d40c69fa1bf3478e47943285d6b95ef1cd422c4879c05d9a53459e8f5937e",
+      "to": "cd34bc05350bd208bfad383c62fe214de5ea438b78933bf2356609334ef024bf",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "bfa0fd9288e7b6ed63d1993edce76e8f5abe7960728a6055a00e6432428973eb",
+      "to": "2f9540dde8ffa9afb4738c18474f8b2aabfdccd631dd41d08b1356b8efdc12d0",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "3c0b8395469e48f4dc4f8ac02bf0c63627ddcc36513de15cc28416aceccd91df",
+      "to": "677935d1b2c0ce0a4b79d8e3487cc08ec396049a3dcaf0a2c7f22e47d0e26216",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/verdict-logic.frozen.json",
+      "from": "278d3cc2f349c8976b4ef5a954648d09858d5c7cb12fa8601095367834eb4a80",
+      "to": "3021d9909897818baac645b064b3f470a5b7697eb1781988d92fa51442e8931b",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/verdict-logic.test.ts",
+      "from": "de47f52f73db2c4d5fe67a7a8798e56ecaf0718a4c50fe4cd91a096852803c96",
+      "to": "50eb77c98ce40701d595e4e94190b40a1d8edbc1315532f11372a68dca639925",
+      "ticket": "T17-op3-margin-disclosure",
+      "ticketSha256": "248fe989c85261b7aba973cc8c0046998fd7dab15748f627272523f0680958ed",
+      "pinnedOn": "2026-10-02"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "2f9540dde8ffa9afb4738c18474f8b2aabfdccd631dd41d08b1356b8efdc12d0",
+      "to": "84f0cd68d879afad19b94c6a3c449cf96bb1843a234feb63034b6ae05a686a98",
+      "ticket": "T18-op3-resolving-power",
+      "ticketSha256": "40d216b59ec645bfd2e37b4ff54dfd5a5fcb08411279adff9f665f521b81e401",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "677935d1b2c0ce0a4b79d8e3487cc08ec396049a3dcaf0a2c7f22e47d0e26216",
+      "to": "b6f1ba35c7b6b0c1d073f4697d1fd189a2ba44ab3867a58e6c9c468fe26e401c",
+      "ticket": "T18-op3-resolving-power",
+      "ticketSha256": "40d216b59ec645bfd2e37b4ff54dfd5a5fcb08411279adff9f665f521b81e401",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op-ceilings.test.ts",
+      "from": "ab9b5e1f66e7d21b81ad2e8981e78ff43ff1d742f18c769775efee29164754eb",
+      "to": "6488abd205bd23dc5b15658dc702cc4bbef2b68f42a63369a6f015b2e4d3f2d2",
+      "ticket": "T19-op-ceilings-resolvable-samples",
+      "ticketSha256": "2a63dd82bfb5dd687ac668000e7026dd10d103b01849a16e77d6cf2a3617a318",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "b6f1ba35c7b6b0c1d073f4697d1fd189a2ba44ab3867a58e6c9c468fe26e401c",
+      "to": "4d53105a4c8aa4047e7fbf88fc449375603331863335ac51c29992245a0e6f77",
+      "ticket": "T19-op-ceilings-resolvable-samples",
+      "ticketSha256": "2a63dd82bfb5dd687ac668000e7026dd10d103b01849a16e77d6cf2a3617a318",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "84f0cd68d879afad19b94c6a3c449cf96bb1843a234feb63034b6ae05a686a98",
+      "to": "98f08a9333528df09a787266d3ab47954b376b56b86681a1785cc46357a775ad",
+      "ticket": "T20-op3-broad-quantum-and-both-codes",
+      "ticketSha256": "acade01974d6e98bfb80e1b995022fe12d639c689c2128d3edc085432775423d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "4d53105a4c8aa4047e7fbf88fc449375603331863335ac51c29992245a0e6f77",
+      "to": "6e15354d1290209db212b0dba8bd22ddbdcf2081184ca1d79d86ff9af5756bed",
+      "ticket": "T20-op3-broad-quantum-and-both-codes",
+      "ticketSha256": "acade01974d6e98bfb80e1b995022fe12d639c689c2128d3edc085432775423d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "98f08a9333528df09a787266d3ab47954b376b56b86681a1785cc46357a775ad",
+      "to": "ed6a140094628362c7431e0a744787b4343c666d14f23fbd27c15a8d35dd37dd",
+      "ticket": "T22-op3-quantum-cell-key",
+      "ticketSha256": "a71951e36447b268699b1e8dadf708e738a45c4bf267b13b6b03f8aa90328058",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "6e15354d1290209db212b0dba8bd22ddbdcf2081184ca1d79d86ff9af5756bed",
+      "to": "af65300aba80510f77b4a17c92b8bce02ced0ce23ea6a71e5b42caf9b9fc161b",
+      "ticket": "T22-op3-quantum-cell-key",
+      "ticketSha256": "a71951e36447b268699b1e8dadf708e738a45c4bf267b13b6b03f8aa90328058",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "44e9a3e8c275a93178f46d7fe9fbb2b9fb671658d86edfc8a585a198735b465b",
+      "to": "a67b18c4c993beb4761c38485beb800a120d7868fcca63e836dae9d59b8a7c02",
+      "ticket": "T21-gate4-successor-paper",
+      "ticketSha256": "a47b3bb2cb469bcb1309d9e9cbe160f8a81858c3aca505008d56b293d38d745d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "c9a98341cdb2ccbcdf8d0acfad0caecae2ddc5bdccfb8a83c21b9c8d66ba1272",
+      "to": "8cc866876c66c3e9ec55608bf021fbbc1423878d5e109fd0b0d8467bea2a01c7",
+      "ticket": "T21-gate4-successor-paper",
+      "ticketSha256": "a47b3bb2cb469bcb1309d9e9cbe160f8a81858c3aca505008d56b293d38d745d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "923d06fedd4f404d5450be3895dc6dcdc365e16bce8743755fcb1d101e0a95de",
+      "to": "6383343a02c17b779a955f529d6c2e334f8604cd10991f0f59c5525c1e569b64",
+      "ticket": "T21-gate4-successor-paper",
+      "ticketSha256": "a47b3bb2cb469bcb1309d9e9cbe160f8a81858c3aca505008d56b293d38d745d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "1131151b926f87df9c082c04662fbbe8cd0046fe2abaab7767323a0cc9103bf2",
+      "to": "1ccea87bb9b18bd90cc37ba35eb3b0f1ad7603bab0d9ec71dc0f58bb5de230b0",
+      "ticket": "T21-gate4-successor-paper",
+      "ticketSha256": "a47b3bb2cb469bcb1309d9e9cbe160f8a81858c3aca505008d56b293d38d745d",
+      "pinnedOn": "2026-10-03"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "6383343a02c17b779a955f529d6c2e334f8604cd10991f0f59c5525c1e569b64",
+      "to": "9693ec2f7071876bb4fd1958373adc26ff44721857f70b2e1af0bb515beb6c9c",
+      "ticket": "T24-gate4-successor-ref-ceiling",
+      "ticketSha256": "9ad6133e31116826dc40286c5bc6dd1f2badeb47a0fb632ccdba6a238f9daddd",
+      "pinnedOn": "2026-10-04"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "1ccea87bb9b18bd90cc37ba35eb3b0f1ad7603bab0d9ec71dc0f58bb5de230b0",
+      "to": "a34a23fd28e40b1b834199459b591b813e98bcbfa037f0934f9a8399fa02bbd8",
+      "ticket": "T24-gate4-successor-ref-ceiling",
+      "ticketSha256": "9ad6133e31116826dc40286c5bc6dd1f2badeb47a0fb632ccdba6a238f9daddd",
+      "pinnedOn": "2026-10-04"
+    },
+    {
+      "path": "src/mica/verdict-logic.frozen.json",
+      "from": "3021d9909897818baac645b064b3f470a5b7697eb1781988d92fa51442e8931b",
+      "to": "dc9e699cb6b2faf33c219cd07180ac5e3221f5d37b3d341e2c205267765fc9fa",
+      "ticket": "T25-sig-f3-specimens-name-their-chain",
+      "ticketSha256": "30b896af06b92dee2761450a1e1e83aaa5a088c5f5b2c6a79b8113dd90beada3",
+      "pinnedOn": "2026-10-04"
+    },
+    {
+      "path": "src/mica/verdict-logic.test.ts",
+      "from": "50eb77c98ce40701d595e4e94190b40a1d8edbc1315532f11372a68dca639925",
+      "to": "7b48374feedc3787b3b2247710da4b3695aa7a922ec402c7c6248df3a3a77e7a",
+      "ticket": "T25-sig-f3-specimens-name-their-chain",
+      "ticketSha256": "30b896af06b92dee2761450a1e1e83aaa5a088c5f5b2c6a79b8113dd90beada3",
+      "pinnedOn": "2026-10-04"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "a67b18c4c993beb4761c38485beb800a120d7868fcca63e836dae9d59b8a7c02",
+      "to": "d77bbb02a3bd07ef0b9b5415fffe895e9d24883b8c48264eaa4f08ab6c270333",
+      "ticket": "T26-gate4-leg-a-recorder-of-the-response",
+      "ticketSha256": "c202845bfa459d4c0fa85366f0747ac432f8562777f16aa1d1a2953057d16077",
+      "pinnedOn": "2026-10-05"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "8cc866876c66c3e9ec55608bf021fbbc1423878d5e109fd0b0d8467bea2a01c7",
+      "to": "340b2e8e87c174c24431e831523978c8728c070a68c75df7d63b66420febe334",
+      "ticket": "T26-gate4-leg-a-recorder-of-the-response",
+      "ticketSha256": "c202845bfa459d4c0fa85366f0747ac432f8562777f16aa1d1a2953057d16077",
+      "pinnedOn": "2026-10-05"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "9693ec2f7071876bb4fd1958373adc26ff44721857f70b2e1af0bb515beb6c9c",
+      "to": "91c85980ac7713d35891aa333ca3923b8b76eea77f8973a05ae982f710c85167",
+      "ticket": "T26-gate4-leg-a-recorder-of-the-response",
+      "ticketSha256": "c202845bfa459d4c0fa85366f0747ac432f8562777f16aa1d1a2953057d16077",
+      "pinnedOn": "2026-10-05"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "a34a23fd28e40b1b834199459b591b813e98bcbfa037f0934f9a8399fa02bbd8",
+      "to": "edf72a80f3cc44b948ac5d437b5027d4e0d16830981c1e4f1fa4ab21752d5ee0",
+      "ticket": "T26-gate4-leg-a-recorder-of-the-response",
+      "ticketSha256": "c202845bfa459d4c0fa85366f0747ac432f8562777f16aa1d1a2953057d16077",
+      "pinnedOn": "2026-10-05"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "d77bbb02a3bd07ef0b9b5415fffe895e9d24883b8c48264eaa4f08ab6c270333",
+      "to": "26aa0485a67787a7ff9c36270506ca5db36f83626f8f9aa776dcbdf8829318d6",
+      "ticket": "T28-gate1-envelope-recorder",
+      "ticketSha256": "d2d426a5e8b1ea905aea5d31d0861f17e8c9d5dcc3fac6a75c7cd0bea59821c3",
+      "pinnedOn": "2026-10-08"
+    },
+    {
+      "path": "src/mica/gate1-scope/gate1-scope.test.ts",
+      "from": "8ee1ea311b9fd1ebd873e50019e6adc92cd1bc08809a879cd92df1e131db4d7d",
+      "to": "6afccfd49f4328b35e040f62b85f6eb349bf36e02b66bfe238a758abb0ee5cb2",
+      "ticket": "T28-gate1-envelope-recorder",
+      "ticketSha256": "d2d426a5e8b1ea905aea5d31d0861f17e8c9d5dcc3fac6a75c7cd0bea59821c3",
+      "pinnedOn": "2026-10-08"
+    },
+    {
+      "path": "src/mica/gate1-scope/index.ts",
+      "from": "57bc7ea249e722e8437fc2bbe36f6882d4eaf4b676b64408b92039e112cfb179",
+      "to": "17127d7fc8fa235e807006d030c060b136ce795ed18ef0bedf81e063ed62040f",
+      "ticket": "T28-gate1-envelope-recorder",
+      "ticketSha256": "d2d426a5e8b1ea905aea5d31d0861f17e8c9d5dcc3fac6a75c7cd0bea59821c3",
+      "pinnedOn": "2026-10-08"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "26aa0485a67787a7ff9c36270506ca5db36f83626f8f9aa776dcbdf8829318d6",
+      "to": "892e1936985447b7280a1077cbd1e3cd4134c4ae70ab4a2c2b062abebedfcfa4",
+      "ticket": "T30-gate2-direction-fork-a",
+      "ticketSha256": "66c75c08cf62cd522316866888c7a6f8555700aa25cb11bbf3f5f87c40bb4886",
+      "pinnedOn": "2026-10-10"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "340b2e8e87c174c24431e831523978c8728c070a68c75df7d63b66420febe334",
+      "to": "9798cf027221129e02536aebab95cd1a71281b1c7bfa41eb040d828535fb62d1",
+      "ticket": "T30-gate2-direction-fork-a",
+      "ticketSha256": "66c75c08cf62cd522316866888c7a6f8555700aa25cb11bbf3f5f87c40bb4886",
+      "pinnedOn": "2026-10-10"
+    },
+    {
+      "path": "src/mica/gate2-direction/index.ts",
+      "from": "435171f8d7208299e3cb2ad5c38624fab90a5b4872389de49a60fe608c3723ba",
+      "to": "7667b343303f710b96bd25afc680c06e38cebbca4462e661fd5ab6560f749b5c",
+      "ticket": "T30-gate2-direction-fork-a",
+      "ticketSha256": "66c75c08cf62cd522316866888c7a6f8555700aa25cb11bbf3f5f87c40bb4886",
+      "pinnedOn": "2026-10-10"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "9798cf027221129e02536aebab95cd1a71281b1c7bfa41eb040d828535fb62d1",
+      "to": "917fd44389622b65cca8fdac7043d1aac1708eb9f195b09d4e810363425f5488",
+      "ticket": "T31-gate2-harm-only",
+      "ticketSha256": "01b53165a7774deae652ad8a3674e55fce14bcd2a276545e4cf9c91adb7c83f1",
+      "pinnedOn": "2026-10-16"
+    },
+    {
+      "path": "src/mica/gate2-direction/index.ts",
+      "from": "7667b343303f710b96bd25afc680c06e38cebbca4462e661fd5ab6560f749b5c",
+      "to": "0f6e9eccef1ceb0890d93cf4b08bfc3970fc75f7254a3fa7428514115f8ef683",
+      "ticket": "T31-gate2-harm-only",
+      "ticketSha256": "01b53165a7774deae652ad8a3674e55fce14bcd2a276545e4cf9c91adb7c83f1",
+      "pinnedOn": "2026-10-16"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "892e1936985447b7280a1077cbd1e3cd4134c4ae70ab4a2c2b062abebedfcfa4",
+      "to": "951806ad1244d1495c824f11e99442daeee0bc6a5f4fc59a98a347f978889c99",
+      "ticket": "T32-gate2-harm-ceilings",
+      "ticketSha256": "c9ec2d23c5a181e41b424b31b6dc5d2c7c0b0d662e6b2e072c0044ac22ea4b78",
+      "pinnedOn": "2026-10-16"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "917fd44389622b65cca8fdac7043d1aac1708eb9f195b09d4e810363425f5488",
+      "to": "9c4a6afdd52a81086b52c3b13f3a8ae60af5d34e79ccae9b20c0101a8576fe58",
+      "ticket": "T36-gate2-live-regression",
+      "ticketSha256": "2743b585ed16a1c890bf8db72acb76b82ea9251125bd6b262af6847e0afa5039",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate2-direction/fixtures/live-stop3-20261016.json",
+      "from": null,
+      "to": "23a45fe029a982360a663fdf41cd8c711208a41f38898d8d97b4a72917b1ed7e",
+      "ticket": "T36-gate2-live-regression",
+      "ticketSha256": "2743b585ed16a1c890bf8db72acb76b82ea9251125bd6b262af6847e0afa5039",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/chokepoint/chokepoint.test.ts",
+      "from": "9166ccd8bdabf2e1ec9f71c28ddfb09e44925d2060a8ab10ac9d5c6897647e4e",
+      "to": "6ccf9c5d87dbc4e181163287ce293fc8c458e0c4707241b42fbf577245d84e06",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "91c85980ac7713d35891aa333ca3923b8b76eea77f8973a05ae982f710c85167",
+      "to": "b082c0e3e2cd71483cccfb437b7e8d5dc219f478607b6cd598566f06045b75f9",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/narrow-t/narrow-t.test.ts",
+      "from": "a903e8b64526cdf29ca5370431ae927d5636d81a8e5c2920bf3aeda95ba04e2e",
+      "to": "3173210b33b314993253e39b361a0b66ef3e0002a61014d19b8b4ef0b5a277dd",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/op1-doctor-cadence/op1-doctor-cadence.test.ts",
+      "from": "f0c520c352bb509191c412b1cbbd8988b8fd555d72fda4311815a4aec73c0416",
+      "to": "155d4049fcb45fa53f0125f829f6ae24f5f376a23479553bdb5d4ce7fd579253",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/op2-audit-presence/op2-audit-presence.test.ts",
+      "from": "27723f9a5d59de4b6eda4ea6e4581c5583b07d02fde9b14c791a108d338cd385",
+      "to": "0fcfd7af89b5f88c8d1589c1dc71757f613fae6c67b9da25b987931481f1ffec",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "af65300aba80510f77b4a17c92b8bce02ced0ce23ea6a71e5b42caf9b9fc161b",
+      "to": "6c4c248de4d87bbf881f52bd7cd876086c47240d7dbd0135078f7edbabd32c0f",
+      "ticket": "T37-x3-verdict-arms",
+      "ticketSha256": "b04cfa60210fe6cc54dbd2928e29d04ef4ab65d9ec0f070d7d54a201d0280f46",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate1-scope/gate1-scope.test.ts",
+      "from": "6afccfd49f4328b35e040f62b85f6eb349bf36e02b66bfe238a758abb0ee5cb2",
+      "to": "55e2c6f3f7273cd903e091fc179e1f97d123251d9006ed39dd1e1cdb48945570",
+      "ticket": "T29-gate1-case-insensitive-mount",
+      "ticketSha256": "fa3831211783c988e35a2dc68fccd1a6bac729d147ee52b5d3e145007125feb2",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate1-scope/index.ts",
+      "from": "17127d7fc8fa235e807006d030c060b136ce795ed18ef0bedf81e063ed62040f",
+      "to": "74c12ce626081573ef3f5a2553c867c7de2956de6a6588767bf6126c1fede617",
+      "ticket": "T29-gate1-case-insensitive-mount",
+      "ticketSha256": "fa3831211783c988e35a2dc68fccd1a6bac729d147ee52b5d3e145007125feb2",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "951806ad1244d1495c824f11e99442daeee0bc6a5f4fc59a98a347f978889c99",
+      "to": "589b4a5e34dac9805ec85fb436bd5e518e67afff33707ba4167b7661e2997aa2",
+      "ticket": "T34-gate2-grant-since",
+      "ticketSha256": "9bb7589998933716cde159d50fd34575171e197f9adbbbc8523f32bceebb21ab",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "9c4a6afdd52a81086b52c3b13f3a8ae60af5d34e79ccae9b20c0101a8576fe58",
+      "to": "d788d66b199684bfa70d2f48061e9fa3534d7fca45ccd671f0f6fb18bb0631d4",
+      "ticket": "T34-gate2-grant-since",
+      "ticketSha256": "9bb7589998933716cde159d50fd34575171e197f9adbbbc8523f32bceebb21ab",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate2-direction/index.ts",
+      "from": "0f6e9eccef1ceb0890d93cf4b08bfc3970fc75f7254a3fa7428514115f8ef683",
+      "to": "a8fbca63a49d0733a30f35e1e340f5d04bd631f7c7fa024b34b5ecb3d23d6521",
+      "ticket": "T34-gate2-grant-since",
+      "ticketSha256": "9bb7589998933716cde159d50fd34575171e197f9adbbbc8523f32bceebb21ab",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate2-direction/fixtures/live-stop3-20261016.json",
+      "from": "23a45fe029a982360a663fdf41cd8c711208a41f38898d8d97b4a72917b1ed7e",
+      "to": "c26b385e034fc45971d5a60864ae9d669dbe35e45a09121089c318d243655ffb",
+      "ticket": "T34-gate2-grant-since",
+      "ticketSha256": "9bb7589998933716cde159d50fd34575171e197f9adbbbc8523f32bceebb21ab",
+      "pinnedOn": "2026-10-17"
+    },
+    {
+      "path": "src/mica/gate2-direction/index.ts",
+      "from": "a8fbca63a49d0733a30f35e1e340f5d04bd631f7c7fa024b34b5ecb3d23d6521",
+      "to": "e507eb8bfe00662feac34214103788285169915112af30d04a5595b086101b4a",
+      "ticket": "T35-gate2-errand-grant",
+      "ticketSha256": "4e59ba49570ce5300912a6a06742483f0e1f258bd9c72be3f427aea777cc5ce4",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "d788d66b199684bfa70d2f48061e9fa3534d7fca45ccd671f0f6fb18bb0631d4",
+      "to": "d737e9f952c8467e498c78869bcf25b34a1b1ebba7fc4929db11e7710d245ecd",
+      "ticket": "T35-gate2-errand-grant",
+      "ticketSha256": "4e59ba49570ce5300912a6a06742483f0e1f258bd9c72be3f427aea777cc5ce4",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/gate-ceilings.test.ts",
+      "from": "589b4a5e34dac9805ec85fb436bd5e518e67afff33707ba4167b7661e2997aa2",
+      "to": "4caac6bde99b6dd2bfc540141f022c73bd5f269dcc924a66afd552d6a6b624a5",
+      "ticket": "S216-2-grant-memory",
+      "ticketSha256": "a24c20bb001673fea7d24d7985d4e3564e5e448abe1776055465131c29ec7956",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/chokepoint/types.ts",
+      "from": "8534dc1733003dfc6688b12dc1c024eaad17bce1b282bdc3e563472efd8a14d5",
+      "to": "8dde56f5d965b3faea47134544402bc42bb6bd4e28594034468b1b48a68c912e",
+      "ticket": "T27-reader-throw-booked",
+      "ticketSha256": "174c13cad5bff6352647f343574faa2b22e1758d79728359d268a6e8595f6b23",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/chokepoint/index.ts",
+      "from": "83196e50444959e3088cd98435e448fab3eb183634690fab827bad1f58752e5d",
+      "to": "065895f3730555db7f626eeb82c0b06be8ac246554a80524c3d89cbc2cecb77d",
+      "ticket": "T27-reader-throw-booked",
+      "ticketSha256": "174c13cad5bff6352647f343574faa2b22e1758d79728359d268a6e8595f6b23",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/chokepoint/chokepoint.test.ts",
+      "from": "6ccf9c5d87dbc4e181163287ce293fc8c458e0c4707241b42fbf577245d84e06",
+      "to": "70c52269353885a46d0a45591b7e430b770ca6038c7e34b148ce605d2f9c1d8c",
+      "ticket": "T27-reader-throw-booked",
+      "ticketSha256": "174c13cad5bff6352647f343574faa2b22e1758d79728359d268a6e8595f6b23",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/op-ceilings.test.ts",
+      "from": "6488abd205bd23dc5b15658dc702cc4bbef2b68f42a63369a6f015b2e4d3f2d2",
+      "to": "713b673e4fbd00488913964a39fb45461fbd4ddde7248d25b685e985390eb492",
+      "ticket": "T39-op3-undefined-move-unresolvable",
+      "ticketSha256": "4320870ee48a39b31e66ca6b2269b2b8e3b4d400ce1a2ac5b8184a3a304568cc",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "ed6a140094628362c7431e0a744787b4343c666d14f23fbd27c15a8d35dd37dd",
+      "to": "4100da060990ce682107816e85e7553b337b8f4a8e231afdf5ad6aa8d69df4a5",
+      "ticket": "T39-op3-undefined-move-unresolvable",
+      "ticketSha256": "4320870ee48a39b31e66ca6b2269b2b8e3b4d400ce1a2ac5b8184a3a304568cc",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/op3-node-response/op3-node-response.test.ts",
+      "from": "6c4c248de4d87bbf881f52bd7cd876086c47240d7dbd0135078f7edbabd32c0f",
+      "to": "5a711cd9cbe88c2889b1aa483d9f416c9aff8d3003e872171b8b3278ce873b6a",
+      "ticket": "T39-op3-undefined-move-unresolvable",
+      "ticketSha256": "4320870ee48a39b31e66ca6b2269b2b8e3b4d400ce1a2ac5b8184a3a304568cc",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "edf72a80f3cc44b948ac5d437b5027d4e0d16830981c1e4f1fa4ab21752d5ee0",
+      "to": "5f3e25b574cf835fc8830f98c7a055c15216027d7443dbe340d9f875e9e9f8b5",
+      "ticket": "S199-order-cites-only-fresh-papers",
+      "ticketSha256": "23fc7869a6323138cd8b6bf5488545e52eeb651b4f3da51d3a95565be411fabe",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "b082c0e3e2cd71483cccfb437b7e8d5dc219f478607b6cd598566f06045b75f9",
+      "to": "ca603e58655483311ce0e53453d4ec4d49723636770ec2f6f6b902a00aff1011",
+      "ticket": "S199-order-cites-only-fresh-papers",
+      "ticketSha256": "23fc7869a6323138cd8b6bf5488545e52eeb651b4f3da51d3a95565be411fabe",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/closure.test.ts",
+      "from": "4dc006d3ae236696581e65263672b592275bc38b03870a243d0b9a3e58ae3727",
+      "to": "050abe051a8134176b2be27b11f5cbddbd384a46c47299170dded1aa87792fb0",
+      "ticket": "T40-closure-declares-t27-stub",
+      "ticketSha256": "0ab1b60a264cef7f828507b9c36496250dd2378f9e2cb7d72d8d195034b7af10",
+      "pinnedOn": "2026-10-18"
+    },
+    {
+      "path": "src/mica/chokepoint/floor-trail.ts",
+      "from": "576b0b8a0e62f815e44ee213fe1df40698d1d8f0d4bec65102c3bd82d23b35c6",
+      "to": "6b65f5de780ad4df60836d096544d43804fafca0c4d059dc2f85c5c5bebaca0f",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/chokepoint/types.ts",
+      "from": "8dde56f5d965b3faea47134544402bc42bb6bd4e28594034468b1b48a68c912e",
+      "to": "11c277c3f16a38566d38ec542903b94b20e356655cb3adcfd5ea8bf059f16fc1",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/closure.test.ts",
+      "from": "050abe051a8134176b2be27b11f5cbddbd384a46c47299170dded1aa87792fb0",
+      "to": "403b2c5634527da665783cb772e5eac859833b5f7becbc53b440f56a5538711b",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/doctor/doctor.test.ts",
+      "from": "a8bb66bafdc7353c39e572d049048557a8ae14f197d280b8c845a3241ff5447f",
+      "to": "8221167216fa8e69ff706844616f28f3ad83d03ba272e2f39bc47a4c40bed290",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/doctor/history.ts",
+      "from": "eff3f06f063747daa82eaec363eda0a29ea82ccf0f3e88e140af9194133de726",
+      "to": "1fcfdb46c378b5a561833aaeec39263bb1ae59827ad85e7eab700eba884e9754",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/doctor/latency.ts",
+      "from": "e9ee4e1c050af77d4ad67addaf1c727f35995f42b47942d15b01157911609548",
+      "to": "c59be93cd672040f93aee4586ffb3189fc7daf71e1a18f5fa3c04dace000abd3",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/doctor/overlays/aggregate.ts",
+      "from": "1e776776ca10888742e83dc88b19a627202f96ca6ab4574720c5098ddff7d4ac",
+      "to": "aeb9bb6e55cb4cada50f2193617ef30d0ee0dd79a04d647bdbbf2d052a03acc8",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/eng.test.ts",
+      "from": "cd34bc05350bd208bfad383c62fe214de5ea438b78933bf2356609334ef024bf",
+      "to": "6526c3aef5b21aa6a456a67a49cc5070dea83fcd4e2afdd7e7b3fe28ddebf4b0",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/gate2-direction/gate2-direction.test.ts",
+      "from": "d737e9f952c8467e498c78869bcf25b34a1b1ebba7fc4929db11e7710d245ecd",
+      "to": "e523d56b40f64d9d83c6a9c87611ec2d9d9fe8b61e415fe3b58c6b34aca7b7c4",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/gate2-direction/index.ts",
+      "from": "e507eb8bfe00662feac34214103788285169915112af30d04a5595b086101b4a",
+      "to": "e40f63fb958fe09be5b077798a8b903cff739606536e5e65ff06c083e47793a2",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/gate4-sunset/gate4-sunset.test.ts",
+      "from": "ca603e58655483311ce0e53453d4ec4d49723636770ec2f6f6b902a00aff1011",
+      "to": "7c81b2868c9e0510b0df6fb7627021694d6efb9f6ac77d951bfa9237ca0b72ba",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/gate4-sunset/index.ts",
+      "from": "5f3e25b574cf835fc8830f98c7a055c15216027d7443dbe340d9f875e9e9f8b5",
+      "to": "37ed1847d105ef5e87d2989e13c06759d046809ce6b2bb3ac3d506691a6fdefc",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/kappa/kappa.test.ts",
+      "from": "406d6d0ce2d56aeeea62d3d93d22908bb42d93934e85d3201a39fd9d41af2507",
+      "to": "f4598c1efc214a5c7390916603b87af6e54ffe67405d54c3ad2d3e82559dd25b",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/kappa/kappa.ts",
+      "from": "bfc1a380dd38ff4f888e4e6e9eb372191dc8d42bee9d828540adb1d6f0cd9640",
+      "to": "b0d3daf4b7d9d69ee9ed89e7dde22dca65586b3b7ae59f3d64dfd89ea876825c",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/narrow-k/index.ts",
+      "from": "e68de881f34b1cf5b49f9ecbf30db5e3761db7605b4253b4858503bd7d25f834",
+      "to": "2662fe897cd8280d2cf712f387db3ff6989387175ddeff1760dec9e8b37db522",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/narrow-r/index.ts",
+      "from": "6d4afe28c63e1f14df8e026c3c677fe44c6c85aa267ca39260d0a215ec9114ec",
+      "to": "c3da7e3ef4ec3d84851b19a9e3506c584ddaf69accfd4e5206ac78fbc9530258",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/narrow-t/index.ts",
+      "from": "fb42b354a24c14fc2688e4aac4d05048b0a761ba84c415882bab3f3ae08f48bc",
+      "to": "df10b4ff450f0d8e66a706c1801cb2eb560450e4f7b01d412881a8221c8e6d08",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/narrow-t/narrow-t.test.ts",
+      "from": "3173210b33b314993253e39b361a0b66ef3e0002a61014d19b8b4ef0b5a277dd",
+      "to": "21d6684585f915af111e3056877e874628263771043dd5b0dc0eac58bf5a4229",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/narrow-w/index.ts",
+      "from": "735e75fcc130cdf24203bdeb7ea286c288aef535351143a0811d7d4653519040",
+      "to": "549ddbec2b58533570e0e7edda2d2aad625a0ca30c47a2a6fbdcc8c75bd2481a",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/notify/notify.test.ts",
+      "from": "6fa5c28f22d2c5aca284f2bd1c297139e3ebb414fc051f04e366107d98482487",
+      "to": "6223c2839209e89960f75c02c14239343506417832296117b580b2c728856358",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/notify/types.ts",
+      "from": "c3a721bc557e69a42fc7e9c4e99803bea62586b83baf5e8cb9ff4d6bf638b91d",
+      "to": "d235a9238cfd40c8490233f4357e853ed515a82ef441b6aafcb9d6bc152468db",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/op1-doctor-cadence/index.ts",
+      "from": "ed19194a4f43af7596b08dc5772ec84e2bb34693475590d276a9d0b740003996",
+      "to": "ebe1d99dd3a49993a23dc0b9b7bd74b8be090a39f3e76b6d46de2be4259b4f5b",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/op2-audit-presence/index.ts",
+      "from": "92e77b4b3f3f22974b6a5e84a6ef262339fa5167f07b47806c8a43f44200431b",
+      "to": "04437ed1dc6df78e32ef370285b76454787ae2f765d7f4fc07318ee620fb7764",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/op3-node-response/index.ts",
+      "from": "4100da060990ce682107816e85e7553b337b8f4a8e231afdf5ad6aa8d69df4a5",
+      "to": "a2dcbb334840bc974f93346213a5b5b07c685614c3cdb36befeca674aee1a542",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/sig-f2-d24-coverage.test.ts",
+      "from": "a86eebcc7d8996a2996965dcad36c4e65c2283c301654d10b75fed6fcd644932",
+      "to": "fc3b1a7e7be70d25da1bcfbc02b598f32275bc00d334f05a15e67c5cb2804aa2",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/sig-f3-clerk.test.ts",
+      "from": "68cca3e177b06ba7682dcdae65a991f0ead093e72788fa855fa29e6b521ea853",
+      "to": "5263bad25c31df8338e8491e9c09cf15493d30bb645f3049c8f3b098ddcec588",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/sig.test.ts",
+      "from": "fa053a82d7bdb35d299463c8ff0c179ea618b62af49679fbb5ea4305587269cc",
+      "to": "b29304ed8b7a1f9eebce61c19a1828a61df6ae81826e4ab180b1aa61f42a872b",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/sig/index.ts",
+      "from": "b965891c9601d552c2f9672c7d490bff4d2c771e069b4ac7bbe9368761c39041",
+      "to": "2bdd4b383bb6c4974ef1eb01ae42b21d8be77c50ddefba1cc3e3addcc18ff145",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/store/append-store.test.ts",
+      "from": "c143715948904144c53a99d365426b8c3dc3b809063b84b85e1683cd17ffe7c4",
+      "to": "eda0aca1c680b259e6951b1351cbd69ea0d55e4d6312668dbb164f044a5ff32e",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/substrate-snapshot.test.ts",
+      "from": "36334d8f78d51ecb986c230b5a78706f18a4658f63481236b94e573a618029aa",
+      "to": "c877e996ee2f5cf689316c40a76b5d859d7330eb26ade398c675b7e43a9a3598",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/types.ts",
+      "from": "ca5fa44316446e698446f363ee884f2bcd6cb0976f01f268e6adeedda11f16da",
+      "to": "ad136fdaf2d5582f00d13e2ce0dce9a142306626eaf9c62db2eb61b7cc60742c",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    },
+    {
+      "path": "src/mica/verdict-logic.test.ts",
+      "from": "7b48374feedc3787b3b2247710da4b3695aa7a922ec402c7c6248df3a3a77e7a",
+      "to": "39e628c5b7850456c2563fe2a4a230ad3db719261ca265cb584b138ecfab315c",
+      "ticket": "P2-role-words",
+      "ticketSha256": "c1dc522061d7b0075821fe4882deaf7dca0631bc2f39aae2d5db0c0a41ef65e9",
+      "pinnedOn": "2026-10-23"
+    }
+  ]
+}

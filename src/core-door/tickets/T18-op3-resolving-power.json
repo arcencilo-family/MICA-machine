@@ -1,0 +1,29 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T18-op3-resolving-power",
+  "opens": [
+    "src/mica/op3-node-response/index.ts",
+    "src/mica/op3-node-response/op3-node-response.test.ts"
+  ],
+  "defect": {
+    "summary": "op3 compares AMI to an injected floor without ever asking whether its table is fine-grained enough for the comparison to mean anything. A verdict one record could reverse is a reading of that record, not of the population. The first reading of the live series (AMI 0.198 over 316 pairs, distance 0.002) sat INSIDE the one-record quantum (~0.005) and was reported as a plain ALARM.",
+    "ground": "MEASURED THIS TICK, 2026-10-02, on t11build at 47749bb. Live reading via /explain on decision 686 (2026-10-02T18:33:30.966Z): AMI=0.186030, injected floor 0.2, n=323 context-bearing pairs; distance 0.013970. THE QUANTUM, defined as the largest absolute change in AMI from moving one record between OUTCOME cells within its own CONTEXT row, measured 0.004-0.008 across seven fitted shapes (2x2 3x3 3x5 4x4 5x3 6x6 8x4) at each reading's own n. APPLIED TO THE SERIES: at AMI 0.198 / n=316 the distance 0.002 is below even the LARGEST quantum across shapes (0.007687), so that alarm was not supportable; at 0.190 / n=320 and 0.186030 / n=323 the distance exceeds even the SMALLEST (0.004400 and 0.004081), so TODAY'S ALARM SURVIVES THE GATE AND THIS TICKET DOES NOT CLEAR IT. The gate discriminates inside one series rather than excusing it, which is the only reason it is worth building. COST, measured: AMI is a function of the contingency TABLE, not of which record moved, so the distinct moves are the (context, from-outcome, to-outcome) triples with a non-empty source cell - at most kC*kO*(kO-1), and n drops out of the COUNT. Brute force and this cheap form agree to the last digit on four shapes of four (0.005248151, 0.008151922, 0.002365154, 0.000984666) while recomputes fall 646 to 18 and 7055 to 180. At live scale (n=323, 3x3) the cheap form costs 10.1 ms against the brute force's 1413.1 ms; at n=1411, 6x6 it is 270.3 ms against 17890.3 ms. THE BRUTE FORCE IS NOT SHIPPABLE - at n=2000, 8x8 it costs 56.3 s per decision and is O(n^2) in the window - and that would have been found only after signature. RESIDUAL, named: the cheap form still pays O(n) per recompute because it re-materialises label arrays; a table-level entry point in src/mica/stat/ami.ts would remove that factor and is DELIBERATELY NOT IN THIS TICKET, because widening to the shared statistic module widens the blast radius to Eng and narrow-W leg 2 for a speed-up nothing needs at 10 ms. WHAT THIS GROUND IS NOT: the tables are SHAPE-MATCHED SYNTHETICS. The live contingency table sits behind /var/lib/mica-bridge/subject-events.jsonl, which is -rw-r----- mica-bridge:mica-bridge and unreadable by uid 1000 (verified at bytes this tick), and the designed route to it is T17's margin disclosure, which is BUILT AND HELD, NOT RELAYED. The live calibration is owed on the relay; that the live table's quantum falls in the 0.004-0.008 band is [SP]. Design and both measurement scripts: ARC_MICA-NOTE_Dependence-Readers-Leg2-Design_20261002 section 11."
+  },
+  "expiresAt": "2026-10-09T18:00:00Z",
+  "arbiter": {
+    "word": "I, the arbiter, grant T18: op3-node-response compares its statistic to its floor only when the sample can resolve the difference; when the distance to the floor is smaller than what one record can move, the reader says CANNOT_ASSESS and prints the margins, in either direction, so that an alarm is never an artefact of granularity and a silence never a gift of it; no floor is lowered and no constant is added.",
+    "date": "2026-10-03"
+  },
+  "conditions": [
+    "The gate sits AFTER the arity gates and the null-denominator check and BEFORE the floor and ceiling comparisons. It changes which branch is taken; it changes no threshold and no declared value.",
+    "It is SYMMETRIC: |ami - amiFloor| <= quantum and |ami - (AMI_MAXIMUM - amiCeilingMargin)| <= quantum both read CANNOT_ASSESS. A SILENT one record could turn into an ALARM is exactly as unsupportable as the ALARM, and a rule that only ever downgraded alarms would be calibration by outcome wearing a statistic's clothes.",
+    "Two NEW blind classes, one per cause, never merged: OP3_FLATNESS_UNRESOLVABLE_AT_FLOOR and OP3_FLATNESS_UNRESOLVABLE_AT_CEILING. They are blind paths, not findings.",
+    "Each detail carries the quantum, the distance, AND THE MOVE THAT ACHIEVED IT - which context row, from which outcome to which. A detail that says only 'unresolvable' cannot be argued with, and a reader that cannot be argued with is the failure mode this project exists to price.",
+    "NO new injected constant and no declaration change. The quantum is the sample's own granularity, so there is nothing for a deployment to tune and nothing to add to declarations.schema.json.",
+    "The cheap form is REQUIRED, not an optimisation: the test must assert that the recompute count is bounded by kC*kO*(kO-1) and does NOT grow with n, and must assert the cheap and brute-force quanta are equal on at least two shapes. The brute force at n=2000 costs 56.3 s per decision.",
+    "src/mica/stat/ami.ts is NOT opened. The shared statistic module is untouched, so Eng and narrow-W leg 2 see no change at all.",
+    "src/mica/verdict-logic.frozen.json is NOT opened and is not needed: the archive carries 20 keys and every one is eng/ or sig/ (verified this tick). That op3 - the one reader ALARMing on the live box - has no frozen fixture at all is a real gap, and it belongs on the board rather than inside this ticket.",
+    "The whole declared suite must read 105 of 105 with no verdict moved anywhere outside op3, measured by the sweep and not asserted.",
+    "This ticket does NOT clear the live op3 alarm and must not be presented as doing so. On today's numbers the gate leaves the ALARM standing."
+  ]
+}

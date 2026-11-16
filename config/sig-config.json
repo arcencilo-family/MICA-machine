@@ -1,0 +1,6 @@
+{
+  "sig": {
+    "clockToleranceMs": 0,
+    "clockToleranceBasis": "PROXY: asserted one box one clock, NOT measured"
+  }
+}

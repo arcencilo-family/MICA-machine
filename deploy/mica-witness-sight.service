@@ -1,0 +1,80 @@
+# ── MICA — the witness's SEEING half (seeingd) ───────────────────────────────
+#
+# NOT INSTALLED BY THIS FILE. Drafted by the build seat, Gate 2 Tier 1 Stop 2,
+# 2026-10-10, on the arbiter's ruling of 18:20Z: the witness SEES and WRITES — one
+# seat, two halves. `mica-witnessd` RETAINS (heads at an intake, no reads
+# answered, S85); this unit SEES: after each act it looks at the one target the
+# act claimed and writes the effect into its own book of effects, which every
+# role reads. Installing it is the arbiter's act, by the deploy script the seat
+# dry-prints (scratchpad, copied out by hand), as root, after the machine relay
+# has laid the code this unit runs.
+#
+# ⚠ TAMPER-EVIDENT, NOT TAMPER-PROOF (S210): the book is chained and written only
+#   by this uid; root on this box can rewrite it. Head submission to witnessd, the
+#   roster, and off-box publication are S210's step, DROPPED in phase R, so this
+#   unit runs --no-witness and the book stands alone as the chained record.
+# ──────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA witness — the seeing half: looks at each act's claimed target, writes its book of effects
+Documentation=file:///opt/mica-machine/src/witness/seeingd.ts
+# Like witnessd: no listener, no host — a directory swept and a file appended.
+RequiresMountsFor=/var/lib/mica/witness-sight
+# A fault that repeats on every start must END in a failed unit someone sees, not loop
+# quietly every RestartSec (refuter R2 F6): five starts in ten minutes, then failed.
+StartLimitIntervalSec=600
+StartLimitBurst=5
+# NOT ordered against mica-bridge: the bridge drops and moves on, the witness
+# sweeps when it runs. Nobody waits for the witness (audit 18:03Z (3)), and the
+# witness waits for nobody.
+
+[Service]
+User=mica-sight
+Group=mica-sight
+# LOAD-BEARING, the witnessd lesson: the intake is 3730 setgid mica-sight-drops,
+# so a pointer lands 0640 owned mica-bridge:mica-sight-drops. A witness that is
+# not in that group reads NOTHING — EACCES on every drop, quarantine forever.
+# PHASE R (audit 2026-10-11 09:32Z): the book IS the record, chained and 0644; head submission to witnessd (the
+# roster, the receipt, off-box publication) is S210's, DROPPED here — so no mica-drops group, and --no-witness below.
+SupplementaryGroups=mica-sight-drops
+
+WorkingDirectory=/opt/mica-machine
+
+# The binary DIRECTLY, never npx (recipe §4.4 correction 3).
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/witness/seeingd.ts \
+  --intake /var/lib/mica/witness-sight/intake \
+  --book /var/lib/mica/witness-sight/book-of-effects.jsonl \
+  --state /var/lib/mica/witness-sight/state \
+  --no-witness \
+  --close-timeout-ms 600000 --tick-ms 1000
+
+# The BOOK must land 0644: "nobody tampers, everyone reads" (the arbiter, 18:20Z).
+# The state dir is 0700 by the deploy act and holds the plain targets.
+UMask=0022
+
+# Restart ON 4 ONLY (refuter B m3). Exit 4 is an unexpected fault inside one
+# sweep: the drops and the state are as the last persist left them, and a
+# restarted witness replays the sweep without writing any act twice (the book is
+# checked before every write — refuter A-F3). Exits 1 (could not start), 2 (the
+# arguments) and 3 (a book append did not land; the
+# drop is kept) are NOT restarted: witnessd's reasoning — a restart loop would be
+# a process that looks alive while the same failure repeats. Exit 0 is a signal.
+Restart=on-failure
+RestartPreventExitStatus=1 2 3
+RestartSec=10
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+# ⛔ read-only, NEVER yes or tmpfs: the witness must SEE the homes' regions it is
+#    granted (c1, c5), and `tmpfs` would turn an unreachable home into a FALSE
+#    ABSENT — a target that "vanished" because the witness was blindfolded.
+ProtectHome=read-only
+# ⛔ NO PrivateTmp: /var/tmp lies in a frame region (c3), and a private /var/tmp
+#    would show the witness an empty directory where the act's target is.
+#    The witness's mount view must equal the subject's inside every region.
+PrivateTmp=no
+# --no-witness: no head submission, so witnessd's intake is NOT written (refuter R4-canon-1).
+ReadWritePaths=/var/lib/mica/witness-sight
+
+[Install]
+WantedBy=multi-user.target

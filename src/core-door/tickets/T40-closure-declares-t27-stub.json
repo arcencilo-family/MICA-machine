@@ -1,0 +1,23 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T40-closure-declares-t27-stub",
+  "opens": [
+    "src/mica/closure.test.ts"
+  ],
+  "defect": {
+    "summary": "THE CLOSURE TEST IS RED ON T27'S SIGNED HEAD (9ce8f04) AND IN THE RELAY-3 ASSEMBLY: src/glue/glue.test.ts:6011, T27's t27Stub, loads a module by a computed `require(modPath)`, a site the static scanner `importSpecifiers` cannot read. closure.test.ts's arm \"the scanner's blind spots are DECLARED, and the declaration matches disk\" requires every such site to be declared in DYNAMIC_SPECIFIERS with a reason. T27's ticket does not open closure.test.ts, so the declaration T27's own test file needs could not be made under T27.",
+    "ground": "Relay-3 suite tables ARC_MICA-NOTE_Relay3-Assembly-Suite-Tables_20261018.md: closure.test.ts 12/13 on the assembly, red on T27 9ce8f04 and S199 654a5d0, green on a0d3017; audit board 2026-10-18 15:34Z ruling (4): (ii) S199 rewrites its two sites as top-level `import type` (no closure entry), T27's one site is covered by T40, a one-file ticket on src/mica/closure.test.ts, base a0d3017, opens = closure.test.ts, one DYNAMIC_SPECIFIERS entry for glue.test.ts:6011, nothing else; (iv) ship-red refused. The relay-3 gate is six tickets (15:35Z)."
+  },
+  "expiresAt": "2026-10-25T18:00:00Z",
+  "arbiter": {
+    "word": "Granted by the audit under Frank's standing delegation, 2026-10-18, on the closure ruling of 2026-10-18 15:4xZ (4): one declared blind spot — T27's computed require at glue/glue.test.ts:6011 — entered in closure.test.ts's DYNAMIC_SPECIFIERS and nothing else; the line number is part of the declaration and drifts loudly; closure reads 13/13 on the relay-3 SHIP with S199's two sites rewritten as top-level import types. Conditions of this signature: this ticket declares, it does not vouch — the ceiling in cond. 4 is read as written; it is the sixth ticket of relay 3's gate and ships with T35, T39, T27, S216-2 and S199, none of which it touches. expiresAt is the audit's fill and part of this signature.",
+    "date": "2026-10-18"
+  },
+  "conditions": [
+    "1. ONE ENTRY, NOTHING ELSE: closure.test.ts gains exactly one DYNAMIC_SPECIFIERS entry { file: \"glue/glue.test.ts\", line: 6011, kind: \"require\", reason naming T27's t27Stub (a test-only, computed require that replaces one export for a body's duration) }. No other byte of closure.test.ts moves; the diff BASE..SHIP on this file is that entry.",
+    "2. THE LINE IS PART OF THE DECLARATION: the entry's line number pins the site; any later edit above it in glue.test.ts drifts the site and fails the closure arm loudly (the file's own rule), and that edit needs its own ticket on closure.test.ts.",
+    "3. CLOSURE GREEN: on the relay-3 SHIP, src/mica/closure.test.ts reads 13/13, with S199's two former sites gone (top-level `import type`, ruling (4)(ii)) and no other undeclared site.",
+    "4. WHAT THIS DOES NOT FIX: the scanner still cannot read computed specifiers; the declaration list is a human-kept inventory checked against disk, not proof that a declared site is harmless."
+  ],
+  "base": "a0d30173cc046f9f378e9806d7ab71a8dc6aa88e"
+}

@@ -1,0 +1,32 @@
+node_modules/
+dist/
+.DS_Store
+.claude/
+
+# Run output — regenerated per session, not source (S94). The seven
+# mica-*-witness-readback-*.txt files from S93 stay ON DISK and are ignored
+# here rather than deleted; a re-lay must not carry them into /opt.
+# NB the brief's literal pattern `mica-*-witness-readback-*.txt` matches only
+# SIX of the seven: mica-mutation-demo-20260828-witness-readback.txt has no
+# trailing segment after `readback`. Widened here; tested, not assumed.
+mica-*witness-readback*.txt
+
+# The relay's vintage claim (S106b). WRITTEN AT RELAY, INTO THE LAID TREE, and
+# never committed: a VINTAGE file that rode a commit would be rsynced along with
+# it and would then claim, from inside /opt, a hash that is not what was laid.
+# A stale claim is worse than no claim — the banner's ABSENT branch is honest.
+/VINTAGE
+
+# Python bytecode from scripts/ (declare-*.py and their tests)
+__pycache__/
+*.pyc
+
+# Phase-1 contradiction probe scratch (build seat, S139 Act B). Not source.
+.actb-probe/
+
+# The opens-sweep's captures (S185). The sweep writes its tsv rows under out/, and
+# those rows are EVIDENCE for a receipt, not source. Until this line existed they
+# were untracked-AND-unignored, which is precisely what the relay's step-0 clean
+# check refuses — so the tool that produces the relay's evidence was the reason
+# the relay could not run. Measured: 3 files, `git status` 5 lines, before this.
+out/

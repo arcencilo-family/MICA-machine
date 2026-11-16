@@ -1,0 +1,25 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T14-eng-class-label",
+  "opens": [
+    "src/mica/eng/index.ts",
+    "src/mica/eng.test.ts"
+  ],
+  "defect": {
+    "summary": "Eng's per-class diagnostic label was built as `key.replace(\"\\u0000\", \"/\")` — DERIVED FROM THE GROUPING KEY. T13 changed that key to the shared length-prefixed encoding and left the display line, so two things broke in one commit: ① ordinary labels became raw keys (\"15:MICA/SubjectLog14:TOOL_ATTEMPTED\" where an operator used to read \"MICA/SubjectLog/TOOL_ATTEMPTED\"), and ② a NUL INSIDE a component is rewritten to \"/\", so a class prints under the name of a DIFFERENT class whose component genuinely contains a slash — measured at the relayed bytes: three distinct buckets, TWO distinct labels. FIX: derive the label from the FIRST RECORD IN THE BUCKET, not from the key — `JSON.stringify([bucket[0].moduleId, bucket[0].eventType])`. The key is for grouping and the label is for a human; they are separate concerns and T13 proved they were coupled. JSON escaping is unambiguous by construction and stays readable, which the key never promised to be — it was readable only by accident of the delimiter it used.",
+    "ground": "Codex cold read of T13 at dcee656, ARC_MICA-VERIFY_T13-Class-Key-1_20261001, verdict PASS-WITH-FINDINGS, finding F1: \"two different classes can now be printed with the same `eventClass` label … a real output defect\". REPRODUCED at the relayed bytes by the build seat 2026-10-01 21:5xZ: three buckets, labels [\"1:a3:b/c\", \"1:a3:b/c\", \"1:m1:e\"], and ordinary records reading \"15:MICA/SubjectLog14:TOOL_ATTEMPTED\". ⛔ AND THE DEFECT IS LIVE: /opt/mica-machine is VINTAGE dcee656 as of 2026-10-01 21:24Z, so the per-class channel on the box is printing raw keys now. It does not steer any verdict — A4 diagnostics are computed and never consulted below — so this is an operator-facing defect, not a reading defect."
+  },
+  "expiresAt": "2026-10-03T18:00:00Z",
+  "arbiter": {
+    "word": "I, the arbiter, grant T14: Eng's per-class diagnostic label names each (moduleId, eventType) class unambiguously, so that two distinct classes can never print the same label, because a diagnostic that merges two classes misreports the count it exists to explain.",
+    "date": "2026-10-02"
+  },
+  "conditions": [
+    "PRE-REGISTRATION. The label becomes `JSON.stringify([bucket[0].moduleId, bucket[0].eventType])`. The bucket is non-empty by construction (it exists because a record fell into it), and the two components are the record's own — not re-derived, not parsed back out of the key.",
+    "⛔ THE OPENS ARE TWO FILES AND IT IS MEASURED, under the rule accepted 2026-10-01 15:15Z. Population: 43 suites, every *.test.ts under src/mica/**, src/glue/** and src/core-door/**, run with the FIX applied and compared against the relayed state dcee656: **43 OF 43 IDENTICAL — NOTHING MOVED AT ALL.** ⚠ THAT IS THE FINDING AND NOT THE REASSURANCE: no test in this repository asserts this label, so the defect was invisible to every suite and the fix is invisible too. A channel nobody asserts is a channel that can say anything. eng.test.ts is therefore opened to ADD the assertion, not because the fix moves it.",
+    "THE TEST, already written and already proven to fail without the fix: ① [T14/F1] every per-class bucket prints a DISTINCT label, on Codex's own pair — (\"a\", \"b\\u0000c\") beside (\"a\", \"b/c\") — plus a third ordinary class; ② [T14/F1] the label carries the RECORD's two components, asserted as a ROUND TRIP rather than against a literal spelling, so the test survives a future change of label format without being rewritten. Mutating the label back to `key.replace` fails BOTH: 73 → 71/2.",
+    "⛔ WHAT A FAIL LOOKS LIKE: (a) two distinct classes still print one name; (b) the label is parsed back OUT of the key instead of read off the record — that is the same coupling with an extra step; (c) a fourth suite moves (43 of 43 were identical, so any movement is this change doing more than it says); (d) the struck `key.replace` line is DELETED rather than struck, as with T13's NUL comment; (e) the door reports drift on any file not in `opens`.",
+    "⚠ WHAT THIS DOES NOT FIX, stated so the receipt does not let SPENT imply otherwise. Codex's F2 stands: nothing in the suite enforces that Eng USES the shared tuple key rather than a private re-implementation that happens to be correct. That is the behavioural parity act already owed to the board (o6), and it is not this ticket's. Codex's F3 also stands corrected: the T13 brief said FIVE call sites and there are FOUR — I counted the definition as a call.",
+    "DIGEST-PROVEN RELAY: fix, test and repin in ONE commit (npx ts-node src/core-door/core-door.ts --propose-repin T14-eng-class-label), linear on dcee656, never an amendment of it. `--propose-repin` prints and does not write; the merge is the seat's hand and every new entry must carry THIS ticket's sha, asserted and not assumed."
+  ]
+}

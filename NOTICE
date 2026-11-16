@@ -1,0 +1,10 @@
+MICA machine
+Copyright 2026 Frank Böhm
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this software except in compliance with the License.
+A copy of the License is in the LICENSE file beside this NOTICE, and at
+https://www.apache.org/licenses/LICENSE-2.0
+
+This NOTICE lists no third-party attributions: the tree ships no vendored
+third-party code. Files marked VENDORED are copies of this project's own code.

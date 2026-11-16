@@ -1,0 +1,108 @@
+# ── MICA — the S-4 witness daemon ────────────────────────────────────────────
+#
+# NOT INSTALLED BY THIS FILE. Drafted by the build seat, S96, 2026-08-30.
+# Installing it is the arbiter's act, by hand, as root, with its own trace:
+#
+#   sudo install -m 0644 -o root -g root \
+#     deploy/mica-witnessd.service /etc/systemd/system/mica-witnessd.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl start mica-witnessd     # then read the banner before enabling
+#
+# STATED PRECONDITION ON THE INSTALL: ExecStart points at /opt/mica-machine,
+# which is STALE by nine items as of 2026-08-30 15:25. Re-lay first, or this unit
+# runs code the dev tree has moved past.
+#
+# TWO VALUES BELOW ARE THE DEPLOYER'S, NOT THIS FILE'S:
+#   --witness-set-id   there is no default in source and none is invented here.
+#   --declared         omitted on purpose; see the note at the foot of this file.
+# ──────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA S-4 witness — retains arrivals, answers no reads
+Documentation=file:///opt/mica-machine/src/witness/witnessd.ts
+# NO After=network.target. The witness serves no socket, opens no listener and
+# reaches no host: it sweeps a directory and appends to a file. What it actually
+# needs is its store to be mounted, and that is what this says.
+RequiresMountsFor=/var/lib/mica/witness
+# NO ordering against mica-clerk.service, deliberately. The witness holds no
+# submit token and reads no clerk. Coupling the two here would turn one
+# failure into two and make the witness look dependent on the thing it exists
+# to be independent of.
+
+[Service]
+User=mica-witness
+Group=mica-witness
+# LOAD-BEARING, and measured (recipe §5.3, row three): the intake is 3730
+# setgid, so a drop lands 0640 owned sub:mica-drops. A witness that is not in
+# mica-drops starts clean and reads NOTHING — EACCES on every drop, an empty
+# sweep forever, which reads exactly like "nobody submitted anything".
+# Verified on this box 2026-08-30: mica-witness is ALREADY in mica-drops
+# (id → groups=985(mica-witness),980(mica-drops)). The line is kept anyway, as a
+# declaration: a unit that depends on a group membership should say so, or the
+# next person to rebuild the users has no way to know it mattered.
+SupplementaryGroups=mica-drops
+
+# NO RuntimeDirectory=. Recipe §4.4 correction 1 is the cautionary tale — it
+# silently overwrote ownership that had just been set. Here the question does
+# not even arise: grep of src/witness/ finds no /run path, no createServer, no
+# listener. The witness needs nothing in /run.
+
+WorkingDirectory=/opt/mica-machine
+
+# The binary DIRECTLY, never npx. Recipe §4.4 correction 3, and it bites harder
+# here: mica-witness's home IS the store (getent passwd → /var/lib/mica/witness),
+# so an npx cache would be written into the directory that is supposed to hold
+# the record and nothing else.
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/witness/witnessd.ts \
+  --store /var/lib/mica/witness/store.jsonl \
+  --key /var/lib/mica/witness/witness.key \
+  --intake /var/lib/mica/witness/intake \
+  --outbox /var/lib/mica/witness/outbox \
+  --declared /etc/mica/witness-declared.json --witness-set-id REPLACE-WITH-THE-DEPLOYMENT-DECLARATION \
+  --tick-ms 1000
+
+# The store must land 0640 (recipe §5.1): witness writes, mica-readers reads.
+UMask=0027
+
+# ── Restart=no, and it is the one real decision in this file ─────────────────
+#
+# Exit 3 means a sweep threw: something was NOT retained and the drop is still
+# on disk. Restarting on that produces a process that looks alive while the same
+# failure repeats — the exact shape witnessd.ts refuses to build into itself
+# ("a tick that swallowed an append failure would be the silently-swallowed
+# lock-contention failure wearing a daemon").
+#
+# Nothing is lost by staying dead: pollIntake reads → appends → and only THEN
+# rmSync's the drop, so a failed sweep leaves the drop on disk and the submitter
+# still holds its own head.
+#
+# And exit 3 covers one more case than the append failure: a MISSING intake
+# directory throws ENOENT out of readdirSync, deliberately — "loud and once,
+# instead of quiet and forever". Under Restart=on-failure that becomes a
+# restart loop over a deployment step nobody performed.
+#
+# systemd's default is already no. It is written out because a restart policy
+# that was never considered and one that was considered and declined must not
+# look the same in the file.
+Restart=no
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/mica/witness
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+
+# ── --declared, omitted rather than defaulted ────────────────────────────────
+#
+# witnessd.ts distinguishes ABSENT (nobody asked for a declared-submitter list)
+# from CONFIGURED_EMPTY (a deployment asked and did not get one), and prints
+# which happened in its banner. Both mean every submission retains as
+# UNDECLARED_SUBMITTER — a RECORD, not a rejection; nothing is lost either way.
+#
+# Omitting the flag therefore means ABSENT, honestly. Adding
+# `--declared /etc/mica/witness-declared.json` is a deployment decision of the
+# same weight as the clerk's --roster, and like it, should be made deliberately
+# rather than inherited from an example file.

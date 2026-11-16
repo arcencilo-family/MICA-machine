@@ -1,0 +1,24 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T1-narrow-t-guard",
+  "opens": [
+    "src/mica/narrow-t/index.ts",
+    "src/mica/narrow-t/narrow-t.test.ts",
+    "src/mica/substrate-snapshot.test.ts",
+    "src/mica/verdict-logic.substrate-snapshot.json"
+  ],
+  "defect": {
+    "summary": "narrow-T's A5 AMI-ceiling guard, which exists to stop a benign phase change from reading as drift, cannot fire above two event classes, and the bridge writes seven. A healthy agent reads as drift, goes to ALARM and is held. The hold cannot clear, because a held agent stops writing. Expected fix: the guard reasons over the class SET of the window, not a two-class assumption. The post-27th shape ('clean acts, then all held acts') must read as a phase change, not drift.",
+    "ground": "ARC_MICA-BLOCKED_P1-NarrowT-Wired_20260921 §A (Faults A-C); ARC_MICA-BRIEF_Core-Repair-Window_20260922 §2-§3"
+  },
+  "expiresAt": "2026-09-29T18:00:00Z",
+  "arbiter": {
+    "word": "I open the core for this one defect, narrow-T's guard, because a healthy agent must not be held forever. Fix the smallest honest thing, freeze what you learn, and close the door on the 29th.",
+    "date": "2026-09-22"
+  },
+  "conditions": [
+    "The existing 20 frozen scenarios stay byte-identical. They live in src/mica/verdict-logic.frozen.json (tested by verdict-logic.test.ts). This ticket does NOT open that file, so the door keeps it pinned.",
+    "AMENDED 2026-09-22 by Frank: of the 38 existing projections, exactly ONE may move — t/drifted-alarm, from ALARM to CANNOT_ASSESS, because it froze the defect as correct. The other 37 stay byte-identical. TWO new projections are added: the 21st (the post-27th phase change reading CANNOT_ASSESS) and a 22nd, a genuine partial drift in the live vocabulary that MUST read ALARM — the proof the repair did not switch the reader off. If any other projection moves, revert, do not re-freeze.",
+    "The commit that ships the repair also re-pins every file it changed (npm run core-door -- --propose-repin T1-narrow-t-guard). One change per relay."
+  ]
+}

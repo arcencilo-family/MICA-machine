@@ -1,0 +1,143 @@
+# MICA · the registrar — one sweep of the pre-commitment intake, then exit.
+#
+# Installation is the arbiter's act; the exact commands are at the end of the
+# S99 registrar receipt. RULED HOUSE PRACTICE (S110 deployment findings,
+# context note): unit installs go through THIS FILE, `install`ed onto the live
+# path, from now on — never a live hand-edit. This file is CANONICAL because it
+# was just reconciled against the live unit (below), not the other way round.
+#
+# ── S110 RECONCILIATION, 2026-09-04 — the live unit drifted from a hand
+#    install during the S110 deployment night; this file is now that live
+#    unit's content, folded back in ──────────────────────────────────────────
+#
+#   The night's install was a hand-edit of the PRE-S110 live unit, not an
+#   `install` of this file — two decisions were made live that this file did
+#   not yet carry: (1) the journal cursor's actual path is
+#   `/var/lib/mica/mica-log-cursor.json`, not the `...-journal-cursor.json`
+#   name this file originally proposed; (2) `--refusal-submitter-id
+#   mica-registrar-refusal` is now enabled (S106's own refusal-chain
+#   presentation, built then, wired live now — not part of the S110 journal
+#   build itself). Both are folded in below so this file is byte-true to what
+#   is actually running. The header comment block itself (this one) did NOT
+#   survive the hand-edit; it is restored here from the pre-hand-edit dev copy.
+#
+# Type=oneshot driven by mica-registrar.timer, mirroring mica-report. A crash is
+# a unit failure the journal records, rather than a daemon that is up and quietly
+# doing nothing — the shape ruled at F4, taken from the poll pattern already
+# proven on this box.
+#
+# ── S110: --mica-log / --mica-log-cursor, the FIRST live writer of
+#    /var/lib/mica/mica-log.jsonl (arbiter-ruled, following the build seat's
+#    own S109 recon proposal) ─────────────────────────────────────────────────
+#
+#   RANK OF BOOKS — READ THIS BEFORE TOUCHING ANYTHING ELSE IN THIS FILE: the
+#   refusal log and the witness drop (already wired above) remain the
+#   AUTHORITATIVE record. This journal is registrard.ts's own self-narration —
+#   unchained, unsigned, ranked strictly below — in the shape
+#   `mica-log-file.ts` can read. A journal-append failure is LOUD (printed,
+#   named, e.g. JOURNAL_APPEND_FAILED) and NEVER blocking: it cannot cost a
+#   deposit its place in the authoritative books and it never turns exit 3
+#   (S102's own code, reserved for an AUTHORITATIVE record miss) into
+#   something a diary miss can also trigger.
+#
+#   ONE MicaLogRecord PER DepositOutcome, sequenceNumber minted from a
+#   persisted, DECLARED cursor (--mica-log-cursor) — ABSENT means 0, nothing
+#   journaled yet; a CORRUPT cursor refuses the JOURNAL LEG ONLY, every sweep,
+#   until an operator fixes it by hand. See registrard.ts's own §S110 header
+#   for the full account; not restated here.
+#
+#   THIS COMPLETES THE PIPELINE the S109 build already finished the downstream
+#   half of: registrar → mica-log.jsonl → mica-clerk-caller (S109) →
+#   clerk-clock-stamps.jsonl → the reader (S109) → mica-guard's F3, its first
+#   live, non-synthetic read. CONFIRMED LIVE, 2026-09-04: F3 ratified at T1 on
+#   a real two-record comparison (S110 deployment findings, context note).
+#
+# ── S110 F-1: the cursor files below (mica-log-cursor.json here;
+#    clerk-caller-cursor.json on mica-clerk-caller.service) are pre-seeded by
+#    /etc/tmpfiles.d/mica-cursors.conf (`deploy/mica-cursors.conf`) BEFORE this
+#    unit ever starts — ReadWritePaths= refuses to start a unit naming a file
+#    that does not exist, and ABSENT is this cursor's own designed first-run
+#    state, so the file must exist with the RIGHT starting content before the
+#    unit's first boot, never conjured by a bare `install /dev/null`. See that
+#    file's own header for the full account and the S110 F-1 finding.
+#
+# ── S110 F-2, KNOWN GAP, not yet closed — recorded-but-unjournaled outcomes ──
+#
+#   A sweep whose journal leg is CORRUPT-refused (or otherwise fails, loudly,
+#   non-blocking — see the S110 header above) still records the deposit
+#   outcome in the AUTHORITATIVE book. The NEXT healthy sweep does not go back
+#   and journal what an earlier sweep missed — it only journals THAT sweep's
+#   own outcomes. An outcome recorded during a bad-journal sweep is therefore
+#   recorded forever and journaled NEVER, silently, unless something else
+#   notices. Observed live, 2026-09-04 (S110 deployment findings, F-2): one
+#   accepted deposit in this exact state. NOT FIXED HERE — see the S110
+#   deployment-findings receipt for the build seat's proposal (report-side
+#   divergence attestation, negative vocabulary, same family as the S109
+#   receipt's own §E stamp-count/shape-check gap) and the ruling this needs
+#   before it is built.
+#
+# ── S110 F-4 — operator access note, so nobody rediscovers this at 22:30 ────
+#
+#   the operator account (the build seat's own principal) is NOT in `mica-readers` —
+#   confirmed live, 2026-09-04. It cannot read `mica-log.jsonl` (0640
+#   mica-registrar:mica-readers) or anything else gated on that group. Any
+#   live `mica-guard` run that wires `--log` (this journal, or any future
+#   observed-system log) must run as a principal that IS in `mica-readers`
+#   and is NEITHER `mica` NOR root (the clerk-clock-stamps custody door,
+#   `clerk-clock-stamps-file.ts`, refuses both) — `mica-arbiter` satisfies
+#   both and is the principal used live tonight. `sudo -u mica-arbiter
+#   /opt/mica-machine/node_modules/.bin/ts-node src/glue/mica-guard.ts ...`.
+
+[Unit]
+Description=MICA registrar - sweep the pre-commitment intake
+Documentation=file:///var/lib/mica/precommit
+# The registrar drops heads at the WITNESS intake. If witnessd is not up, the
+# drop still lands in the intake directory and is swept later: this is a
+# preference, not a requirement, and the registrar records CANNOT_SEE honestly
+# if the intake is genuinely unreachable.
+After=mica-witnessd.service
+Wants=mica-witnessd.service
+
+[Service]
+Type=oneshot
+User=mica-registrar
+Group=mica-registrar
+UMask=0027
+
+WorkingDirectory=/opt/mica-machine
+# The pinned in-tree binary, not `npx`: `npx` resolves through PATH and would
+# run a Windows-side or user-side node under this principal. Both siblings on
+# this box point at node_modules/.bin the same way, for the same reason.
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/registrar/registrard.ts \
+  --root /var/lib/mica/precommit \
+  --record-root /var/lib/mica/record \
+  --witness-intake /var/lib/mica/witness/intake \
+  --witness-set-id %H-mica \
+  --roster /etc/mica/registrar-roster.json \
+  --refusal-submitter-id mica-registrar-refusal --mica-log /var/lib/mica/mica-log.jsonl --mica-log-cursor /var/lib/mica/mica-log-cursor.json
+
+# THE HARDENING IS NOT DECORATION. This principal exists to be the one thing a
+# committer cannot reach; a registrar that could be talked into writing outside
+# its room would give that away.
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=no
+SystemCallArchitectures=native
+# The three directories it may write (precommit, record, witness intake), plus the two S110 journal files, and
+# nothing else. Named individually rather than a directory — the journal
+# itself lands however the append leaves it; the cursor is pre-seeded by
+# mica-cursors.conf (S110 F-1) so this line never has to conjure it.
+ReadWritePaths=/var/lib/mica/precommit /var/lib/mica/record /var/lib/mica/witness/intake /var/lib/mica/mica-log.jsonl /var/lib/mica/mica-log-cursor.json
+ReadOnlyPaths=/etc/mica
+
+[Install]
+WantedBy=multi-user.target

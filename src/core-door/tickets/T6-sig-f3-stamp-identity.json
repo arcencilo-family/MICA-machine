@@ -1,0 +1,28 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T6-sig-f3-stamp-identity",
+  "opens": [
+    "src/mica/sig/index.ts",
+    "src/mica/sig-f3-clerk.test.ts",
+    "src/mica/sig.test.ts",
+    "src/mica/export.test.ts",
+    "src/mica/substrate-snapshot.test.ts",
+    "src/mica/verdict-logic.test.ts"
+  ],
+  "defect": {
+    "summary": "F3 joins a clerk stamp to a record by sequenceNumber alone and never checks the writer identity the stamp already carries. Two costs, opposite in direction. (1) FAIL-OPEN: a stamp minted for one principal satisfies another principal's record at the same number; the carried moduleId is decoration. (2) FAIL-BLIND: two stamps at one sequence are refused outright with 'F3 cannot choose between them', and the live /var/lib/mica/clerk-clock-stamps.jsonl holds 27 stamps with TEN duplicated sequence numbers, so pointing F3 at the real file makes every item of T3 unreachable (recorded at sig-f3-clerk.test.ts S7 as UNCHANGED, deliberately). Act B carries a SECOND journal whose principals each mint sequenceNumber from their own counter, so the duplicate case stops being hypothetical. FIX, and it is deliberately NOT the obvious one: SEQUENCE STAYS THE JOIN KEY. The stamp's moduleId is the carrier's CLAIM about a record it read and is never promoted to a key — keying on it would let a mislabelled stamp move another writer's watermark, which is the fail-open T3(1) exists to refuse. Instead: a stamp whose moduleId disagrees with the moduleId of the record at its sequence is DISCLOSED as a finding and NEVER USED; the record it would have joined stays unstamped and is then governed by T3's existing per-writer watermark (tail = disclosed, hole = CANNOT_ASSESS). The S7 blanket refusal becomes that same disclosure, per stamp, so duplicates stop blinding the leg.",
+    "ground": "ARC_MICA-VERIFY_Act-B-Stranded_20260928 (Codex, §4.2 — 'join on (moduleId, sequenceNumber) and test the boundary explicitly; OR justify and test why sequence alone remains sufficient'); ARC_MICA-BRIEF_Codex-Act-B-Onto-The-Chain_20260928 §5 (the build seat implemented the join, measured a FAIL-OPEN, and reverted it); sig/index.ts T3(1) — 'ClerkClockStamp.moduleId is the carrier's reading of the record it stamped and is a separate claim'; Frank's ruling, board 17:0xZ"
+  },
+  "expiresAt": "2026-09-30T18:00:00Z",
+  "arbiter": {
+    "word": "I, the arbiter, grant T6: the F3 leg keeps sequence as its only join key, discloses every clerk stamp whose writer disagrees with its record instead of using it or refusing the leg, and moves no frozen verdict; granted because a mislabelled stamp must cost a reading and never buy one.",
+    "date": "2026-09-28"
+  },
+  "conditions": [
+    "PRE-REGISTRATION, WRITTEN BEFORE ANY CODE (T3's condition, kept): sequence remains the sole join key; a stamp whose moduleId disagrees with the record at its sequence is disclosed and never used; the record it would have joined is left unstamped and falls to T3's watermark, so a mismatch BELOW a writer's mark composes CANNOT_ASSESS as a hole and a mismatch ABOVE it is disclosed as tail; the S7 duplicate refusal is replaced by per-stamp disclosure and the leg no longer blinds on duplicates; no new key appears on FlagReport.",
+    "NO 21ST FROZEN SCENARIO IS NEEDED, AND T6 DOES NOT OPEN verdict-logic.frozen.json. The pre-registration anticipated one and the implementation proved it unnecessary: the mismatch disclosure lives on ClerkStampCoverage (mismatchedWriterStampCount, mismatchedWriterIdentities, ambiguousStampSequences), which is exactly where T3 ruled new disclosures belong — on SigResult and the export artifact, NEVER on FlagReport and never in a verdict summary. No verdict-bearing outcome moved, so the twenty frozen scenarios stand BYTE-IDENTICAL and T1-T5's invariant that this file is never opened is PRESERVED. MEASURED, not asserted: the core door reports drift on six files and verdict-logic.frozen.json is not among them; git diff on it is empty and it still holds 20 keys. IF A LATER CHANGE MOVES A FROZEN ENTRY, THAT IS A DIFFERENT TICKET AND THIS ONE DOES NOT COVER IT.",
+    "WHAT A FAIL LOOKS LIKE, pre-registered before the code so it cannot be reinterpreted afterwards: (a) any of the twenty frozen scenarios changes; (b) any T3 tail/hole test changes meaning; (c) THE SINGLE WORST OUTCOME - the leg returns SILENT on a record whose only stamp carries a mismatched writer, which is the fail-open restated; the pre-registered correct result is CANNOT_ASSESS, because a discarded stamp must COST a reading and never buy one; (d) any of the five suites (sig, sig-f3-clerk, export, substrate-snapshot, verdict-logic) returns other than 0 failed; (e) the core door reports drift on any file not in `opens`. RESULT AT DRAFTING: (a) frozen file unchanged; (c) exercised by T3 S7b and returns CANNOT_ASSESS; (d) 57/40/83/47/28, all 0 failed; (e) drift is exactly the six files listed.",
+    "COLD READ BEFORE RELAY: Codex verifies against this pre-registration and against §4.2 of its own verify, and must be able to state that the stamp's moduleId is nowhere used as a key. The build seat has been wrong twice on this code in one day (an invented append-arity break, and 'repairing' five fixtures whose mismatch was deliberate modelling), so the cold read is a condition and not a courtesy.",
+    "DIGEST-PROVEN RELAY: the shipping commit re-pins every file it changed (npx ts-node src/core-door/core-door.ts --propose-repin T6-sig-f3-stamp-identity), the glue suite prints the core door GREEN, and the relayed bytes are byte-identical to what is committed. One change per relay. T6 ships BEFORE or WITH Act B and never after."
+  ]
+}

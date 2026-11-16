@@ -1,0 +1,43 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · C6/W5 — the schedule. DRAFT. NOT INSTALLED.
+#
+#   Install path: /etc/systemd/system/mica-report.timer
+#   Enable with:  systemctl enable --now mica-report.timer
+#                 (the TIMER is enabled; mica-report.service is not)
+#
+# ── WHY A TIMER AND NOT A DAEMON ────────────────────────────────────────────
+#
+#   The cadence lives here because the program holds no timers of its own, the
+#   same way `witnessd.ts` holds no restart policy and `deploy/mica-witnessd.
+#   service` does. A reader that scheduled itself would be a process that stays
+#   up in order to do nothing 86,399 seconds out of 86,400 — and a process that
+#   stays up next to the witness starts looking like something that watches it.
+#
+# ── WHAT `daily` MEANS HERE, AND WHICH DAY GETS FOLDED ──────────────────────
+#
+#   OnCalendar=daily is 00:00:00 local. `mica-report.ts` with no --day folds the
+#   most recent COMPLETE local day — so the 00:00 run reports YESTERDAY, whole.
+#   Folding "today" at 00:00 would print seven zeros every morning and the
+#   quiet-day sentence with them, which would train a reader to ignore the one
+#   sentence in the report that must never be ignored.
+#
+#   Persistent=true: a run missed because the machine was off fires at the next
+#   boot. IT DOES NOT BACKFILL. The catch-up run folds ITS OWN yesterday, so a
+#   machine off for three days produces one report and two dates simply have no
+#   file. That gap is visible as a hole in the directory listing, and closing it
+#   is a hand running `--day YYYY-MM-DD`. Stated here because a schedule that
+#   silently skips days would otherwise be discovered by someone looking for a
+#   day that was never folded.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA C6/W5 — fold the witness store into a daily report
+Documentation=file:///opt/mica-machine/deploy/mica-report.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=mica-report.service
+
+[Install]
+WantedBy=timers.target

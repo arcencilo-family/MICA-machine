@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the repository and the exact release."
+title: "MICA machine"
+type: software
+authors:
+  - given-names: Frank
+    family-names: Böhm
+version: "0.1.0"
+license: Apache-2.0
+repository-code: "https://github.com/arcencilo-family/mica-machine"
+date-released: "2026-11-16"
+abstract: >-
+  A pre-release code snapshot of MICA's machine: the readers for its gates, the
+  floor that composes their verdicts, the core door that pins the reader code, and
+  the evidence tools around them. No probe has yet read READABLE, and a reader that
+  cannot assess holds or passes by the declared stakes rather than claiming a pass.
+  See the README for the known limits and the tests expected to fail.
+keywords:
+  - artificial intelligence
+  - AI safety
+  - agents
+  - monitoring
+  - evidence

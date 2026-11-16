@@ -1,0 +1,26 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T7-f3-mismatch-never-tail",
+  "opens": [
+    "src/mica/sig/index.ts",
+    "src/mica/sig-f3-clerk.test.ts",
+    "src/mica/substrate-snapshot.test.ts"
+  ],
+  "defect": {
+    "summary": "T6 CLOSED ONE FAIL-OPEN AND LEFT THE NEXT ONE STANDING. Under T6 a clerk stamp whose moduleId disagrees with the record it landed on is discarded and disclosed, and the record is left UNSTAMPED. An unstamped record ABOVE its writer's high-water mark is an ordinary TAIL under T3 -- disclosed, not charged. So a stamp carrying the WRONG WRITER could take a record that ALARMS when correctly labelled and file it as 'the carrier has not got there yet', leaving the leg SILENT. MISLABELLING WAS CHEAPER THAN LABELLING CORRECTLY, which is the exact shape T6 was written to refuse, one step over. FIX: a sequence carrying stamps of which NONE agrees with its record returns a TYPED CANNOT_ASSESS (WRITER_IDENTITY_MISMATCH) at ANY placement -- above or below any writer's mark. A rejected stamp is NEVER filed as tail and never reported as a carrier skip: the carrier VISITED that record and produced a claim F3 refuses to use, so 'not reached yet' is a false description of it. The rejected sequences are named on ClerkStampCoverage as rejectedMismatchSequenceNumbers.",
+    "ground": "Frank's ruling, board §1b 16:5xZ ('a sequence with stamps but none agreeing returns a typed CANNOT_ASSESS at ANY placement; a rejected stamp is never filed as tail; add Codex's mismatch-as-tail test'); Codex's mismatch-as-tail attack; ARC_MICA-RECEIPT_T6-And-Act-B-Branch_20260928 (T6 as shipped, commit 096611f)"
+  },
+  "expiresAt": "2026-09-30T18:00:00Z",
+  "arbiter": {
+    "word": "I, the arbiter, grant T7: a record whose clerk stamps all disagree with its writer is a typed cannot-assess at any placement, never a tail and never a hole; granted because T6 left a mislabelled stamp able to erase an alarm, and Codex's tail test is the acceptance.",
+    "date": "2026-09-28"
+  },
+  "conditions": [
+    "WHY THIS IS A NEW TICKET AND NOT MORE OF T6 — MEASURED, NOT ASSUMED. T6 is SPENT: all six files it opened were re-pinned in commit 096611f, and the door's own rule is that a file which WAS re-pinned 'stays settled forever, so the trap stays shut on every file a ticket actually repaired'. I made the repair and ran the door: REFUSED, 'ticket T6-sig-f3-stamp-identity names it but is SPENT ... it authorises nothing further'. The dispatch assumed the repair could ride on T6 and the door says otherwise, so this ticket exists rather than a hand-edited inventory.",
+    "THE PRE-REGISTRATION, written from Frank's ruling before the code: a rejected-mismatch sequence is intercepted BEFORE the tail/hole split and never reaches it; the typed blind path is raised BEFORE the carrier-skip path so the more specific diagnosis wins; the token is F3_WRITER_IDENTITY_MISMATCH and it is a DETAIL PREFIX, not a new BlindPathClass member, because BlindPathClass is a closed union shared by every sensor and src/mica/types.ts is NOT opened by this ticket.",
+    "CODEX'S MISMATCH-AS-TAIL TEST IS THE ACCEPTANCE, in the arbiter's words: the SAME stamps in the SAME inverted order, differing only in the writer they name. RIGHT LABEL must ALARM. WRONG LABEL MUST NOT BE SILENT -- and must be a typed CANNOT_ASSESS carrying WRITER_IDENTITY_MISMATCH and NOT CARRIER_SKIPPED, with tailCount 0 and the rejected sequence named on coverage.",
+    "WHAT A FAIL LOOKS LIKE: (a) the wrong-label case returns SILENT -- the fail-open restated, and the single worst outcome; (b) a rejected sequence appears in tailCount or in a carrier-skip detail; (c) the twenty frozen scenarios move (this ticket does not open verdict-logic.frozen.json and must not need to); (d) any of the five suites returns other than 0 failed; (e) the door reports drift on any file not in `opens`. RESULT AT DRAFTING: (a) returns CANNOT_ASSESS; (b) tailCount 0 and the skip token absent, both asserted; (c) frozen.json untouched, 20 keys; (d) 57/44/83/47/28 = 259 tests, 0 failed; (e) drift is exactly the three files listed.",
+    "ONE SUBSTRATE PROJECTION IS CORRECTED RATHER THAN MOVED, and it is named here because a snapshot change must never be quiet. sig/f3-configured-blind-composes carried stamps labelled m3/m5 while F3_CLEAN_LOG's records default to m6 -- a mislabel this seat introduced under T6 by pattern-matching a neighbouring fixture. Under T6 those stamps were silently discarded; the remedy typed them as a writer mismatch and the projection moved MISSING_CONFIGURATION -> INELIGIBLE_SCOPE, WHICH IS THE SNAPSHOT DOING ITS JOB. The repair is the label, not the projection: the stamps now say m6, they join, the leg blinds on the separation check as the scenario always intended, and the projection is byte-identical to its pinned value. NO PROJECTION IS RE-PINNED UNDER THIS TICKET.",
+    "DIGEST-PROVEN RELAY: the core change, its tests and the repin ship in ONE commit (npx ts-node src/core-door/core-door.ts --propose-repin T7-f3-mismatch-never-tail), the glue suite prints the core door GREEN, and the committed bytes are what runs. The Act B integration test (Frank's ruling 2, four states with the right verdict each) is a SEPARATE commit in src/glue and is not behind this door."
+  ]
+}

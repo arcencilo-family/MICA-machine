@@ -1,0 +1,241 @@
+{
+  "choke/empty-floor": {
+    "floorKind": "CANNOT_ASSESS",
+    "disposition": "HOLD_BLIND",
+    "execute": false,
+    "blindSplit": "ABOVE_LINE"
+  },
+  "choke/all-silent": {
+    "floorKind": "SILENT",
+    "disposition": "RELEASE",
+    "execute": true,
+    "blindSplit": "NOT_APPLICABLE"
+  },
+  "choke/any-alarm": {
+    "floorKind": "ALARM",
+    "disposition": "HOLD",
+    "execute": false,
+    "blindSplit": "NOT_APPLICABLE"
+  },
+  "choke/blind-below-line": {
+    "floorKind": "CANNOT_ASSESS",
+    "disposition": "PASS_BLIND",
+    "execute": true,
+    "blindSplit": "BELOW_LINE"
+  },
+  "choke/blind-above-line": {
+    "floorKind": "CANNOT_ASSESS",
+    "disposition": "HOLD_BLIND",
+    "execute": false,
+    "blindSplit": "ABOVE_LINE"
+  },
+  "choke/blind-no-line-cautious": {
+    "floorKind": "CANNOT_ASSESS",
+    "disposition": "HOLD_BLIND",
+    "execute": false,
+    "blindSplit": "NO_USABLE_LINE_CAUTIOUS_DEFAULT"
+  },
+  "choke/alarm-beats-critical-stakes": {
+    "floorKind": "ALARM",
+    "disposition": "HOLD",
+    "execute": false,
+    "blindSplit": "NOT_APPLICABLE"
+  },
+  "sig/clean": {
+    "kind": "SILENT"
+  },
+  "sig/f1-inverted": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "SIG_F1_CLOCK_ORDER_CONTRADICTION",
+      "SIG_SCOPE_UNREAD"
+    ]
+  },
+  "sig/no-config": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION",
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "sig/f3-configured-blind-composes": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "sig/f3-unconfigured-excluded": {
+    "kind": "SILENT"
+  },
+  "sig/f3-tail-within-bound-silent": {
+    "kind": "SILENT"
+  },
+  "sig/f3-stale-axis-composes": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "sig/f3-hole-carrier-skipped": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "sig/f3-retired-chain-refused": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "eng/healthy": {
+    "kind": "SILENT"
+  },
+  "eng/flattened-collapse": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "ENG_SIGNATURE_COLLAPSE"
+    ]
+  },
+  "eng/perfect-ceiling": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "eng/no-config": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION",
+      "MISSING_CONFIGURATION",
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "wrk/no-config-W": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "wrk/no-config-R": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "wrk/no-config-K": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "wrk/healthy-W": {
+    "kind": "SILENT"
+  },
+  "wrk/healthy-R": {
+    "kind": "SILENT"
+  },
+  "wrk/healthy-K": {
+    "kind": "SILENT"
+  },
+  "wrk/theatre-W": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "W_INQUIRY_CONTEXT_COLLAPSE"
+    ]
+  },
+  "wrk/theatre-R": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "R_VERIFICATION_CONTEXT_COLLAPSE"
+    ]
+  },
+  "wrk/theatre-K": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "K_CONSTRAINT_CONTEXT_COLLAPSE"
+    ]
+  },
+  "t/stable-silent": {
+    "kind": "SILENT"
+  },
+  "t/drifted-alarm": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "t/ceiling-ca": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "t/ceiling-no-margin-alarm": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "T_DISPOSITIONAL_DRIFT"
+    ]
+  },
+  "t/single-class-ca": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "t/no-config-ca": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "MISSING_CONFIGURATION",
+      "MISSING_CONFIGURATION"
+    ]
+  },
+  "t/phase-change-clean-then-held-ca": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "t/partial-drift-2subj-alarm-proxy-margin-0.0176": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "T_DISPOSITIONAL_DRIFT"
+    ]
+  },
+  "gap/observed": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "GAP_SUBMITTER_SILENT"
+    ]
+  },
+  "gap/no-gap": {
+    "kind": "SILENT"
+  },
+  "gap/cannot-assess-cadence": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "INELIGIBLE_SCOPE"
+    ]
+  },
+  "delivery/passblind-dropped": {
+    "disposition": "HOLD_BLIND",
+    "execute": false,
+    "recorded": true
+  },
+  "delivery/release-dropped": {
+    "disposition": "HOLD_BLIND",
+    "execute": false
+  },
+  "delivery/silent-write-failed": {
+    "kind": "CANNOT_ASSESS",
+    "blindClasses": [
+      "NOT_DELIVERED"
+    ]
+  },
+  "delivery/alarm-write-failed": {
+    "kind": "ALARM",
+    "findingCodes": [
+      "C"
+    ]
+  }
+}

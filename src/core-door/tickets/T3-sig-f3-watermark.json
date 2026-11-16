@@ -1,0 +1,26 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T3-sig-f3-watermark",
+  "opens": [
+    "src/mica/sig/index.ts",
+    "src/mica/sig-f3-clerk.test.ts",
+    "src/mica/sig.test.ts",
+    "src/mica/substrate-snapshot.test.ts",
+    "src/mica/verdict-logic.substrate-snapshot.json"
+  ],
+  "defect": {
+    "summary": "Sig F3 reads only when EVERY record has a clerk stamp; with any lag between record and carry it composes CANNOT_ASSESS into the floor, so Act B would blind Sig most of every day (under the baseline: every bash held). Also: stamps join by sequenceNumber alone, so a retired chain's stamp joins a new chain's record wrongly. Fix, four parts: (1) F3 reads up to a PER-WRITER high-water mark; a TAIL (records above the mark) is disclosed as lag; a HOLE (an unstamped record below its writer's mark) is a distinct finding, disclosed as carrier-skipped, and composes CANNOT_ASSESS; (2) a DECLARED lag bound: a tail older than the bound composes CANNOT_ASSESS with reason AXIS_STALE naming the carrier; (3) stamps carry chain identity; a stamp with a non-matching chain identity is REFUSED; a stamp without one behaves as today and is disclosed as unattributed (optional-by-default; mandatory is a later ticket); (4) the order deviation is carried as F3's margin. Ceiling printed: a contradiction surfaces at the next carry, at most one lag later.",
+    "ground": "ARC_MICA-PRICE_T3-Sig-F3-Refined_20260923 (esp. §2.2, §5.1, §5.3); ARC_MICA-RECEIPT_ActB-Clerk-Stamps_20260923 (the finding); Frank's refined T3 ruling 2026-09-23"
+  },
+  "expiresAt": "2026-09-29T18:00:00Z",
+  "arbiter": {
+    "word": "I open the core for Sig F3, because a witness that goes blind between two visits is no witness. Read what is stamped, say plainly what is not, refuse a stamp from another chain, and close the door on the 29th.",
+    "date": "2026-09-23"
+  },
+  "conditions": [
+    "The 20 frozen scenarios in src/mica/verdict-logic.frozen.json stay byte-identical; that file is NOT opened. Therefore every new disclosure (tail, hole, lag, chain attribution, margin) lives on SigResult and the export artifact, never on FlagReport and never in a verdict summary.",
+    "The chain-identity check is OPTIONAL BY DEFAULT: absent identity = today's behaviour + disclosed as unattributed; a non-matching identity = refused, never joined. Making it mandatory is a separate ticket.",
+    "The substrate snapshot's existing 40 projections stay byte-identical; only NEW projections are ADDED (stale tail, hole, retired-chain stamp). The starting hash of src/mica/verdict-logic.substrate-snapshot.json is T1's post-repin value 8edcee7a5f7d.",
+    "Pre-registration before any code: the six named scenarios of the pricing's §3.1 plus the seventh live one (§3.3), under both stakes lines. Cold verifier before relay. The shipping commit re-pins every file it changed (npm run core-door -- --propose-repin T3-sig-f3-watermark). One change per relay. T3 is on the box BEFORE Act B is deployed."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T4-store-blank-lines",
+  "opens": [
+    "src/mica/store/append-store.ts",
+    "src/mica/chokepoint/ledger.ts",
+    "src/mica/chokepoint/floor-trail.ts",
+    "src/mica/notify/notice-log.ts",
+    "src/mica/store/append-store.test.ts",
+    "src/mica/chokepoint/chokepoint.test.ts",
+    "src/mica/chokepoint/floor-trail.test.ts",
+    "src/mica/notify/notify.test.ts",
+    "src/mica/doctor/doctor.test.ts"
+  ],
+  "defect": {
+    "summary": "The hash-chained stores skip whitespace-only lines when reading (append-store.ts:278 and the same filter in ledger.ts:287, floor-trail.ts:544, notice-log.ts:356). A file with an inserted blank line still verifies, and a writer extends it afterwards. For a store whose claim is tamper-evidence, ignored bytes are the defect itself. Found by the cold verifier on Act A (VERIFY_ActA-Chained-Subject-Log_20260923); the glue instance (subject-event-journal.ts:509) was fixed in acta-repair; T4 makes the core stores match. Fix: no line is skipped; a reader that meets a whitespace-only or malformed line reports a torn chain and does not verify; a writer refuses to append after one. One rule, all four stores.",
+    "ground": "ARC_MICA-VERIFY_ActA-Chained-Subject-Log_20260923 check 2; ARC_MICA-RECEIPT_ActA-Repair_20260923; Frank's ruling 2026-09-23 15:3x (T4 in this window)"
+  },
+  "expiresAt": "2026-09-29T18:00:00Z",
+  "arbiter": {
+    "word": "I open the core for the stores' blank-line hole, because a chain that ignores bytes is not a chain. One rule for every store: nothing is skipped. Close the door on the 29th.",
+    "date": "2026-09-23"
+  },
+  "conditions": [
+    "NO frozen set is opened. verdict-logic.frozen.json, verdict-logic.substrate-snapshot.json AND verdict-logic.frozen.pre-substrate-20260819.json stay byte-identical; the proof is the UNCHANGED sha256 of each file against its pin in core-inventory.json at T4's start — never a green snapshot test.",
+    "The five test files are opened ONLY to change the pins that assert the old skip behaviour (append-store.test.ts's deliberate pin and its false comment; chokepoint.test.ts :924 and :972; floor-trail.test.ts :816 and :864; doctor.test.ts :1188 and :1236) and to ADD refusal checks. No other assertion changes.  Renaming a check's TITLE string is not an assertion change (AMENDED 2026-09-23 by Frank).",
+    "Pre-registration before any code, per store: a valid chain with one inserted blank line reads VERIFIED before and TORN/refused after; the clean twin is unchanged before and after; a writer's append after a blank line is refused after. One killed mutant per store that reintroduces the skip.",
+    "Cold verifier before relay. The shipping commit re-pins every file it changed (npm run core-door -- --propose-repin T4-store-blank-lines). One change per relay: T4 relays AFTER T3 is on the box."
+  ]
+}

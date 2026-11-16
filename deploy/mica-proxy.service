@@ -1,0 +1,155 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · S128 — `mica-proxy`, the loopback proxy for API subjects.
+#
+#   Install path: /etc/systemd/system/mica-proxy.service
+#   Program:      /opt/mica-machine/src/probe/subject/loopback-proxy.ts
+#   Cadence:      none. This one STAYS — the runner talks to it, the way it
+#                 talks to Ollama. Contrast mica-report.service (a oneshot that
+#                 finishes) and mica-clerk-caller.service (a timer's arm).
+#
+# NOT INSTALLED BY THIS FILE. Drafted by the build seat, S128, 2026-09-13.
+# Installing it is the arbiter's act, by hand, as root, AFTER the 00:00
+# `mica-clerk-caller` firing has been read HELD (brief §0, Sequencing), with the
+# key-custody acts of brief §6 done first:
+#
+#   sudo install -m 0644 -o root -g root \
+#     deploy/mica-proxy.service /etc/systemd/system/mica-proxy.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl start mica-proxy          # read the banner before enabling
+#   ss -ltnp | grep 11444                    # 127.0.0.1 only, or stop
+#
+# ── TWO DEPARTURES FROM THE BRIEF'S §7 BLOCK, AND THE BRIEF INVITED BOTH ─────
+#
+#   §7 says: "build path and the exact ExecStart follow the repo's existing unit
+#   conventions (recipe §5); the block above is the shape, not the bytes."
+#
+#   1. ExecStart. The brief drafted `/usr/bin/node
+#      /opt/mica-machine/dist/probe/subject/loopback-proxy.js`. THERE IS NO
+#      `dist/` — not in the dev tree, not under /opt (`ls -d` on both, S128
+#      build seat, at bytes). The relay lays the SOURCE tree and every shipped
+#      unit here runs the pinned in-tree `ts-node` binary directly, never `npx`
+#      (an npx cache would be written into this principal's home — recipe §5.4
+#      correction 4, and mica-witnessd.service's own header says it again).
+#      So this unit does what its three siblings do. A `tsc` build step for
+#      /opt would be a new deployment act, a new relay shape and a second
+#      artefact to keep in step with VINTAGE — that is a ruling, not a
+#      build-seat convenience.
+#
+#   2. `Wants=network-online.target` beside the brief's `After=`. `After=`
+#      alone orders against a target that nothing pulled in; without `Wants=`
+#      the target may never be reached and the ordering buys nothing. This is
+#      the documented pairing, not an added dependency.
+#
+#   `RequiresMountsFor=/var/lib/mica/proxy` is the same line mica-report and
+#   mica-witnessd carry for their own state roots: what this unit actually
+#   needs is its log directory mounted.
+#
+# ── THE EGRESS FENCE IS PARTIAL, AND IT SAYS SO `[TG]` (brief §7) ────────────
+#
+#   `IPAddressAllow=`/`IPAddressDeny=` take ADDRESSES. They cannot express
+#   "api.openai.com only" — that is a hostname, resolved at call time. What the
+#   two lines below actually buy:
+#
+#     · loopback is explicitly allowed;
+#     · the private and link-local ranges are denied, IPv4 AND IPv6, so this
+#       principal cannot reach anything else on the LAN or the WSL host;
+#     · PUBLIC egress is OPEN for this unit, and for this unit alone.
+#
+#   State that on the board as ACCEPTED, or rule a stricter mechanism later. A
+#   proxy-of-the-proxy is out of scope (brief §7). The SUBJECT unit's
+#   `IPAddressDeny=any` is UNTOUCHED by this build: the runner still cannot
+#   reach a vendor, only this program can.
+#
+#   THE IPv6 DOOR IS SHUT — RULED BY THE ARBITER, S128. The build seat found the deny
+#   list IPv4-only and raised it rather than editing it; `fc00::/7`
+#   (unique-local) and `fe80::/10` (link-local) are now on the line below by the
+#   arbiter's word. The vendor call is unaffected: api.openai.com is a PUBLIC
+#   address in either family, and neither denied range can carry it.
+#
+#   ONE RESIDUAL, NAMED RATHER THAN LEFT FOR SOMEONE TO FIND:
+#
+#     `[TG]` DNS. This box resolves via `8.8.8.8` (read at bytes, S128) — a
+#     PUBLIC address, so the deny list does not touch it. If `/etc/resolv.conf`
+#     ever returns to the WSL default (the host at `172.27.160.1`, inside the
+#     denied `172.16.0.0/12`), every lookup from this unit is refused and every
+#     call fails `REFUSED_vendor_unreachable` -> 502 -> runner exit 1. That is
+#     LOUD, not silent, which is the design — but the cause would be here, not
+#     at the vendor. Look at this comment before blaming OpenAI.
+#
+# ── ONE PRINCIPAL, ONE SECRET FILE (R2) ─────────────────────────────────────
+#
+#   `mica-proxy` is a new system account that owns nothing but its log and reads
+#   nothing but its own key at `/etc/mica/proxy/openai.key` (root:mica-proxy
+#   0640). Honey's own credentials are NOT read by anything of ours and nothing
+#   in `.openclaw-honey/` is written (R2, R4). The program REFUSES TO START if
+#   that file is unreadable, empty, or wider than 0640 — so a key the whole box
+#   can read stops the unit instead of quietly working.
+#
+#   Key rotation (brief §6.8, after pilot 3 closes) is: write the new key to the
+#   same path, `systemctl restart mica-proxy`. The key is read at start only.
+#
+# ── EXIT CODES, so an operator reading `systemctl status` knows what happened ─
+#
+#   0 the server was closed cleanly
+#   2 it REFUSED TO START — a missing or malformed MICA_PROXY_* variable, an
+#     unreadable / empty / too-permissive key file, an unknown vendor, or a port
+#     that would not bind. Nothing was served and nothing was sent.
+#
+#   `Restart=on-failure` therefore restarts a CRASH, and also re-attempts a
+#   start refusal. That is wanted: exit 2 names its own cause in one sentence on
+#   stderr, and a deployment fault that keeps announcing itself is better than
+#   one that announced itself once at 00:00 and went quiet — which is exactly
+#   the eight-night silence S127 spent a session finding.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA loopback proxy for API subjects (S128)
+Documentation=file:///opt/mica-machine/src/probe/subject/loopback-proxy.ts
+# The vendor is reached by name over the network; unlike every other MICA unit,
+# this one genuinely needs the network up. See the header on the Wants= pairing.
+After=network-online.target
+Wants=network-online.target
+RequiresMountsFor=/var/lib/mica/proxy
+
+[Service]
+Type=simple
+User=mica-proxy
+Group=mica-proxy
+
+WorkingDirectory=/opt/mica-machine
+# The pinned in-tree binary DIRECTLY, never `npx` — see departure 1 in the
+# header, and mica-report / mica-clerk-caller / mica-witnessd, which all say it.
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/probe/subject/loopback-proxy.ts
+
+# Every one of these is REQUIRED by the program; it defaults no configuration
+# value and refuses to start on a missing one. There is deliberately no
+# MICA_PROXY_VENDOR_URL: an env var that could aim this principal's key at an
+# arbitrary host is a credential-exfiltration switch wearing a config field.
+# The vendor NAME maps to the URL inside the program.
+Environment=MICA_PROXY_PORT=11444
+Environment=MICA_PROXY_MODEL=gpt-4o-mini
+Environment=MICA_PROXY_KEY_FILE=/etc/mica/proxy/openai.key
+Environment=MICA_PROXY_LOG=/var/lib/mica/proxy/proxy-log.jsonl
+Environment=MICA_PROXY_VENDOR=openai
+
+Restart=on-failure
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+# The one path this unit may write. The key at /etc/mica/proxy is READ only,
+# and ProtectSystem=strict restricts writes, not reads.
+ReadWritePaths=/var/lib/mica/proxy
+PrivateTmp=yes
+
+# See the header: partial by construction, and named as partial.
+IPAddressAllow=127.0.0.0/8
+IPAddressDeny=10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 169.254.0.0/16 fc00::/7 fe80::/10
+
+# 0027: the proxy log is born 0640 by the program's own openSync mode argument
+# (the same idiom as appendCapture, S122 §2.4). A umask can only CLEAR bits, so
+# this is a ceiling that agrees with the program rather than fighting it.
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

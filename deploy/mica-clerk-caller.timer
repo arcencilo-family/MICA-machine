@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · S109-B item 2 — the clerk caller's schedule. DRAFT. NOT INSTALLED.
+#
+#   Install path: /etc/systemd/system/mica-clerk-caller.timer
+#   Enable with:  systemctl enable --now mica-clerk-caller.timer
+#                 (the TIMER is enabled; mica-clerk-caller.service is not)
+#
+# Cadence chosen: daily, same rhythm as mica-report.timer, on the house's own
+# recommendation (ARC_MICA-NOTE_S109-Deployment-Acts_20260904.md, A2) — stamps
+# at least as fresh as the report that counts them, no faster than that.
+# This is the arbiter's Willkuer to change; nothing in the code or the recipe
+# requires daily specifically.
+#
+# Persistent=true: a run missed because the machine was off fires at the next
+# boot, same discipline as mica-report.timer. It does not backfill beyond
+# that one run — the cursor makes up the difference on its own next tick,
+# same shape mica-registrar's poll-driven cadence self-corrects by.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA S109-B — daily run of mica-clerk-caller
+Documentation=file:///opt/mica-machine/deploy/mica-clerk-caller.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=mica-clerk-caller.service
+
+[Install]
+WantedBy=timers.target

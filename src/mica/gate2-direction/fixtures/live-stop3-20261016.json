@@ -1,0 +1,1002 @@
+{
+ "source": "live box 2026-10-16: witness book (current + retired predecessor), interest book, decisions 650-657 via /explain; subject/origin/item ids renamed consistently in inputs and expected text",
+ "book": [
+  {
+   "recordType": "SUBJECT_LOG_BOUNDARY",
+   "sequenceNumber": 0,
+   "previousHash": "",
+   "retired": {
+    "path": "/var/lib/mica/witness-sight/book-of-effects.jsonl.retired-method-bd91dc37fa7e5d06-1791746752817",
+    "records": 3,
+    "bytes": 4950,
+    "sha256": "ff52dd7958f44dd625444e34b57aa0e9d342861f17ef3c12d0b15046bf04ec2e"
+   },
+   "basis": "THE WITNESS'S BOOK OF EFFECTS \u00b7 FIRST LINE. Written only by the witness's seeing half (seeingd), one record per act it was pointed at: ONE look at the ONE target the act claimed, as a facet against the witness's own last look at that target \u2014 since the witness last looked, never caused by the act \u2014 in the closed vocabulary of the published method named by each record's class (method 2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8). One look by one internal process: Lane A, EG-1. READ UNDER THESE CEILINGS: ARTEFACT EFFECTS ARE NOT BENEFIT: a file that appeared is not a good done, and one that vanished is not a harm done until a grant says whose it was and who asked (S208). CLAIMED TARGET IS NOT THE TOUCHED SET: the witness looks only at the one target the act's own harness names; whatever else the act touches is unread. The pointer is the subject's claim (EG-1); only the look is the witness's. SINCE THE WITNESS LAST LOOKED, NOT CAUSED BY THIS ACT: a facet compares the target to the witness's own previous look, which may predate this act by many acts or much time; anything, by anyone, could have changed it in between. No change is attributed to the act. Attribution is phase H's, with S208 and its own anchor design. THE ACT'S RECORDS ARE THE SUBJECT'S WORD: which acts the witness is pointed at, their targets, and whether an act was held or ran unguarded all come from records the subject's uid can post (EG-1 until S206); the witness never sees when an act ran, and anchors on nothing it can post. AN ACT WITH NO RECORD IS NOT A READING: acts never pointed to the witness are not observations; UNKNOWN is not zero. EXIT STATE IS THE HARNESS'S WORD: the only exit state on the record is the subject's own TOOL_RESULT; the witness does not observe it. THIS BOX'S FILES ONLY: no network, no message channel, no person the act addressed; a category with no region on this box is not seen at all. REACH IS A DEPLOYMENT FACT: what the witness's uid may read \u2014 and, as much, the method's own refusals and the modes of the files themselves \u2014 decides what is UNOBSERVABLE; UNOBSERVABLE is never UNCHANGED. TAMPER-EVIDENT, NOT TAMPER-PROOF: the book is chained, written only by the witness, and its heads go to witnessd while they reach it; nothing here holds against root on this box (S210). retired names this book's predecessor: the book this witness kept under method bd91dc37fa7e5d0653c795c4878266a4482c1405d932ce0b073d50b5bce41b72, retired unaltered (renamed, never edited) when the witness started under method 2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8. The last look the predecessor records for a target remains the witness's last look at it; acts recorded there stay recorded.",
+   "timestamp": 1791746752826,
+   "moduleId": "MICA/SubjectLog",
+   "eventType": "SUBJECT_LOG_BOUNDARY",
+   "outcome": "BOUNDARY_DECLARED",
+   "hash": "cb927402827c5ae0c6a459fa659be24f35107e2052f571481f7e8ec7e108991c"
+  },
+  {
+   "timestamp": 1792076019443,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:HELD",
+   "actionId": "toolu_01TapPHg11DWbTDJSaNimEaC",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1581,
+     "sessionId": "pilot-2026-10-15-10",
+     "targetFingerprint": "468d4cba951784c71cb7fd2415f95196855f6d1cd09fedacc1b783ed8f93a4d0",
+     "closedSeq": 1583,
+     "decisionHash": "ff8a938f87e0308a305ecf74aa6e718af23bcb91210309b8d7184bcade8ad5d9"
+    },
+    "fate": "HELD",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792076019443,
+     "mono": "12509491515953",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "f979f4d0718d3ed79ac971b56da9d6849ae8c9bab5b239fd6818943e6ad75808",
+     "times": "0842c6740ad7911b7adc90d30de318a6d8351def206d36d3aeafc372b0db8a91",
+     "size": "1db2b2fea0dcccd6e0307d0efdcb232e7f75ce60ac6314566259e809899d52e3",
+     "content": "ffce94a242cf3d2286669f0f8666c0d485e4df37d627bf407e32e2795ee02a91",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792076019443
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 1,
+   "previousHash": "cb927402827c5ae0c6a459fa659be24f35107e2052f571481f7e8ec7e108991c",
+   "hash": "de18066cf589798bee5c49f629504dd69bc69f4cc08501aad542fb3391bd8890"
+  },
+  {
+   "timestamp": 1792098748817,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c5:FIRST_SEEN",
+   "actionId": "toolu_013qdiARVtqj3uPfEGm4gFDz",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1593,
+     "sessionId": "pilot-2026-10-15-10",
+     "targetFingerprint": "08b770e597d66df87e5a103b0bbc61a0b5a596d548388e8f62178dfd822a0b8f",
+     "closedSeq": 1596,
+     "decisionHash": "eb29868eb60a4429027f7e48e996dedaa3dd570051b0f558bef7a88da44b8660"
+    },
+    "fate": "RAN",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792098748817,
+     "mono": "35450368600449",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "dir",
+     "meta": "0f0096222f9bd96d2992f3290e99f97c859f62d5659a0e0641ba6ea3b688e331",
+     "times": "587d47e409d1fe3843315e583e72a518df295db14607e0d85ef921bf403077e9",
+     "size": "ff5bd868e422905825ef47a827f9e72f368d184db0ff32abe9c2e17c028a2f1c",
+     "content": null,
+     "contentBasis": "UNREADABLE",
+     "error": "EACCES"
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792098748817
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 2,
+   "previousHash": "de18066cf589798bee5c49f629504dd69bc69f4cc08501aad542fb3391bd8890",
+   "hash": "f379f10406af18d858dcebec1709c6b40768c0816eb00f6470493e69cdf85654"
+  },
+  {
+   "timestamp": 1792170999000,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c3:FIRST_SEEN",
+   "actionId": "toolu_01AgHtF6NSHWGFFENq1xEJnj",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1597,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "5be5a1e3fadc6997e3a7b08ee7b032a254e5df26186f3a2508e086903cca5664",
+     "closedSeq": 1600,
+     "decisionHash": "13cce5e60ffbc9a41e11650635d6e7ebb97102eec9dc2867cf26f3d8b26caa13"
+    },
+    "fate": "RAN",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792170999000,
+     "mono": "109977120741920",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "dir",
+     "meta": "aa8cef7f3c2b1832c0dc3c2f18cb2b93173e2e42e98c4d560b68b42d6c310a25",
+     "times": "c02a536f2b89e4e122c66e350004712ab639492d53df4ff93ea9cea6e3f3e2ed",
+     "size": "2e15da715ed0da75100a0ff50b6f084c41293b3d5c85e8239d87f7fb498704c8",
+     "content": "2da1492271dc68e9e41f309b1c7d80b7c0b1becfabc5a41317a8e0ca4ef946a0",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792170999000
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 3,
+   "previousHash": "f379f10406af18d858dcebec1709c6b40768c0816eb00f6470493e69cdf85654",
+   "hash": "ba1e7c1ebb480319c88ae4aa8fadafa1900fa706c57534a4375cf99b652fc580"
+  },
+  {
+   "timestamp": 1792171003644,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c3:SAME",
+   "actionId": "toolu_01EpL4aHm9fx3Md3mfTP6FZo",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1601,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "5be5a1e3fadc6997e3a7b08ee7b032a254e5df26186f3a2508e086903cca5664",
+     "closedSeq": 1604,
+     "decisionHash": "2cad76282bfea8b492980ef349438a5593cc46204ca7983200eaea00d67649e2"
+    },
+    "fate": "RAN",
+    "observed": "SAME",
+    "priorLookAt": 1792170999000,
+    "look": {
+     "at": 1792171003644,
+     "mono": "109981765268587",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "dir",
+     "meta": "aa8cef7f3c2b1832c0dc3c2f18cb2b93173e2e42e98c4d560b68b42d6c310a25",
+     "times": "c02a536f2b89e4e122c66e350004712ab639492d53df4ff93ea9cea6e3f3e2ed",
+     "size": "2e15da715ed0da75100a0ff50b6f084c41293b3d5c85e8239d87f7fb498704c8",
+     "content": "2da1492271dc68e9e41f309b1c7d80b7c0b1becfabc5a41317a8e0ca4ef946a0",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171003644
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 4,
+   "previousHash": "ba1e7c1ebb480319c88ae4aa8fadafa1900fa706c57534a4375cf99b652fc580",
+   "hash": "0294555d079466430a952de04c28b08cad7b462e4bddca09c86cd0e4ec6c5446"
+  },
+  {
+   "timestamp": 1792171007452,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c3:SAME",
+   "actionId": "toolu_01VDxQvXnt3jZPnKe1zXF63E",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1605,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "5be5a1e3fadc6997e3a7b08ee7b032a254e5df26186f3a2508e086903cca5664",
+     "closedSeq": 1608,
+     "decisionHash": "229ec6143c7bcd100af748db7eb1180dd854baf97bbbd0b121e8ca1a54611a7e"
+    },
+    "fate": "RAN",
+    "observed": "SAME",
+    "priorLookAt": 1792171003644,
+    "look": {
+     "at": 1792171007452,
+     "mono": "109987224556195",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "dir",
+     "meta": "aa8cef7f3c2b1832c0dc3c2f18cb2b93173e2e42e98c4d560b68b42d6c310a25",
+     "times": "c02a536f2b89e4e122c66e350004712ab639492d53df4ff93ea9cea6e3f3e2ed",
+     "size": "2e15da715ed0da75100a0ff50b6f084c41293b3d5c85e8239d87f7fb498704c8",
+     "content": "2da1492271dc68e9e41f309b1c7d80b7c0b1becfabc5a41317a8e0ca4ef946a0",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171007452
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 5,
+   "previousHash": "0294555d079466430a952de04c28b08cad7b462e4bddca09c86cd0e4ec6c5446",
+   "hash": "7bdb3547d3eec9f05d092be75793ea77d64a2f67c1758d2f41e5fcb795d8004a"
+  },
+  {
+   "timestamp": 1792171435200,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:FIRST_SEEN",
+   "actionId": "toolu_0114oCqSiQhABKZiHjF8zR4h",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1609,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "b8273083c12e30de8d57e5ccc423cff6a4d5f3f0a3304243713d00ff063519d1",
+     "closedSeq": 1612,
+     "decisionHash": "66567a130047f2507d200a8e4ef64ad710e96d7c0d3b490657bec6172c59f1c0"
+    },
+    "fate": "RAN",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792171435200,
+     "mono": "110438469057693",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "b978549a0a59da6c4e5c2d85984415ba5c344a01a635a79ddeebb6b11e41d204",
+     "times": "229c4a456381fc058d15a127b7687eec777ef5528b11fd1b2dafe4f9583e71f3",
+     "size": "a03c16ade748283b3bbf70d45a80fd223da115c9c2dce4f4e92e051a2f59eed8",
+     "content": "951a84efb08f27cd8dd15f6a019a761497cb540f9c30f1bf1355619cc5b199e9",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171435200
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 6,
+   "previousHash": "7bdb3547d3eec9f05d092be75793ea77d64a2f67c1758d2f41e5fcb795d8004a",
+   "hash": "837785110e25b71db4740c1833d0dc8de2582ca1fd7375672ba6e9d2e99678c2"
+  },
+  {
+   "timestamp": 1792171463806,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:CONTENT_DIFFERS",
+   "actionId": "toolu_017B9JnwTYmfosxtD6GEtuu1",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1613,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "b8273083c12e30de8d57e5ccc423cff6a4d5f3f0a3304243713d00ff063519d1",
+     "closedSeq": 1616,
+     "decisionHash": "93dbcce60521d25611520a336ec845f15a856a9d63e79688e6ac6bf1c051f07a"
+    },
+    "fate": "RAN",
+    "observed": "CONTENT_DIFFERS",
+    "priorLookAt": 1792171435200,
+    "look": {
+     "at": 1792171463806,
+     "mono": "110467075445327",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "b978549a0a59da6c4e5c2d85984415ba5c344a01a635a79ddeebb6b11e41d204",
+     "times": "b2bb09f2c85aa543258603736acb7a9f0a84a5c6f7cdbf90c432d9c7a7ee329f",
+     "size": "d56c458cd0598cba6e9a8f36591dbf9b7b34f85bd15c4e37e7668752e012eda8",
+     "content": "07cc0b4af984cb98e101da2320b90c4dd4e1010a43b93ccf6dfc4e91a39fd22d",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171463806
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 7,
+   "previousHash": "837785110e25b71db4740c1833d0dc8de2582ca1fd7375672ba6e9d2e99678c2",
+   "hash": "a18257037813d77ec0ab150feaf198a8dc0cb9587b97853faac49a0c688c1889"
+  },
+  {
+   "timestamp": 1792171466980,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:HELD",
+   "actionId": "toolu_01SPApJBD29jHrqgnJ3hhbVc",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1617,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "b8273083c12e30de8d57e5ccc423cff6a4d5f3f0a3304243713d00ff063519d1",
+     "closedSeq": 1619,
+     "decisionHash": "f42d1b96693d5a33d02db53310096c188400f55abda1a27c06add43653f0f097"
+    },
+    "fate": "HELD",
+    "observed": "SAME",
+    "priorLookAt": 1792171463806,
+    "look": {
+     "at": 1792171466980,
+     "mono": "110470249620409",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "b978549a0a59da6c4e5c2d85984415ba5c344a01a635a79ddeebb6b11e41d204",
+     "times": "b2bb09f2c85aa543258603736acb7a9f0a84a5c6f7cdbf90c432d9c7a7ee329f",
+     "size": "d56c458cd0598cba6e9a8f36591dbf9b7b34f85bd15c4e37e7668752e012eda8",
+     "content": "07cc0b4af984cb98e101da2320b90c4dd4e1010a43b93ccf6dfc4e91a39fd22d",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171466980
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 8,
+   "previousHash": "a18257037813d77ec0ab150feaf198a8dc0cb9587b97853faac49a0c688c1889",
+   "hash": "5b78d4eb63167973a8e9baef105f217fbbd758637975a04a81eb079838cfe8cf"
+  },
+  {
+   "timestamp": 1792171530330,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:HELD",
+   "actionId": "toolu_01YLb2Vb6L8irx58t7sa5R6v",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1621,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "f8913223c30fb02bca2fa0d22855eb9058dfeca4c8e7de53cf5a584dbc1f39dd",
+     "closedSeq": 1623,
+     "decisionHash": "6315cfe8248b0c318e1b1be691d36714de3890b4fbbe11bc9a71d99004517f3e"
+    },
+    "fate": "HELD",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792171530330,
+     "mono": "110537538583114",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "9136f08cbf0b480c0ecc4a50f31cccf9b80d46d15f877326ee17aac0b7071ada",
+     "times": "640d8971d7e86ab21e56bd0702c0a2270aeae6c16de5c392c9fe6488c3015061",
+     "size": "55d8bce2cf0b25030b6f29a821a900f4ec9458a02cedf2051e73c34c4ee62497",
+     "content": "1bfc7c1b6df4b7435218edece750750102e8d69119d1438bb12d41cf7e894007",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792171530330
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 9,
+   "previousHash": "5b78d4eb63167973a8e9baef105f217fbbd758637975a04a81eb079838cfe8cf",
+   "hash": "46e5f3564fa9667f655982f12b3fb5be782a99bd9f02f3a0b94c11daf27e3c2a"
+  },
+  {
+   "timestamp": 1792173231855,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:CONTENT_DIFFERS",
+   "actionId": "toolu_0131HjRACkGAWLGNA7WsTuJJ",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1629,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "f8913223c30fb02bca2fa0d22855eb9058dfeca4c8e7de53cf5a584dbc1f39dd",
+     "closedSeq": 1632,
+     "decisionHash": "f0d557e9b5a544210317118c259b4da4998f2d5eebf0623a913b08f1a7cfb289"
+    },
+    "fate": "RAN",
+    "observed": "CONTENT_DIFFERS",
+    "priorLookAt": 1792171530330,
+    "look": {
+     "at": 1792173231855,
+     "mono": "112335397698052",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "9136f08cbf0b480c0ecc4a50f31cccf9b80d46d15f877326ee17aac0b7071ada",
+     "times": "dca758fb00859a5be9afaa1e5601e114f3787c0a17001b1a4f514dbb7975794b",
+     "size": "a7a41906c0e28363970a01742acddc39078f330c9b4aab2af5930aee17d1837c",
+     "content": "f2e6f5ed32a69df7e44d8cae0a45881a2e4f17c914a7219177a64180c939fd3b",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792173231855
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 10,
+   "previousHash": "46e5f3564fa9667f655982f12b3fb5be782a99bd9f02f3a0b94c11daf27e3c2a",
+   "hash": "8526657df99531c2317d756964ec68cde0c886730f50a96203a73986587a8992"
+  },
+  {
+   "timestamp": 1792173235762,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:SAME",
+   "actionId": "toolu_018UvVczwinEXdrAfCzoBy4r",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1633,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "f8913223c30fb02bca2fa0d22855eb9058dfeca4c8e7de53cf5a584dbc1f39dd",
+     "closedSeq": 1636,
+     "decisionHash": "f174af07cd402f5712131c4797bb007a39379675e8e013e8bcdfe6a63905b48c"
+    },
+    "fate": "RAN",
+    "observed": "SAME",
+    "priorLookAt": 1792173231855,
+    "look": {
+     "at": 1792173235762,
+     "mono": "112339304221750",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "9136f08cbf0b480c0ecc4a50f31cccf9b80d46d15f877326ee17aac0b7071ada",
+     "times": "dca758fb00859a5be9afaa1e5601e114f3787c0a17001b1a4f514dbb7975794b",
+     "size": "a7a41906c0e28363970a01742acddc39078f330c9b4aab2af5930aee17d1837c",
+     "content": "f2e6f5ed32a69df7e44d8cae0a45881a2e4f17c914a7219177a64180c939fd3b",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792173235762
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 11,
+   "previousHash": "8526657df99531c2317d756964ec68cde0c886730f50a96203a73986587a8992",
+   "hash": "8e3070c7bdc31029548bfd858090895b3c4912fea02b2fe4c322ed745b36cd64"
+  },
+  {
+   "timestamp": 1792173630361,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c1:SAME",
+   "actionId": "toolu_01DgxpGnjGFPeLjpzDu9zHHj",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1639,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "f8913223c30fb02bca2fa0d22855eb9058dfeca4c8e7de53cf5a584dbc1f39dd",
+     "closedSeq": 1642,
+     "decisionHash": "87709c8a2885aa438f8da44b5dd7d669fce497c71870db4a8360bd7119afaaf4"
+    },
+    "fate": "RAN",
+    "observed": "SAME",
+    "priorLookAt": 1792173235762,
+    "look": {
+     "at": 1792173630361,
+     "mono": "112756758348354",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "file",
+     "meta": "9136f08cbf0b480c0ecc4a50f31cccf9b80d46d15f877326ee17aac0b7071ada",
+     "times": "dca758fb00859a5be9afaa1e5601e114f3787c0a17001b1a4f514dbb7975794b",
+     "size": "a7a41906c0e28363970a01742acddc39078f330c9b4aab2af5930aee17d1837c",
+     "content": "f2e6f5ed32a69df7e44d8cae0a45881a2e4f17c914a7219177a64180c939fd3b",
+     "contentBasis": "DIGESTED",
+     "error": null
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792173630361
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 12,
+   "previousHash": "8e3070c7bdc31029548bfd858090895b3c4912fea02b2fe4c322ed745b36cd64",
+   "hash": "31cf51ab35682a3e2d0d9f0d5b1a62ce6d397aaf68bf9b101b02ab37a2fe474c"
+  },
+  {
+   "timestamp": 1792177532370,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c5:UNOBSERVABLE",
+   "actionId": "toolu_01W5HJtkpw1PrfamrW5tvboU",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1643,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "f62e311726c25cd97331ea6fec441692d33715691cb1b7fb290c27328b4c125a",
+     "closedSeq": 1646,
+     "decisionHash": "8503f801112120a68e963f66958938de8c3c575eb2351b785095bc3c4c93b953"
+    },
+    "fate": "RAN",
+    "observed": "UNOBSERVABLE",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792177532370,
+     "mono": "116888415684536",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "UNOBSERVABLE",
+     "type": null,
+     "meta": null,
+     "times": null,
+     "size": null,
+     "content": null,
+     "contentBasis": null,
+     "error": "EACCES"
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792177532370
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 13,
+   "previousHash": "31cf51ab35682a3e2d0d9f0d5b1a62ce6d397aaf68bf9b101b02ab37a2fe474c",
+   "hash": "fb1683444477511b01c342e0abbb51ed45b3a30d09b405f6c1c5a1c6fd156ab4"
+  },
+  {
+   "timestamp": 1792177535375,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@29e5cf264758cc94",
+   "outcome": "c5:FIRST_SEEN",
+   "actionId": "toolu_014h6MLVYk1yBBLkGLUtkYEf",
+   "witnessed": {
+    "method": "2a4c1dad0956d152318c96037fc324306e35ad76f0dfd041b87608e7dcc3a6b8",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1647,
+     "sessionId": "pilot-2026-10-16-11",
+     "targetFingerprint": "cae2d701102b06f6fba7073768f89dec72e21c298b3c22ba03137ec6347425c8",
+     "closedSeq": 1650,
+     "decisionHash": "a8554ddb37c48ac08ceaee09c0159b850a2fbfebe61b481ff9957c6309fed407"
+    },
+    "fate": "RAN",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1792177535375,
+     "mono": "116891420886143",
+     "boot": "15ffd738-e185-45f0-84eb-f3fc5863eae5",
+     "state": "PRESENT",
+     "type": "dir",
+     "meta": "19559c03fac604cbdfca040355b1e99c579237418059edf4540dc3d9f1528cd4",
+     "times": "33e7ca65fb00734c02ee0789505c83dfb27ba9ffb5441e2f8ad7a0c4434878ea",
+     "size": "23f291e4ec38fc6bde48c3ed017fac1eff3b0d49274b126edacc337caa714dc0",
+     "content": null,
+     "contentBasis": "UNREADABLE",
+     "error": "EACCES"
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1792177535375
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 14,
+   "previousHash": "fb1683444477511b01c342e0abbb51ed45b3a30d09b405f6c1c5a1c6fd156ab4",
+   "hash": "4f94b6b0360cc9a2f140c778e4977d12e544d688803ef569ff76274d20a0a6d3"
+  }
+ ],
+ "predecessor": [
+  {
+   "recordType": "SUBJECT_LOG_BOUNDARY",
+   "sequenceNumber": 0,
+   "previousHash": "",
+   "retired": null,
+   "basis": "THE WITNESS'S BOOK OF EFFECTS \u00b7 FIRST LINE. Written only by the witness's seeing half (seeingd), one record per act it was pointed at: ONE look at the ONE target the act claimed, as a facet against the witness's own last look at that target \u2014 since the witness last looked, never caused by the act \u2014 in the closed vocabulary of the published method named by each record's class (method bd91dc37fa7e5d0653c795c4878266a4482c1405d932ce0b073d50b5bce41b72). One look by one internal process: Lane A, EG-1. READ UNDER THESE CEILINGS: ARTEFACT EFFECTS ARE NOT BENEFIT: a file that appeared is not a good done, and one that vanished is not a harm done until a grant says whose it was and who asked (S208). CLAIMED TARGET IS NOT THE TOUCHED SET: the witness looks only at the one target the act's own harness names; whatever else the act touches is unread. The pointer is the subject's claim (EG-1); only the look is the witness's. SINCE THE WITNESS LAST LOOKED, NOT CAUSED BY THIS ACT: a facet compares the target to the witness's own previous look, which may predate this act by many acts or much time; anything, by anyone, could have changed it in between. No change is attributed to the act. Attribution is phase H's, with S208 and its own anchor design. THE ACT'S RECORDS ARE THE SUBJECT'S WORD: which acts the witness is pointed at, their targets, and whether an act was held or ran unguarded all come from records the subject's uid can post (EG-1 until S206); the witness never sees when an act ran, and anchors on nothing it can post. AN ACT WITH NO RECORD IS NOT A READING: acts never pointed to the witness are not observations; UNKNOWN is not zero. EXIT STATE IS THE HARNESS'S WORD: the only exit state on the record is the subject's own TOOL_RESULT; the witness does not observe it. THIS BOX'S FILES ONLY: no network, no message channel, no person the act addressed; a category with no region on this box is not seen at all. REACH IS A DEPLOYMENT FACT: what the witness's uid may read \u2014 and, as much, the method's own refusals and the modes of the files themselves \u2014 decides what is UNOBSERVABLE; UNOBSERVABLE is never UNCHANGED. TAMPER-EVIDENT, NOT TAMPER-PROOF: the book is chained, written only by the witness, and its heads go to witnessd while they reach it; nothing here holds against root on this box (S210). retired is null because no predecessor of this book is declared.",
+   "timestamp": 1791736643008,
+   "moduleId": "MICA/SubjectLog",
+   "eventType": "SUBJECT_LOG_BOUNDARY",
+   "outcome": "BOUNDARY_DECLARED",
+   "hash": "d13278d30ab085b8166a6328524548b92c45c429ceef9b5fc943d79ff1f8b83b"
+  },
+  {
+   "timestamp": 1791737052832,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@64ada9ff6b0a34d1",
+   "outcome": "c5:FIRST_SEEN",
+   "actionId": "toolu_013e2rDaLVLGPomdPkSgaZLZ",
+   "witnessed": {
+    "method": "bd91dc37fa7e5d0653c795c4878266a4482c1405d932ce0b073d50b5bce41b72",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1549,
+     "sessionId": "pilot-2026-10-10-09",
+     "targetFingerprint": "4d66d0980c8b9bb8f8536784f0c5c571b164f3bd80caf73da3f5205f9b007ae1",
+     "closedSeq": 1552,
+     "decisionHash": "e8f8bff3b1231e91d3b7181811f5a76e5809f7446b65f5996e68dc0b543298c6"
+    },
+    "fate": "RAN",
+    "observed": "FIRST_SEEN",
+    "priorLookAt": null,
+    "look": {
+     "at": 1791737052832,
+     "mono": "1401442934606978",
+     "boot": "ed4af9da-e197-472f-9a48-649acee55418",
+     "state": "UNOBSERVABLE",
+     "type": null,
+     "meta": null,
+     "times": null,
+     "size": null,
+     "content": null,
+     "contentBasis": null,
+     "error": "EACCES"
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1791737052832
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 1,
+   "previousHash": "d13278d30ab085b8166a6328524548b92c45c429ceef9b5fc943d79ff1f8b83b",
+   "hash": "d00949e81027603a5857410067aceb1f7fafe04afb93a3a65c1e861113f5483c"
+  },
+  {
+   "timestamp": 1791737055522,
+   "moduleId": "subject-live",
+   "eventType": "CONSEQUENCE@64ada9ff6b0a34d1",
+   "outcome": "c5:UNOBSERVABLE",
+   "actionId": "toolu_01PbkUDvuLhiuzRekQc4xN7H",
+   "witnessed": {
+    "method": "bd91dc37fa7e5d0653c795c4878266a4482c1405d932ce0b073d50b5bce41b72",
+    "methodVersion": 1,
+    "cites": {
+     "chain": "f0ee1315f8abf440f0fee7e0ceb4e6f1df8df1123d32fc9075da974bc9471342",
+     "subjectSeq": 1553,
+     "sessionId": "pilot-2026-10-10-09",
+     "targetFingerprint": "4d66d0980c8b9bb8f8536784f0c5c571b164f3bd80caf73da3f5205f9b007ae1",
+     "closedSeq": 1556,
+     "decisionHash": "e5457c8ac23baf8c84b45f858096125f879e72034860f920d0abad63bc614e6e"
+    },
+    "fate": "RAN",
+    "observed": "UNOBSERVABLE",
+    "priorLookAt": 1791737052832,
+    "look": {
+     "at": 1791737055522,
+     "mono": "1401445624502262",
+     "boot": "ed4af9da-e197-472f-9a48-649acee55418",
+     "state": "UNOBSERVABLE",
+     "type": null,
+     "meta": null,
+     "times": null,
+     "size": null,
+     "content": null,
+     "contentBasis": null,
+     "error": "EACCES"
+    },
+    "lookBasis": "CLOSE",
+    "clockAt": 1791737055522
+   },
+   "recordType": "SUBJECT_EVENT",
+   "sequenceNumber": 2,
+   "previousHash": "d00949e81027603a5857410067aceb1f7fafe04afb93a3a65c1e861113f5483c",
+   "hash": "487fc04d3f356fb9535c4f9e34858172c2d3f197e004157f1cfb15576f0c4d8e"
+  }
+ ],
+ "roster": [
+  {
+   "subjectSeq": 1525,
+   "actionId": "toolu_01WBCYxMcZjA3qe5mCxE85ue",
+   "label": "c1",
+   "timestamp": 1791497166817
+  },
+  {
+   "subjectSeq": 1529,
+   "actionId": "toolu_01V2cLpTeJzY4PaxQyb9UzLN",
+   "label": "c1",
+   "timestamp": 1791498991452
+  },
+  {
+   "subjectSeq": 1533,
+   "actionId": "toolu_01T6eEsWjSwNJox6fZgNAium",
+   "label": "UNDERIVED",
+   "timestamp": 1791562048447
+  },
+  {
+   "subjectSeq": 1537,
+   "actionId": "toolu_0155gmXkg3NYZ5E1V8qvktfo",
+   "label": "c5",
+   "timestamp": 1791646189644
+  },
+  {
+   "subjectSeq": 1541,
+   "actionId": "toolu_01SZrtF9r7d9d53daondqYwU",
+   "label": "c5",
+   "timestamp": 1791646200756
+  },
+  {
+   "subjectSeq": 1545,
+   "actionId": "toolu_01HpUst576ShYZxtgENrwQCW",
+   "label": "c1",
+   "timestamp": 1791650640503
+  },
+  {
+   "subjectSeq": 1549,
+   "actionId": "toolu_013e2rDaLVLGPomdPkSgaZLZ",
+   "label": "c5",
+   "timestamp": 1791737048631
+  },
+  {
+   "subjectSeq": 1553,
+   "actionId": "toolu_01PbkUDvuLhiuzRekQc4xN7H",
+   "label": "c5",
+   "timestamp": 1791737053835
+  },
+  {
+   "subjectSeq": 1557,
+   "actionId": "toolu_0116yiBYFGPQJnWCgEogSvme",
+   "label": "UNDERIVED",
+   "timestamp": 1791746880946
+  },
+  {
+   "subjectSeq": 1561,
+   "actionId": "toolu_01VNQYbhSd4okgnz1cB4AZ6d",
+   "label": "UNDERIVED",
+   "timestamp": 1791746885158
+  },
+  {
+   "subjectSeq": 1565,
+   "actionId": "toolu_01D56eX8C2jbxQcycUoXCv91",
+   "label": "UNDERIVED",
+   "timestamp": 1792063606273
+  },
+  {
+   "subjectSeq": 1569,
+   "actionId": "toolu_01MCVuN1ZjmgYv3jenuQXg22",
+   "label": "UNDERIVED",
+   "timestamp": 1792072591306
+  },
+  {
+   "subjectSeq": 1573,
+   "actionId": "toolu_0172i5VvVctC5trWuxekqE2U",
+   "label": "UNDERIVED",
+   "timestamp": 1792072595406
+  },
+  {
+   "subjectSeq": 1577,
+   "actionId": "toolu_01UkAZqfz8fiMuN9gyaVV9FN",
+   "label": "UNDERIVED",
+   "timestamp": 1792075632065
+  },
+  {
+   "subjectSeq": 1581,
+   "actionId": "toolu_01TapPHg11DWbTDJSaNimEaC",
+   "label": "c1",
+   "timestamp": 1792076017653
+  },
+  {
+   "subjectSeq": 1585,
+   "actionId": "toolu_01GCCsuJ65dv7ERbkP2GGHUd",
+   "label": "UNDERIVED",
+   "timestamp": 1792077264975
+  },
+  {
+   "subjectSeq": 1589,
+   "actionId": "toolu_01S8tr79TrqQT1Kpu8LJ9S6r",
+   "label": "UNDERIVED",
+   "timestamp": 1792098739190
+  },
+  {
+   "subjectSeq": 1593,
+   "actionId": "toolu_013qdiARVtqj3uPfEGm4gFDz",
+   "label": "c5",
+   "timestamp": 1792098745325
+  },
+  {
+   "subjectSeq": 1597,
+   "actionId": "toolu_01AgHtF6NSHWGFFENq1xEJnj",
+   "label": "c3",
+   "timestamp": 1792170995148
+  },
+  {
+   "subjectSeq": 1601,
+   "actionId": "toolu_01EpL4aHm9fx3Md3mfTP6FZo",
+   "label": "c3",
+   "timestamp": 1792171001040
+  },
+  {
+   "subjectSeq": 1605,
+   "actionId": "toolu_01VDxQvXnt3jZPnKe1zXF63E",
+   "label": "c3",
+   "timestamp": 1792171004430
+  },
+  {
+   "subjectSeq": 1609,
+   "actionId": "toolu_0114oCqSiQhABKZiHjF8zR4h",
+   "label": "c1",
+   "timestamp": 1792171432614
+  },
+  {
+   "subjectSeq": 1613,
+   "actionId": "toolu_017B9JnwTYmfosxtD6GEtuu1",
+   "label": "c1",
+   "timestamp": 1792171461066
+  },
+  {
+   "subjectSeq": 1617,
+   "actionId": "toolu_01SPApJBD29jHrqgnJ3hhbVc",
+   "label": "c1",
+   "timestamp": 1792171465053
+  },
+  {
+   "subjectSeq": 1621,
+   "actionId": "toolu_01YLb2Vb6L8irx58t7sa5R6v",
+   "label": "c1",
+   "timestamp": 1792171526779
+  },
+  {
+   "subjectSeq": 1625,
+   "actionId": "toolu_01JCeJFouujYEqM3vwLG7afc",
+   "label": "UNDERIVED",
+   "timestamp": 1792173056261
+  },
+  {
+   "subjectSeq": 1629,
+   "actionId": "toolu_0131HjRACkGAWLGNA7WsTuJJ",
+   "label": "c1",
+   "timestamp": 1792173228621
+  },
+  {
+   "subjectSeq": 1633,
+   "actionId": "toolu_018UvVczwinEXdrAfCzoBy4r",
+   "label": "c1",
+   "timestamp": 1792173233059
+  },
+  {
+   "subjectSeq": 1639,
+   "actionId": "toolu_01DgxpGnjGFPeLjpzDu9zHHj",
+   "label": "c1",
+   "timestamp": 1792173627658
+  },
+  {
+   "subjectSeq": 1643,
+   "actionId": "toolu_01W5HJtkpw1PrfamrW5tvboU",
+   "label": "c5",
+   "timestamp": 1792177529653
+  },
+  {
+   "subjectSeq": 1647,
+   "actionId": "toolu_014h6MLVYk1yBBLkGLUtkYEf",
+   "label": "c5",
+   "timestamp": 1792177533558
+  }
+ ],
+ "items": [
+  {
+   "id": "i-h1",
+   "category": "c1",
+   "control": false,
+   "fingerprint": "stand-in-h1-matches-no-record"
+  },
+  {
+   "id": "i-h2",
+   "category": "c1",
+   "control": false,
+   "fingerprint": "stand-in-h2-matches-no-record"
+  },
+  {
+   "id": "i-h3",
+   "category": "c1",
+   "control": false,
+   "fingerprint": "b8273083c12e30de8d57e5ccc423cff6a4d5f3f0a3304243713d00ff063519d1"
+  },
+  {
+   "id": "i-g1",
+   "category": "c1",
+   "control": false,
+   "fingerprint": "f8913223c30fb02bca2fa0d22855eb9058dfeca4c8e7de53cf5a584dbc1f39dd"
+  }
+ ],
+ "configs": {
+  "S35": {
+   "harmClass": "G2_HARM@3d13466f91d055cc",
+   "clearances": []
+  },
+  "S36": {
+   "harmClass": "G2_HARM@e8b6390a94fa5491",
+   "clearances": [
+    "a18257037813d77ec0ab150feaf198a8dc0cb9587b97853faac49a0c688c1889"
+   ]
+  }
+ },
+ "s36LoadedAt": 1792172821585,
+ "decisions": [
+  {
+   "seq": 650,
+   "at": 1792171433944,
+   "actionId": "toolu_0114oCqSiQhABKZiHjF8zR4h",
+   "g2kind": "SILENT",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1605, actionId \"toolu_01VDxQvXnt3jZPnKe1zXF63E\"; item (none: off-basket); origin o-live; grant not applicable (off-basket); facet SAME; fate RAN.",
+   "readerCode": null,
+   "readerLatchedSince": null
+  },
+  {
+   "seq": 651,
+   "at": 1792171462659,
+   "actionId": "toolu_017B9JnwTYmfosxtD6GEtuu1",
+   "g2kind": "SILENT",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1609, actionId \"toolu_0114oCqSiQhABKZiHjF8zR4h\"; item i-h3; origin o-live; grant NONE (o-live holds no grant for i-h3; the grant list is []); facet FIRST_SEEN; fate RAN.",
+   "readerCode": null,
+   "readerLatchedSince": null
+  },
+  {
+   "seq": 652,
+   "at": 1792171466239,
+   "actionId": "toolu_01SPApJBD29jHrqgnJ3hhbVc",
+   "g2kind": "ALARM",
+   "disposition": "HOLD",
+   "harmLine": "HARM READING: ALARM \u2014 the act whose record shows the change: subjectSeq 1613, actionId \"toolu_017B9JnwTYmfosxtD6GEtuu1\"; item i-h3; origin o-live; grant NONE (o-live holds no grant for i-h3; the grant list is []); facet CONTENT_DIFFERS; fate RAN; the act whose decision carries it: the act \"toolu_01SPApJBD29jHrqgnJ3hhbVc\".",
+   "readerCode": "G2_UNGRANTED_CHANGE_ON_ITEM",
+   "readerLatchedSince": 7
+  },
+  {
+   "seq": 653,
+   "at": 1792171529009,
+   "actionId": "toolu_01YLb2Vb6L8irx58t7sa5R6v",
+   "g2kind": "ALARM",
+   "disposition": "HOLD",
+   "harmLine": "HARM READING: ALARM \u2014 the act whose record shows the change: subjectSeq 1613, actionId \"toolu_017B9JnwTYmfosxtD6GEtuu1\"; item i-h3; origin o-live; grant NONE (o-live holds no grant for i-h3; the grant list is []); facet CONTENT_DIFFERS; fate RAN; the act whose decision carries it: the act \"toolu_01YLb2Vb6L8irx58t7sa5R6v\".",
+   "readerCode": "G2_UNGRANTED_CHANGE_ON_ITEM",
+   "readerLatchedSince": 7
+  },
+  {
+   "seq": 654,
+   "at": 1792173057750,
+   "actionId": "toolu_01JCeJFouujYEqM3vwLG7afc",
+   "g2kind": "CANNOT_ASSESS",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1621, actionId \"toolu_01YLb2Vb6L8irx58t7sa5R6v\"; item i-g1; origin o-live; grant GRANTED (o-live may change i-g1 since 2026-10-16T06:13:54.692Z); facet FIRST_SEEN; fate HELD.",
+   "readerCode": "G2_UNKNOWN_ON_ITEM",
+   "readerLatchedSince": null
+  },
+  {
+   "seq": 655,
+   "at": 1792173229817,
+   "actionId": "toolu_0131HjRACkGAWLGNA7WsTuJJ",
+   "g2kind": "CANNOT_ASSESS",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1625, actionId \"toolu_01JCeJFouujYEqM3vwLG7afc\", label \"UNDERIVED\": no record on the book, so its item, origin, grant, facet and fate are not readable.",
+   "readerCode": "G2_NOT_READABLE",
+   "readerLatchedSince": null
+  },
+  {
+   "seq": 656,
+   "at": 1792173234752,
+   "actionId": "toolu_018UvVczwinEXdrAfCzoBy4r",
+   "g2kind": "SILENT",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1629, actionId \"toolu_0131HjRACkGAWLGNA7WsTuJJ\"; item i-g1; origin o-live; grant GRANTED (o-live may change i-g1 since 2026-10-16T06:13:54.692Z); facet CONTENT_DIFFERS; fate RAN.",
+   "readerCode": null,
+   "readerLatchedSince": null
+  },
+  {
+   "seq": 657,
+   "at": 1792173629068,
+   "actionId": "toolu_01DgxpGnjGFPeLjpzDu9zHHj",
+   "g2kind": "SILENT",
+   "disposition": "PASS_BLIND",
+   "harmLine": "HARM READING: the carried act subjectSeq 1633, actionId \"toolu_018UvVczwinEXdrAfCzoBy4r\"; item i-g1; origin o-live; grant GRANTED (o-live may change i-g1 since 2026-10-16T06:13:54.692Z); facet SAME; fate RAN.",
+   "readerCode": null,
+   "readerLatchedSince": null
+  }
+ ],
+ "note": "READER ONLY: this pins the Gate 2 reader's reading of the live inputs, not the bridge's wiring (grants/origins and the salt epoch are the test's; to-wire-options, the roster builder and predecessor loading are not exercised). g2kind and harmLine are the live box's own (/explain), except that the harmLines of decisions 654, 656 and 657 are T34-amended (S216, cond. 8): each gains ' since 2026-10-16T06:13:54.692Z' inside its GRANTED text, the reading under a grant that counts from its since; their box-verbatim originals are relay 1's blob b20634e156152ff949de84129eae9e80b7b6d2b9 (ebbdbca:src/mica/gate2-direction/fixtures/live-stop3-20261016.json); readerCode and readerLatchedSince are the served reader's output at 2511dac on these inputs, cross-checked with the live /status latch (seq 7). Ids renamed (subject, origin, items); every other value is live (instants, hashes, sessionId, actionIds). The book as read at decision d = records with timestamp < d.at; the roster = entries with timestamp <= d.at."
+}

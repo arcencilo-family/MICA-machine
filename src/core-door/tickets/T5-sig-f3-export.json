@@ -1,0 +1,23 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T5-sig-f3-export",
+  "opens": [
+    "src/mica/export/index.ts",
+    "src/mica/export.test.ts",
+    "src/mica/sig-f3-clerk.test.ts"
+  ],
+  "defect": {
+    "summary": "T3's first condition required F3's disclosure (tail, hole, lag, chain attribution, margin) on SigResult AND in the export artifact, but T3's opens omitted the export file, so the artifact still prints only source count and mode (cold verifier, RECEIPT_T3-Cold-Verify §5.1, FAIL). The pricing had said to open it. Fix: renderSigArtifact reads clerkStampCoverage and f3Deviation and prints them. Second: a missing-writer stamp mutant compiled and passed both focused suites (cold verifier, CONCERN); the checked-in regression fixture is added to sig-f3-clerk.test.ts. Ticket authored by the audit seat's error; T5 closes it.",
+    "ground": "ARC_MICA-RECEIPT_T3-Cold-Verify_20260923 (§5.1 FAIL, fifth-mutant CONCERN); ARC_MICA-PRICE_T3-Sig-F3-Refined_20260923 §1.3 rows 7-8 ('open it')"
+  },
+  "expiresAt": "2026-09-29T18:00:00Z",
+  "arbiter": {
+    "word": "I open the core to finish what T3 promised: a disclosure nobody prints is not a disclosure. Print it in the artifact, pin the missing-writer case, close the door on the 29th.",
+    "date": "2026-09-23"
+  },
+  "conditions": [
+    "The 20 frozen scenarios (verdict-logic.frozen.json) and the substrate snapshot stay byte-identical; neither is opened; proof is the unchanged sha256 of each file against its pin.",
+    "export.test.ts is opened only to update the artifact fixtures that the new F3 lines change and to add checks that the artifact prints tail, hole, lag, chain attribution and margin. sig-f3-clerk.test.ts is opened only to ADD the missing-writer regression (the cold verifier's fifth mutant must die on the checked-in suite).",
+    "Pre-registration: the artifact text before and after on the six T3 scenarios; only the F3 section moves. One mutant: drop the print; must be killed by export.test.ts. Cold verifier before relay. The shipping commit re-pins every file it changed (npm run core-door -- --propose-repin T5-sig-f3-export). T3 and T5 relay together, one machine act."
+  ]
+}

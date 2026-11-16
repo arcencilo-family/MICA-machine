@@ -1,0 +1,28 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T39-op3-undefined-move-unresolvable",
+  "opens": [
+    "src/mica/op-ceilings.test.ts",
+    "src/mica/op3-node-response/index.ts",
+    "src/mica/op3-node-response/op3-node-response.test.ts"
+  ],
+  "defect": {
+    "summary": "OP3'S ONE-RECORD QUANTUM SKIPPED A MOVE INTO UNDEFINEDNESS (T37 cond. 13; signature (b), RULED; NARROWED by the audit 2026-10-18 06:56Z): at a0d3017 oneRecordQuantum (index.ts:263) skipped a relabel whose AMI is null, so on AAB x YYY, where relabelling the lone B leaves ONE context class (below op3's arity gate, AMI undefined), the quantum read 0 and leg B ALARMed OP3_RESPONSE_FLATLINE at AMI 0. Ruled, the narrower reading: such a move only drops the table below the arity gate, so the table reads INELIGIBLE (CANNOT_ASSESS), not unbounded; the flat-signature ALARM stays readable wherever every context class holds two or more records.",
+    "ground": "Audit 2026-10-18 06:56Z ruling (1): 'the NARROWER reading — a one-record move that only drops the table below op3's arity gate reads INELIGIBLE (CANNOT_ASSESS), not unbounded; the flat-signature ALARM stays readable wherever every context class holds >= 2 records; rebuild T39 so'. Supersedes draft v1 (0a74faf, branch t39-op3-unresolvable: +Infinity quantum, UNRESOLVABLE at both boundaries). Fix: the null move is RECORDED as belowArityGateBy (first one found, named '... leaves ONE context class (below the arity gate; AMI undefined)') and never enters the quantum; a new leg-B branch after the arity gate and the null-denominator check, before T18's gate, reads CANNOT_ASSESS class INELIGIBLE_SCOPE, code OP3_FLATNESS_INELIGIBLE_SCOPE (the arity gate's own), detail 'ONE RECORD holds this table above the arity gate — <move>'. The quantum is computed once and T18's gate reads the same object."
+  },
+  "expiresAt": "2026-10-25T18:00:00Z",
+  "arbiter": {
+    "word": "Granted by the audit under Frank's standing delegation, 2026-10-18, on T37 cond. 13 as ruled 2026-10-17 and NARROWED 2026-10-18 06:56Z: a one-record move that only drops op3's table below its arity gate is named and recorded and never counted as a quantum; leg B reads CANNOT_ASSESS · INELIGIBLE_SCOPE with the gate's code; the quantum stays a0d3017's, never +Infinity; the flat-signature ALARM stays readable wherever every context class holds two or more records, and a lone context among three classes still alarms (both armed). Conditions of this signature: the id keeps the word 'unresolvable' as its name only — the reading is INELIGIBLE, as the summary says; the owed reading (who writes the context records: the bridge, from the poster's own kind, mica-service.ts:5982) is carried as a ceiling, not a defect; no class moves. expiresAt is the audit's fill and part of this signature.",
+    "date": "2026-10-18"
+  },
+  "conditions": [
+    "0. One commit on base a0d3017, branch t39-narrow-on-a0d3017 (worktree ~/mica-wt/t39-narrow); v1 (0a74faf) is not an ancestor and is superseded, not rewritten. Opens = the diff exactly: op3 index.ts, op3-node-response.test.ts, op-ceilings.test.ts (a comment amended, no assertion moved). The id is kept from v1 for continuity although the reading is no longer 'unresolvable' (put to the audit).",
+    "1. The quantum is unchanged everywhere: a null move still counts one recompute (kC*kO*(kO-1) invariant; arm asserts recomputes 2 on AAB x YYY) and is never measured, so no quantum is +Infinity and no T18 verdict moves. The first arity-drop move found is the one named (arm AB x YY).",
+    "2. WHY 'AMI null' IS 'below the arity gate' within the quantum's reach (derived in index.ts, pinned by an exhaustive arm n <= 4, <= 3 labels an axis, distinctLeft >= 2, AMI defined): named iff the outcome axis is constant and there are exactly two context classes, one of them a singleton. So: a flat table with exactly two context classes, one singleton, reads INELIGIBLE; a flat table whose every context class holds >= 2 records ALARMs (arm AAAAABBBBB x 10Y; op-ceilings AAAABBBB 8/8); a lone context among three classes still ALARMs (arm AAAABBBBC x 9Y), which v1's 'one lone context class takes the ALARM away at any n' overstated.",
+    "3. NOT WIDENED (reading R1, put to the audit): only moves whose AMI is undefined are re-read. A lone context on a non-flat table (AMI defined after the move) is a measured move as before (arm AAAAAAAAAB x XYXYXYXYXY: no arity drop named, not INELIGIBLE). The wider reading R2 (any move that leaves one context class, whatever AMI does) was not built.",
+    "4. ARMS: X3-14 flipped (was PINS TODAY: quantum 0, belowArityGateBy named, leg B CANNOT_ASSESS [OP3_FLATNESS_INELIGIBLE_SCOPE] class INELIGIBLE_SCOPE, detail words, no 'Infinity'/'UNRESOLVABLE', no ALARM); new: any n (9A1B), ALARM stays readable, lone-of-three, not widened, first named, finite control, exhaustive derivation. op3 56/56 (base 49).",
+    "5. MUTANTS 12 run, 12 killed (transpile-only -T; captures ~/mica-wt/g2b-notes/t39n/mut-20261018T084447Z/): arity-drop-skipped (restores a0d3017), v1-unbounded-revived, last-move-named, not-counted, not-returned, branch-dropped, branch-always, code-unresolvable, class-insufficient, detail-move-dropped, detail-ami-compared-words, t18-recomputes-own-quantum.",
+    "6. NOT CHANGED: narrow-K/R/W/T, T18's gate and its codes, the arity gate and null-denominator branches, any ceiling line. No harm class moves: op3 is a reader verdict, not a Gate 2 harm class."
+  ],
+  "base": "a0d30173cc046f9f378e9806d7ab71a8dc6aa88e"
+}

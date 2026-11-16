@@ -1,0 +1,153 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · C6/W5 — THE DAILY WITNESS REPORT.
+#
+#   Install path: /etc/systemd/system/mica-report.service
+#   Program:      /opt/mica-machine/src/report/mica-report.ts
+#   Cadence:      mica-report.timer — NOT this file. See the contrast below.
+#
+# ── S110-B RECONCILIATION, 2026-09-04 — found stale while wiring this build's
+#    own rider, not part of the brief's own named findings ──────────────────
+#
+#   This dev-tree copy's `ExecStart` had drifted from the live unit BEFORE
+#   tonight, back to S108/S109: the live unit already carried
+#   `--cadence-file` (S108 DC-2) and `--clerk-stamps-file` (S109 item 3),
+#   neither ever folded back here. Not named in the S110 deployment-findings
+#   brief — found independently while reconciling this file for its own
+#   S110-B rider, and fixed in the same pass rather than left
+#   half-reconciled. RULED HOUSE PRACTICE applies here too: unit installs go
+#   through this file, `install`ed onto the live path, from now on.
+#
+#   `User=`/`Group=` are UNCHANGED and MUST STAY THE PLACEHOLDER — R-V3
+#   (`witness-report.test.ts`) asserts this file keeps
+#   `REPLACE-WITH-THE-REPORT-PRINCIPAL` verbatim; the real principal is a
+#   deploy-time declaration, substituted at install, never checked in. This
+#   build's first attempt at this reconciliation got that wrong and filled in
+#   `mica-report` — the test caught it immediately, before this file was
+#   ever written to disk in that state as a commit. Left here as the record
+#   of the catch, not as a warning that needs repeating.
+# ── THIS IS A ONESHOT, AND `mica-witnessd.service` IS THE CONTRAST ───────────
+#
+#   The witness daemon is a PROCESS THAT STAYS: it holds a sweep timer, it must
+#   be up for the intake to be consumed at all, and its only real decision is
+#   `Restart=no` — because a witness that cannot append must not run on looking
+#   alive. Everything about that unit is about a thing being CONTINUOUSLY TRUE.
+#
+#   This unit is the opposite shape. The program opens a file, folds it, writes
+#   one report and exits. There is nothing for it to be "up" for; between runs
+#   there is deliberately no process at all. So:
+#
+#     Type=oneshot     it finishes. `simple` would have systemd believe a
+#                      finished reader is a crashed daemon.
+#     no Restart=      there is nothing to restart. A failed run failed for a
+#                      reason the exit code names, and tomorrow's timer will run
+#                      the next one regardless.
+#     no [Install]     THIS UNIT IS NOT ENABLED. The timer is enabled; the timer
+#                      starts this. `systemctl enable mica-report.service` would
+#                      instead run it once at boot, which is not a schedule.
+#
+# ── AND IT IS NOT A MONITOR — the unit must not smuggle in what the code refuses
+#
+#   There is deliberately NO `After=mica-witnessd.service` and no `Requires=`.
+#   This program reads a FILE. Ordering it behind the witness would make the
+#   report's existence depend on the witness being up, which is the liveness
+#   claim `mica-report.ts` refuses to make — moved out of the code and into the
+#   unit, where it would be harder to see. A report whose absence means "the
+#   witness was down" is a monitor. This one reports the age of the last record
+#   and stops there.
+#
+# ── S110-B: --registrar-log, the reconciliation reader's Pair A source ──────
+#
+#   `/var/lib/mica/precommit/registrar-log-chained.jsonl` (`registrar.ts`'s
+#   own `chainedLogPath()`) — a DIFFERENT file from everything else this unit
+#   already reads, owned by `mica-registrar`. `[TG]` — THIS PRINCIPAL'S READ
+#   ACCESS TO IT IS NOT VERIFIED FROM THIS SEAT: `mica-report` is a
+#   `mica-readers` member (line above), which is what already gates
+#   `mica-log.jsonl` (0640 mica-registrar:mica-readers); whether
+#   `registrar-log-chained.jsonl` carries the SAME group is a deployment fact,
+#   not read here. If it does not, Pair A reads CANNOT_ASSESS, loud and
+#   named, never a silent wrong count — but confirm at bytes before trusting
+#   a clean read. No `ReadOnlyPaths=` rider is needed below:
+#   `ProtectSystem=strict` restricts WRITES outside `ReadWritePaths=`, not
+#   reads, and `/var/lib/mica/precommit` is not under `ProtectHome=`'s scope.
+#
+# ── S111 (generalized night of the same session): --journal-declarations,
+#    the reconciliation reader's pair-FAMILY source — NOT YET ADDED BELOW,
+#    DELIBERATELY ─────────────────────────────────────────────────────────
+#
+#   RULED (the arbiter, S111 night): "generalize — it is just another book." The
+#   doctor-only Pair C (`assessDoctorJournalReconciliation`, gated to
+#   `mica-doctor` and a single `--doctor-uid` flag) is SUPERSEDED by a
+#   per-principal FAMILY (`assessDeclaredJournalReconciliations`): one pair
+#   per principal named in a declarations file, `{ "<principal>": <uid>, ...
+#   }`, mirroring `expected-cadence.json`'s own pattern (DC-2 precedent).
+#   `--doctor-uid` is REMOVED, not aliased or deprecated-loud — the unit is
+#   ours and was updated the same night; a compat shim nobody needs is drift
+#   waiting.
+#
+#   The declarations file is a DEPLOYMENT DECLARATION, same standing as the
+#   roster and expected-cadence.json: The arbiter writes it on the box, listing
+#   each rostered depositor this deployment wants a journal pair for and its
+#   real OS uid (`id <principal>`). R-V3 forbids guessing a principal's
+#   identity, so no placeholder file is written here and none is checked in
+#   with real uids: an invented or stale uid that happens to be wrong would
+#   silently miscount, which is worse than the honest CANNOT_ASSESS this unit
+#   reads without the flag. OWED to whoever writes that file — add
+#   `--journal-declarations <path>` to ExecStart below once it exists. Until
+#   then the whole pair family prints CANNOT_ASSESS, loud and named, every day.
+#
+# ── EXIT CODES, so an operator reading `systemctl status` knows what happened ─
+#
+#   0 written   1 could not start (a flag)   3 the store would not read
+#   4 the report directory is not there      5 that day's report already exists
+#   6 written, but the outbox would not list
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA C6/W5 — the daily witness report (a reader, not a monitor)
+Documentation=file:///opt/mica-machine/src/report/mica-report.ts
+RequiresMountsFor=/var/lib/mica/witness
+RequiresMountsFor=/var/lib/mica/report
+
+[Service]
+Type=oneshot
+
+# ── THE PRINCIPAL IS A DEPLOY DECLARATION — the arbiter states it, same as
+#    --witness-set-id. It must be an account in `mica-readers` (recipe §3), and
+#    it must NOT be `mica-witness`: a reader that is the writer proves nothing
+#    about whether the book can be read by the roles entitled to it.
+#    The placeholder is deliberately unusable-looking.
+User=REPLACE-WITH-THE-REPORT-PRINCIPAL
+Group=REPLACE-WITH-THE-REPORT-PRINCIPAL
+# The read on the store (0640 mica-witness:mica-readers) and on the outbox
+# (0750 mica-witness:mica-readers) comes from HERE and nowhere else.
+SupplementaryGroups=mica-readers
+
+WorkingDirectory=/opt/mica-machine
+# The binary directly, never `npx` — §5.4 correction 4. An npx cache would be
+# written into this principal's home.
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/report/mica-report.ts \
+  --store /var/lib/mica/witness/store.jsonl \
+  --outbox /var/lib/mica/witness/outbox \
+  --report-dir /var/lib/mica/report \
+  --log /var/lib/mica/mica-log.jsonl \
+  --cadence-file /var/lib/mica/report/expected-cadence.json \
+  --clerk-stamps-file /var/lib/mica/clerk-clock-stamps.jsonl \
+  --registrar-log /var/lib/mica/precommit/registrar-log-chained.jsonl \
+  --journal-declarations /etc/mica/journal-declarations.json \
+  --deployment-facts /etc/mica/deployment-facts.json
+
+# 0027: the report is written 0640. Its GROUP comes from the report directory's
+# SETGID bit (§5.5 asks for 2750, not 0750) — without setgid the file lands in
+# this principal's primary group and no other reader can open it, in a directory
+# they can enter. The same hazard sits on the outbox today; see the receipt.
+UMask=0027
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+# ProtectSystem=strict makes everything read-only; the witness paths stay
+# readable, and this is the ONE path this unit may write.
+ReadWritePaths=/var/lib/mica/report
+PrivateTmp=yes
+
+# NO [Install] SECTION, DELIBERATELY. See the header.

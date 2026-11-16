@@ -1,0 +1,29 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T8-chain-identity-mandatory",
+  "opens": [
+    "src/mica/sig/index.ts",
+    "src/mica/sig-f3-clerk.test.ts",
+    "src/mica/substrate-snapshot.test.ts",
+    "src/mica/sig.test.ts",
+    "src/mica/export.test.ts"
+  ],
+  "defect": {
+    "summary": "F3 joins a clerk stamp to a record by (sequenceNumber) with the writer checked as a claim (T6/T7), and NOTHING binds the stamp to the CHAIN the record belongs to. `chainIdentity` exists on ClerkClockStamp and is OPTIONAL BY DEFAULT: a stamp carrying one whose value names another chain is refused, and a stamp carrying NONE is joined and merely disclosed as unattributed. MEASURED 2026-09-29 at bytes: ZERO of the 678 live stamps carry one. THE CONSEQUENCE, AND IT IS ROUTE #10 ONE LAYER OUT: `sequenceNumber` restarts at a rotation, so after the next rotation a stamp for `housekeeper` at sequence 5 taken from the RETIRED chain joins the NEW chain's `housekeeper` record at sequence 5 — same writer, same number. T6 and T7 CANNOT catch it, because the writer is genuinely the same; they close the mislabelled-stamp hole and this is a correctly-labelled stamp from a chain that no longer exists. F3 would read clean over a record it has never seen. FIX: chainIdentity becomes MANDATORY. The carrier writes it as the chain's position-0 SUBJECT_LOG_BOUNDARY hash on every stamp; F3 REFUSES a stamp that carries none, and continues to refuse one naming another chain; the refusal counters are surfaced on /explain so the refusal is visible on the decision surface and not only on SigResult.",
+    "ground": "Frank's ruling, board §1b 2026-09-29 06:4xZ, 'CHAIN IDENTITY MANDATORY, ticket T8'; the build seat's finding of 2026-09-29 04:0xZ (coordinate-gate commit 9c1f55d) that paths.clerkStamps is chain-scoped and the prefix rule swallowed it; T3's own note that mandatory chain identity 'is a later ticket'"
+  },
+  "expiresAt": "2026-09-30T18:00:00Z",
+  "arbiter": {
+    "word": "I, the arbiter, grant T8: every clerk stamp F3 uses must name the chain it belongs to, and a stamp with no chain identity or another chain's is refused, not joined and not excused as unattributed; granted because a stamp that does not name its chain is a claim about a number, not about a record, and the next rotation would otherwise join old stamps to new records and read clean.",
+    "date": "2026-09-29"
+  },
+  "conditions": [
+    "PRE-REGISTRATION, WRITTEN BEFORE ANY CODE. chainIdentity becomes REQUIRED on every stamp F3 will use. A stamp with NO chainIdentity is REFUSED — it is not joined and not disclosed-as-unattributed, because 'unattributed' was the permission this ticket removes. A stamp whose chainIdentity names ANOTHER chain is refused exactly as it is today. The identity VALUE is the chain's position-0 SUBJECT_LOG_BOUNDARY record hash, which is the one value that is unique per chain, already written by Act A, and readable by the carrier without privilege.",
+    "T3'S OPTIONALITY IS WHAT IS BEING REVOKED, AND IT IS REVOKED DELIBERATELY. T3 recorded 'a stamp without one behaves as today and is disclosed as unattributed (optional-by-default; mandatory is a later ticket)'. THIS IS THAT TICKET. The disclosure counters unattributedStampCount and unverifiedAttributionCount do not disappear — they become counts of REFUSED stamps rather than joined ones, so the number stays readable across the change.",
+    "⛔ EVERY STAMP NOW ON DISK IS REFUSED BY THIS CHANGE, AND THAT IS NOT A SIDE EFFECT. All 678 carry no chainIdentity. On the first decision after this relays, F3 goes from SILENT over 677 pairs to a typed refusal over zero. THE RE-STAMP IS PART OF THE ACT, not a follow-up: the stamps and cursor are archived and the carrier runs once more. The relay order in the brief exists because of this, and a relay that lands the machine half without the re-stamp leaves F3 blind until the next timer tick.",
+    "THE REFUSAL MUST BE VISIBLE ON THE DECISION SURFACE. Today unattributedStampCount and its siblings live on SigResult and appear nowhere in /explain — measured: /explain on the live decision mentions none of unattributed, unverifiedAttribution, refusedChain or chainIdentity. A refusal nobody can see from the decision is the stale-printer shape this deployment has found five times this week. The counters ship with this ticket.",
+    "WHAT A FAIL LOOKS LIKE, pre-registered: (a) a stamp with NO chainIdentity is still joined; (b) a stamp naming another chain is joined; (c) the refusal does not appear in /explain; (d) F3 returns SILENT over a set that includes any refused stamp — a leg that refuses evidence and then reports a clean read is worse than one that never checked; (e) the twenty frozen scenarios move (this ticket does not open verdict-logic.frozen.json and must not need to); (f) any of the five src/mica suites returns other than 0 failed; (g) the door reports drift on any file not in `opens`.",
+    "CODEX ACCEPTANCE: verify at committed bytes that a stamp without chainIdentity cannot reach a join by ANY path; that the boundary hash is the value written, read from the chain rather than recomputed; that the refusal counters reach /explain; and that the re-stamp procedure in the brief actually produces stamps this build accepts. The build seat has been wrong four times this week on this code and each was caught by an adversarial read, not by care.",
+    "DIGEST-PROVEN RELAY: the core change, its tests and the repin ship in ONE commit (npx ts-node src/core-door/core-door.ts --propose-repin T8-chain-identity-mandatory), the glue suite prints the core door GREEN, and the committed bytes are what runs. The carrier change (src/glue/mica-clerk-caller.ts) and the bridge changes are NOT behind this door and ship as their own commits."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T32-gate2-harm-ceilings",
+  "opens": [
+    "src/mica/gate-ceilings.test.ts",
+    "src/mica/gate2-direction/gate2-direction.test.ts",
+    "src/mica/gate2-direction/index.ts"
+  ],
+  "defect": {
+    "summary": "GATE 2's FROZEN CEILING LINES 2 AND 6 ARE FALSE ON THE WITNESS'S BOOK, AND ITS COVERAGE DENOMINATOR OVER-COUNTS. Line 2 ('the record shows acts, result codes and decisions; what an act did in the world is not on it') and line 6's first clause ('written by the subject's harness') describe the subject chain, not the witness's book; GATE2_BOOK_CEILING (wire.ts) has said so 'until T32'. And gate2BookCoverageLine counted every TOOL_ATTEMPTED act of the subject log, including acts older than the book itself (the Stop3 receipt §1.3: it read 2/5 where the truth was 2/2).",
+    "ground": "The Stop-1 direction note §6 (b) and §7; contract M2 step 8 and M3. FIX: a SECOND frozen list GATE2_HARM_CEILING_LINES (17 lines) printed on every harm-branch verdict: lines 1, 3, 5, 8 and 10 of GATE2_DIRECTION_CEILING_LINES verbatim (a test asserts each equal); line 2 replaced by 'CONSEQUENCES OF CLAIMED TARGETS, SEEN BY ANOTHER HAND …' and line 6 by 'PROVENANCE: the observation is the witness's (its own uid, a fixed published method; Lane A, EG-1, one look); the selection of what is looked at … is the subject's word (S206).', because on the book they are false as written; lines 4, 7 and 9 VARIED (the canon refuter, M6 and m1 on e42017c), because as written they name the class basket's objects, a window the harm branch does not have, and a per-class count it does not print: line 4 'DEPLOYER-DECLARED BASKET: the items, origins and grants are the deployer's and the clearances the doctor's; a self-serving basket buys the read it declares (05a:217).', line 7 '… the horizon is the current book, and its declared predecessors for the latch only (RMBA §9).', line 9 'BINARY SILENT: a SILENT prints no margin; the recorder's counts beside it are facts of the book, not a distance to an ALARM (DL-1; F-E).'; plus ORIGIN IS THE BOUND PRINCIPAL, EXACT PATHS ONLY, ONE DECISION LATE (in the fate wording, m5: 'nothing on the record says the act whose decision carries a reading caused it'), SINCE THE WITNESS LAST LOOKED, ONE SUBJECT (m2), RE-DERIVED FROM THE BOOK'S LOOKS (evasion 6.a/6.d) and A RESTART IS A FIRST LOAD (evasion 5.f). GATE2_DIRECTION_CEILING_LINES is byte-identical. In harm mode the glue no longer appends GATE2_BOOK_CEILING (the harm list supersedes it); in class-basket-on-book mode it is unchanged. THE COVERAGE BOUND lives in src/glue/wire.ts (not pinned by this door; carried for signature by the T33 document): the denominator counts only acts at or after the book's boundary instant and prints how many it left out."
+  },
+  "expiresAt": "2026-10-22T18:00:00Z",
+  "arbiter": {
+    "word": "Granted by the audit under Frank's standing delegation, 2026-10-16, with T31: the 17-line harm ceiling list supersedes the class list on harm verdicts and the class list is byte-identical; the completed ORIGIN line is accepted as written ('an origin names the principal the bridge binds the act to, never the human or errand behind it'); the coverage denominator is bounded at the book's boundary and prints what it left out, carried by the T33 document; condition 4 read with T31's signature: both halves ship together.",
+    "date": "2026-10-16"
+  },
+  "conditions": [
+    "1. GATE2_DIRECTION_CEILING_LINES is unchanged (10 lines, every class-path arm green); GATE2_HARM_CEILING_LINES is 17 frozen lines — five carried verbatim (1, 3, 5, 8, 10), two replaced (2, 6), three varied (4, 7, 9; each asserted different from the class line and equal to its own text), seven added — pinned by the gate2-direction suite and printed on all four harm surfaces (SILENT, ALARM, blind, a read that cannot decide) in gate-ceilings.test.ts; the class list's line 2 never appears on a harm verdict.",
+    "2. Wording: the four added lines and the two replaced ones carry no predicate of a mind (the two-bearer fence arm passes over the whole reader, inside and outside the ceiling fence). The contract's elided ORIGIN line was completed as 'an origin names the principal the bridge binds the act to (the declared subject the witness copies into the record), never the human or errand behind it.' — for the audit to accept or rewrite.",
+    "3. The coverage bound (src/glue/wire.ts; T33 document): existing coverage arms WB-1..WB-16 unchanged and green; HW-8 pins the bound (acts before the book's boundary are not counted, and the count left out is printed).",
+    "4. This ticket shares its opens with T31 (one reader file holds both); the re-pin cites whichever ticket the arbiter grants for the shipped bytes. If only one is granted, the other's half is not shipped."
+  ],
+  "base": "eedfda8e86f9e47e953fde7c5c8979d6b2c2655f"
+}

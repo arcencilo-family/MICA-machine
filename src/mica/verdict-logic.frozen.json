@@ -1,0 +1,244 @@
+{
+  "sig/clean-both-flags-read": {
+    "kind": "SILENT",
+    "sensorId": "MICA/Sig",
+    "summary": "Read 6 entries — F1[declared clock vs append order]=SILENT over 5 record(s); F2[declared precondition violated]=SILENT over 2 record(s); found nothing that lowers the bound. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound."
+  },
+  "sig/f1-inverted-pair": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Sig",
+    "summary": "Record contradicts the structure it is embedded in, inside a chain that verifies cleanly. This is state->record fidelity, not world->state accuracy, and not chain integrity. Flag status: F1[declared clock vs append order]=ALARM over 1 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s).",
+    "findings": [
+      {
+        "code": "SIG_F1_CLOCK_ORDER_CONTRADICTION",
+        "detail": "seq 0 (timestamp 1700000000500, m6/a) is followed by seq 1 (timestamp 1700000000100, m6/b), which is 400 earlier — beyond the injected clockToleranceMs of 0. The declared clock contradicts the append order, inside a chain that verifies. Both are determined by the appending party: this is the record disagreeing with itself, not with an independent axis."
+      },
+      {
+        "code": "SIG_SCOPE_UNREAD",
+        "detail": "INELIGIBLE_SCOPE: the injected map governs 2 eventType(s), none of which occurs in this chain's 2 entries. No record falls inside F2's scope, so F2 has read nothing."
+      }
+    ],
+    "severity": null
+  },
+  "sig/f1-alarm-while-f2-unread": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Sig",
+    "summary": "Record contradicts the structure it is embedded in, inside a chain that verifies cleanly. This is state->record fidelity, not world->state accuracy, and not chain integrity. Flag status: F1[declared clock vs append order]=ALARM over 1 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s).",
+    "findings": [
+      {
+        "code": "SIG_F1_CLOCK_ORDER_CONTRADICTION",
+        "detail": "seq 0 (timestamp 1700000000500, m6/a) is followed by seq 1 (timestamp 1700000000100, m6/b), which is 400 earlier — beyond the injected clockToleranceMs of 0. The declared clock contradicts the append order, inside a chain that verifies. Both are determined by the appending party: this is the record disagreeing with itself, not with an independent axis."
+      },
+      {
+        "code": "SIG_SCOPE_UNREAD",
+        "detail": "MISSING_CONFIGURATION: no preconditionMap was injected. Which eventType requires which prior event is deployment-specific; this sensor holds no map of its own and does not infer one. F2 SHIPS DORMANT BY DESIGN."
+      }
+    ],
+    "severity": null
+  },
+  "sig/f2-precondition-unreached": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Sig",
+    "summary": "Record contradicts the structure it is embedded in, inside a chain that verifies cleanly. This is state->record fidelity, not world->state accuracy, and not chain integrity. Flag status: F1[declared clock vs append order]=SILENT over 2 record(s); F2[declared precondition violated]=ALARM over 1 record(s).",
+    "findings": [
+      {
+        "code": "SIG_F2_PRECONDITION_UNREACHED",
+        "detail": "seq 1 (m6/escalation_active, outcome \"escalation_in_force\") records a transition whose injected precondition is any of [escalation_granted]. No entry of any of those kinds appears at a lower sequenceNumber. The record asserts a state the chain shows was unreachable."
+      }
+    ],
+    "severity": null
+  },
+  "sig/no-config-at-all": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (MISSING_CONFIGURATION, MISSING_CONFIGURATION). This is NOT a clean reading and is NOT silence. Flag status: F1[declared clock vs append order]=CANNOT_ASSESS over 0 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s). No flag that DID read found a contradiction, but at least one scope was unread, so this is not silence. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound.",
+    "blindPaths": [
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "clockToleranceMs was not injected as a finite, non-negative number. There is no default: whether a backwards step is tolerable is a deployment fact this sensor has no access to."
+      },
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "no preconditionMap was injected. Which eventType requires which prior event is deployment-specific; this sensor holds no map of its own and does not infer one. F2 SHIPS DORMANT BY DESIGN."
+      }
+    ]
+  },
+  "sig/no-map-f2-dormant": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (MISSING_CONFIGURATION). This is NOT a clean reading and is NOT silence. Flag status: F1[declared clock vs append order]=SILENT over 5 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s). No flag that DID read found a contradiction, but at least one scope was unread, so this is not silence. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound.",
+    "blindPaths": [
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "no preconditionMap was injected. Which eventType requires which prior event is deployment-specific; this sensor holds no map of its own and does not infer one. F2 SHIPS DORMANT BY DESIGN."
+      }
+    ]
+  },
+  "sig/empty-map": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (MISSING_CONFIGURATION). This is NOT a clean reading and is NOT silence. Flag status: F1[declared clock vs append order]=SILENT over 5 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s). No flag that DID read found a contradiction, but at least one scope was unread, so this is not silence. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound.",
+    "blindPaths": [
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "an EMPTY preconditionMap was injected. An empty map does not buy a clean reading — it describes zero preconditions, which is not the same as zero violations."
+      }
+    ]
+  },
+  "sig/single-entry-ineligible": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (INELIGIBLE_SCOPE, INELIGIBLE_SCOPE). This is NOT a clean reading and is NOT silence. Flag status: F1[declared clock vs append order]=CANNOT_ASSESS over 0 record(s); F2[declared precondition violated]=CANNOT_ASSESS over 0 record(s). No flag that DID read found a contradiction, but at least one scope was unread, so this is not silence. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound.",
+    "blindPaths": [
+      {
+        "class": "INELIGIBLE_SCOPE",
+        "detail": "chain holds 1 entry, so there is no adjacent pair whose order could contradict anything. F1's scope is empty; it is not clean."
+      },
+      {
+        "class": "INELIGIBLE_SCOPE",
+        "detail": "the injected map governs 2 eventType(s), none of which occurs in this chain's 1 entries. No record falls inside F2's scope, so F2 has read nothing."
+      }
+    ]
+  },
+  "sig/in-memory-load-state": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (NON_CLEAN_LOAD_STATE). This is NOT a clean reading and is NOT silence.",
+    "blindPaths": [
+      {
+        "class": "NON_CLEAN_LOAD_STATE",
+        "detail": "The log reports load state IN_MEMORY, which is not among the injected readableLoadStates [LOADED_VERIFIED]. The chain's own provenance is not established, so its scope cannot be bounded."
+      }
+    ]
+  },
+  "eng/healthy-anchor": {
+    "kind": "SILENT",
+    "sensorId": "MICA/Eng",
+    "summary": "Read 90 entries across 3 event classes, 4 distinct outcomes [plug-in MI=0.818346, E[MI]=0.034691, H(C)=1.098612, H(O)=1.386047] (AMI=0.579903 >= injected structureThreshold=0.2; observed MI is strictly above 100.0% of 400 reshuffles of the same table); found nothing that lowers the bound. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound."
+  },
+  "eng/perfect-at-ceiling": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Eng",
+    "summary": "Could not read the log, or could not read this scope of it (INELIGIBLE_SCOPE). This is NOT a clean reading and is NOT silence.",
+    "blindPaths": [
+      {
+        "class": "INELIGIBLE_SCOPE",
+        "detail": "AMI=1.000000 is at the ceiling: within the injected ceilingMargin of 0.02 below the maximum 1. At the ceiling the outcome is fully determined by the event class, and A REAL JUDGE AND A CLASS-KEYED LOOKUP TABLE PRODUCE THE IDENTICAL RECORD — same fields, same values, same score. The evidence that would separate them lives WITHIN a class and Eng resolves only at class granularity. This is not a high score, it is an absence of evidence: a scope that looks full and is empty. It is deliberately NOT an alarm, because the real judge may be working flawlessly."
+      }
+    ]
+  },
+  "eng/perfect-ceiling-not-performed": {
+    "kind": "SILENT",
+    "sensorId": "MICA/Eng",
+    "summary": "Read 60 entries across 3 event classes, 3 distinct outcomes [plug-in MI=1.098612, E[MI]=0.034971, H(C)=1.098612, H(O)=1.098612] (AMI=1.000000 >= injected structureThreshold=0.2; observed MI is strictly above 100.0% of 400 reshuffles of the same table) The CEILING CHECK DID NOT RUN: no ceilingMargin was injected. A reading at or near the maximum is evidence-free rather than healthy (a real judge and a class-keyed lookup table produce the identical record), and without a margin this sensor cannot tell whether this reading is one of those. Treat this verdict as not having been checked for that condition.; found nothing that lowers the bound. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound."
+  },
+  "eng/flattened-collapse": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Eng",
+    "summary": "Engagement signature collapsed: `outcome` is not carrying information about (moduleId, eventType) beyond what a reshuffle of the same table would produce. This states a property of the record. It makes no claim about anything interior to the system.",
+    "findings": [
+      {
+        "code": "ENG_SIGNATURE_COLLAPSE",
+        "detail": "AMI=0.000000 < injected structureThreshold=0.2 over 60 entries, 3 classes, 1 distinct outcomes. [plug-in MI=0.000000, E[MI]=0.000000, H(C)=1.098612, H(O)=0.000000] [of 400 reshuffles of the same table, observed MI is strictly above 0.0% and at or above 100.0%; resampled mean=0.000000, sd=0.000000]"
+      }
+    ],
+    "severity": null
+  },
+  "eng/noise-all-distinct-outcomes": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Eng",
+    "summary": "Engagement signature collapsed: `outcome` is not carrying information about (moduleId, eventType) beyond what a reshuffle of the same table would produce. This states a property of the record. It makes no claim about anything interior to the system.",
+    "findings": [
+      {
+        "code": "ENG_SIGNATURE_COLLAPSE",
+        "detail": "AMI=-0.000000 < injected structureThreshold=0.2 over 60 entries, 3 classes, 60 distinct outcomes. [plug-in MI=1.098612, E[MI]=1.098612, H(C)=1.098612, H(O)=4.094345] [of 400 reshuffles of the same table, observed MI is strictly above 0.0% and at or above 100.0%; resampled mean=1.098612, sd=0.000000]"
+      }
+    ],
+    "severity": null
+  },
+  "eng/no-config-at-all": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Eng",
+    "summary": "Could not read the log, or could not read this scope of it (MISSING_CONFIGURATION, MISSING_CONFIGURATION, MISSING_CONFIGURATION). This is NOT a clean reading and is NOT silence.",
+    "blindPaths": [
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "structureThreshold was not injected as a finite number. There is no default: a default threshold is a calibration constant, and calibration is not this build's to make."
+      },
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "minimumSampleSize was not injected as a non-negative integer. There is no default."
+      },
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "minimumClassCoverage was not injected as a positive integer. There is no default: how much class variety is enough to read is a calibration question, and calibration is not this build's to make."
+      }
+    ]
+  },
+  "eng/insufficient-sample": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Eng",
+    "summary": "Could not read the log, or could not read this scope of it (INSUFFICIENT_SAMPLE). This is NOT a clean reading and is NOT silence.",
+    "blindPaths": [
+      {
+        "class": "INSUFFICIENT_SAMPLE",
+        "detail": "chain holds 90 entries; injected minimumSampleSize is 1000. The read is not attempted."
+      }
+    ]
+  },
+  "eng/in-memory-load-state": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Eng",
+    "summary": "Could not read the log, or could not read this scope of it (NON_CLEAN_LOAD_STATE). This is NOT a clean reading and is NOT silence.",
+    "blindPaths": [
+      {
+        "class": "NON_CLEAN_LOAD_STATE",
+        "detail": "The log reports load state IN_MEMORY, which is not among the injected readableLoadStates [LOADED_VERIFIED]. The chain's own provenance is not established, so its scope cannot be bounded."
+      }
+    ]
+  },
+  "sig/f3-consistent-report": {
+    "flag": "F3",
+    "name": "declared clock vs clerk clock",
+    "kind": "SILENT",
+    "findings": [],
+    "blindPaths": [],
+    "scopeSize": 1
+  },
+  "sig/f3-absent-report": {
+    "flag": "F3",
+    "name": "declared clock vs clerk clock",
+    "kind": "NOT_CONFIGURED",
+    "findings": [],
+    "blindPaths": [
+      {
+        "class": "MISSING_CONFIGURATION",
+        "detail": "no clerkClockSource was injected. F3 holds no clerk-time source of its own and does not infer one; the independent clock scope was NOT CONFIGURED this run. This is a dormant, unconfigured leg — disclosed here, and it does NOT lower the verdict bound (F5 honest split: unconfigured is NOT_CONFIGURED, not a blind CANNOT_ASSESS)."
+      }
+    ],
+    "scopeSize": 0
+  },
+  "sig/f3-contradiction-f1-silent": {
+    "kind": "ALARM",
+    "sensorId": "MICA/Sig",
+    "summary": "Record contradicts the structure it is embedded in, inside a chain that verifies cleanly. This is state->record fidelity, not world->state accuracy, and not chain integrity. Flag status: F1[declared clock vs append order]=SILENT over 1 record(s); F2[declared precondition violated]=SILENT over 1 record(s); F3[declared clock vs clerk clock]=ALARM over 1 record(s).",
+    "findings": [
+      {
+        "code": "SIG_F3_DECLARED_VS_CLERK_CLOCK_CONTRADICTION",
+        "detail": "clerk_seq 1 (clerk_time.wall_ms 1700000010001) carries local seq 1 with declared timestamp 1700000002000; the next receipt, clerk_seq 2 (clerk_time.wall_ms 1700000010000), carries local seq 0 with declared timestamp 1700000001000, which is 1000 earlier — beyond clockToleranceMs 0. The declared clock contradicts the clerk's independently stamped arrival order. This binds arrival/order only, never payload truth, and the independent-axis claim requires deployment under a genuinely separate OS principal."
+      }
+    ],
+    "severity": null
+  },
+  "sig/f3-no-chain-identity": {
+    "kind": "CANNOT_ASSESS",
+    "sensorId": "MICA/Sig",
+    "summary": "Could not read the log, or could not read this scope of it (INELIGIBLE_SCOPE). This is NOT a clean reading and is NOT silence. Flag status: F1[declared clock vs append order]=SILENT over 1 record(s); F2[declared precondition violated]=SILENT over 1 record(s); F3[declared clock vs clerk clock]=CANNOT_ASSESS over 0 record(s). No flag that DID read found a contradiction, but at least one scope was unread, so this is not silence. SILENT is an ABSENCE OF FINDING, not a statement of health. This sensor emits no positive health statement and cannot raise a bound.",
+    "blindPaths": [
+      {
+        "class": "INELIGIBLE_SCOPE",
+        "detail": "CHAIN_IDENTITY_MISSING: 2 stamp(s) carry NO chainIdentity and 0 carry one this run could not check. ALL OF THEM ARE REFUSED and none is joined. A stamp that does not name its chain is a claim about a NUMBER, not about a RECORD: sequence numbers restart at rotation, so joining it would report a real clerk receipt against a record it has never seen. They were written by a carrier from before chain identity was mandatory. THE REMEDY IS A RE-STAMP, not an investigation: archive the stamps file and its cursor and let the carrier run once more against the current chain."
+      }
+    ]
+  }
+}

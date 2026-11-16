@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · S128-6 — ONE COMMAND, for the DF reader's `unit-listen-loopback`.
+#
+#   Install path: /etc/sudoers.d/mica-report-ss
+#   Reader:       src/report/deployment-facts.ts (SS_SUDO_PATH + SS_ARGS)
+#
+# NOT INSTALLED BY THIS FILE. Drafted by the build seat, S128, 2026-09-13.
+# Installing it is the arbiter's act, by hand, as root:
+#
+#   sed 's/REPLACE-WITH-THE-REPORT-PRINCIPAL/<the real principal>/' \
+#     deploy/mica-report-ss.sudoers > /tmp/mica-report-ss
+#   visudo -cf /tmp/mica-report-ss          # MUST print "parsed OK" — see below
+#   install -m 0440 -o root -g root /tmp/mica-report-ss /etc/sudoers.d/mica-report-ss
+#   sudo -n -u <the real principal> /usr/bin/ss -ltnp | head -3   # then read it
+#
+# ⚠ `visudo -cf` BEFORE the install, and it is not ceremony. A sudoers file that
+#   does not parse can make `sudo` refuse to run AT ALL, for every principal on
+#   the box, including the one who would have to repair it. Checking a copy in
+#   /tmp and installing only the checked bytes is the whole of the safety here.
+#
+# ⚠ THE INSTALLED NAME HAS NO DOT. `sudo` ignores files in /etc/sudoers.d whose
+#   name contains a `.` or ends in `~`. This repo file is named
+#   `mica-report-ss.sudoers` so a reader can tell what it is; the INSTALLED file
+#   must be `mica-report-ss`, or the grant is silently not in force — which the
+#   reader would survive (it falls back to a plain `ss`) and REPORT (every reason
+#   names which read ran), but the operator should know before, not after.
+#
+# ── WHY THIS EXISTS — S128-4 and S128-6 together ────────────────────────────
+#
+#   `unit-listen-loopback` step 8 ties the declared port to the declared unit's
+#   MainPID, so that "something is listening on loopback" cannot be mistaken for
+#   "the declared unit is listening on loopback". But `ss` prints the owning pid
+#   only for sockets the caller may see: unprivileged, ANOTHER principal's
+#   socket comes back with an empty Process column — and another principal's
+#   socket is exactly the one being checked. The tie could almost never fire.
+#
+#   So this grants the report principal ONE command and nothing else.
+#
+# ── WHAT IS DELIBERATELY NOT HERE ───────────────────────────────────────────
+#
+#   No wildcard. The command is matched WITH ITS ARGUMENTS: `/usr/bin/ss -ltnp`
+#   and that argument list only. `ss` with other arguments is a different tool —
+#   `ss -K` can CLOSE sockets, and a grant of the bare binary would hand this
+#   principal the ability to kill any connection on the box. The argument list
+#   is the fence, and `SS_ARGS` in the reader is its other half: change one and
+#   the grant stops matching, loudly rather than silently (the sudo read fails,
+#   the plain read runs, and the §3.7 row says which one ran).
+#
+#   No `ALL=(ALL)`. The target is `root` and no other user.
+#
+#   No real principal name. `User=` in mica-report.service is a deploy-time
+#   declaration and R-V3 keeps the placeholder verbatim in that file; the same
+#   rule applies here. A checked-in guess at an account name is a fact this
+#   repository has not read.
+#
+#   The reader calls `sudo -n`. NOPASSWD below and `-n` there are belt and
+#   braces on the same hazard: this reader must never be able to sit at a
+#   password prompt inside a scheduled report run and hang the unit rather than
+#   fail it.
+# ─────────────────────────────────────────────────────────────────────────────
+
+REPLACE-WITH-THE-REPORT-PRINCIPAL ALL=(root) NOPASSWD: /usr/bin/ss -ltnp

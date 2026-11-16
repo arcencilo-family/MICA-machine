@@ -1,0 +1,21 @@
+# MICA · registrar sweep cadence.
+#
+# WHY A TIMER AND NOT A WATCH. A path unit fires on the first frame and would
+# make the registrar's cadence a function of depositor behaviour; a timer makes
+# the sweep interval a stated deployment fact that an auditor can read off the
+# unit. The cost is stated too: a deposit waits up to one interval, and the book
+# timestamps show it. The chain is the arrow, not the clock, so waiting costs
+# ordering nothing.
+
+[Unit]
+Description=MICA registrar - sweep the pre-commitment intake every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=5s
+Unit=mica-registrar.service
+Persistent=false
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,24 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T36-gate2-live-regression",
+  "opens": [
+    "src/mica/gate2-direction/gate2-direction.test.ts",
+    "src/mica/gate2-direction/fixtures/live-stop3-20261016.json"
+  ],
+  "defect": {
+    "summary": "TODAY'S LIVE READINGS ARE PINNED NOWHERE: Long Run A Stop 3's arc (decisions 650–657, 2026-10-16) is the first live record of every Gate 2 harm verdict shape, and a reader change could alter what it reads with no arm turning red.",
+    "ground": "Third queue U3 (board 2026-10-16 22:21Z). The fixture is the live inputs read at bytes (witness book + retired predecessor, interest book acts, the served harm stanza per decision: S35, then S36's C1 clearance from 17:47:01.585Z), anonymised by renaming subject/origin/item ids in inputs and expected text alike. Each decision must reproduce its live Gate 2 kind and harm line (from /explain) VERBATIM."
+  },
+  "expiresAt": "2026-10-24T18:00:00Z",
+  "arbiter": {
+    "word": "Granted by the audit under Frank's standing delegation, 2026-10-17: the live arc of Long Run A Stop 3 (decisions 650–657, 2026-10-16) is pinned as a READER-ONLY regression arm reproducing every live Gate 2 harm kind and harm line verbatim, anonymised; no reader byte moves. Conditions of this signature: it lands before T34 so that T34's cond. 8 amendment of the three GRANTED lines is visible and measured; the stand-in fingerprints for H1/H2 are stated as assumptions in the arm (the real ones need the root salt); the owed bridge-side pin of the S36 wire and the re-hashing of the anonymised records stay owed and are named here, not hidden. expiresAt 2026-10-24T18:00:00Z is the audit's fill and part of this signature.",
+    "date": "2026-10-17"
+  },
+  "conditions": [
+    "1. Test-only: no reader byte moves. gate2-direction 110/110 on 2511dac (109 + this arm).",
+    "2. The replay reproduces 8 of 8 decisions verbatim on the served reader; FIXTURE ASSUMPTIONS stated in the arm and confirmed by the match: H1/H2 stand-in fingerprints (never touched; the real ones need the root salt), salt epoch one ms before the predecessor's boundary.",
+    "3. It bites: the clearance check dropped → this arm red (with §9.6).",
+    "4. Under S216 (T34) the three GRANTED lines (654, 656, 657) gain ' since 2026-10-16T06:13:54.692Z' and kinds are unchanged (measured on dc5fc9c and on S208-2's 81930fc): T34 amends this arm's expected text in its own commit. Lands BEFORE T34, so the amendment is visible."
+  ],
+  "base": "2511dac208753d0862942668ceac0ec5a23cccaa"
+}

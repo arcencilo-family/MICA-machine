@@ -1,0 +1,244 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MICA · S109-B item 2 — the clerk caller. One sweep, then exit.
+#
+#   Install path: /etc/systemd/system/mica-clerk-caller.service
+#   Program:      /opt/mica-machine/src/glue/mica-clerk-caller.ts
+#   Cadence:      mica-clerk-caller.timer — NOT this file. Same contrast
+#                 mica-report.service's own header draws against witnessd.
+#
+#   INSTALLED LIVE, 2026-09-04 (S110 deployment night) — byte-identical to
+#   this file at HEAD `e858b2a`, confirmed by diff against
+#   /etc/systemd/system/mica-clerk-caller.service, S110 deployment-findings
+#   receipt. RULED HOUSE PRACTICE from here on: unit installs go through this
+#   file, `install`ed onto the live path — never a live hand-edit (the sibling
+#   registrar unit drifted live tonight from exactly that shortcut; see its
+#   own S110 reconciliation note).
+#
+# ── S110 F-1: clerk-caller-cursor.json is pre-seeded by
+#    /etc/tmpfiles.d/mica-cursors.conf (`deploy/mica-cursors.conf`) BEFORE
+#    this unit's first start — ReadWritePaths= below refuses to start a unit
+#    naming a file that does not exist, and ABSENT is this cursor's own
+#    designed first-run state (readCursor, mica-clerk-caller.ts), so the file
+#    must exist with the RIGHT content (`{"lastStamped":-1}`) before boot,
+#    never a bare `install /dev/null`. Observed live tonight exactly as
+#    described in that file's own header.
+#
+# ── S110 F-3: the socket EACCES this unit hit on its first live cargo run is
+#    fixed at the clerk's own end (clerkd.ts now `chmodSync`s its socket to
+#    0660 right after bind — src/clerk/clerkd.ts, "S110 F-3" comment) —
+#    nothing in THIS file changed for it. The arbiter's live `chgrp
+#    mica-submitters` + `chmod 0660` on the socket tonight was correct and
+#    necessary at the time; it washes away on clerkd's next restart (clerkd
+#    recreates the socket) and the code fix is what makes it durable.
+#
+# Shape and WorkingDirectory copied from mica-report.service (its real,
+# installed shape): Type=oneshot, the pinned in-tree ts-node binary (never
+# npx — an npx cache would write into this principal's home), WorkingDirectory
+# under /opt, no [Install] on the .service (the timer is what gets enabled).
+#
+# ── RESOLVED: the socket gap, via option (b) — house dispatch, this session ──
+#
+#   Was: this program's only way to reach the clerk was
+#   SocketClerkClient.forStore(clerkStore), which derives the socket as
+#   "<clerkStore>/clerk.sock" (src/clerk/protocol.ts, defaultSocketPath) — no
+#   way to override it, and the LIVE clerk unit does not listen there (its own
+#   ExecStart passes --socket /run/mica/clerk.sock explicitly, away from that
+#   same default).
+#
+#   Fix: mica-clerk-caller.ts gained an OPTIONAL --clerk-socket <path>,
+#   mirroring clerkd.ts's own resolution rule exactly — `args.socket ??
+#   defaultSocketPath(storeDir)` (src/clerk/clerkd.ts:171) — so both ends of
+#   one connection resolve a missing override the same way. Absent the flag,
+#   behaviour is byte-identical to before this dispatch (tested:
+#   mica-clerk-caller.test.ts, "ABSENT --clerk-socket is BYTE-IDENTICAL to
+#   today's derivation"). ExecStart below now passes it explicitly, pointed at
+#   the live clerk unit's actual bound path.
+#
+#   A connection failure now names the ACTUAL socket tried in its own error
+#   text (SocketClerkClient's existing message already carries
+#   `this.socketPath` — client.ts:141-147 — construction was moved to use the
+#   resolved value directly rather than re-deriving it via `forStore`, so that
+#   text now names whichever path — override or derived — this run actually
+#   used). Tested against a real, unconnectable socket path in both the
+#   explicit-override and derived-default cases, not mocked.
+#
+#   `--clerk-store` still names the real store directory (matches clerkd's own
+#   --store); it is no longer also standing in for the socket path.
+#
+# ── After=/Wants=, and why it is firmer than mica-registrar's own ───────────
+#
+#   mica-registrar.service Wants= the witness only as a preference — a drop
+#   still lands in the intake and is swept later if witnessd is down. This
+#   unit has no such fallback: SocketClerkClient throws immediately if it
+#   cannot connect, and every record in this run's batch is refused with it
+#   (fail-loud, cursor unmoved — src/glue/mica-clerk-caller.ts's own header).
+#   So the clerk being up is closer to a real precondition than a preference,
+#   and the ordering says so.
+#
+# ── ACT B (2026-09-23): THE SECOND CARRY JOB — the bridge's subject chain ───
+#
+#   PREPARED HERE, NOT PERFORMED. This unit is relayed by the arbiter's hand and
+#   starts by his hand; nothing in this build runs it.
+#
+#   Act B gives Sig's F3 an arrival axis the subject does not author, by
+#   carrying /var/lib/mica-bridge/subject-events.jsonl — the BRIDGE's log,
+#   written by a different principal — to the same clerk, under this unit's
+#   existing `mica` submitter identity. Route (a) of the Act B brief: no new
+#   keypair, no roster entry, no mica-submitters membership. ONE custody act,
+#   and it is an ACL, not a key:
+#
+#     setfacl -m u:mica:r /var/lib/mica-bridge/subject-events.jsonl
+#     setfacl -d -m u:mica:r /var/lib/mica-bridge
+#
+#   ORDER: Act A's rotation FIRST. Sequence numbers restart at the rotation
+#   and F3 joins on the number alone, so a stamp taken from the retired chain
+#   would JOIN the new chain's record of the same number — a confident wrong
+#   answer, not a refusal. --second-stamps-out therefore points at a NEW file
+#   that has never held a pre-rotation stamp, and the old stamps file stays
+#   where it is as the REGISTRAR's own record.
+#
+#   THE SECOND CURSOR IS DELIBERATELY NOT PRE-SEEDED. An ABSENT cursor is this
+#   arm's own first-run state AND is the one signal it has that a non-empty
+#   stamps file was inherited from somewhere else. Seeding the cursor would
+#   silence that check on the single run where it is worth anything.
+#
+# ── SHAPE 3′ (2026-09-29, the arbiter's ruling 06:3xZ): THE UNIT GRANTS THE CARRIER
+#    ITS OWN STATE DIRECTORY, AND NOTHING IN THIS ARM IS PRE-CREATED ──────────
+#
+#   WHAT WENT WRONG, AT BYTES, ON 2026-09-28. The Act-B pair was pre-created by
+#   hand. One of those hands used `install /dev/null` on the stamps file, which
+#   produced an EMPTY stamps file beside a PRESENT cursor — and that pair is
+#   indistinguishable, to anything reading only the stamps file, from a first
+#   run. The second carry run failed and the bridge had no way to say why.
+#   SHAPE 3′ is the answer on the reading side (the CURSOR is the witness that
+#   tells an erasure from a first run); this block is the answer on the writing
+#   side: IF NOTHING IS PRE-CREATED, THE PAIR CANNOT BE PUT INTO THAT STATE BY
+#   A DEPLOYER'S HAND AT ALL.
+#
+#   HOW: `StateDirectory=mica/clerk-subject`. systemd creates
+#   /var/lib/mica/clerk-subject before ExecStart, owned by User=/Group= (mica),
+#   mode 0755, and makes it writable to this unit without a ReadWritePaths=
+#   entry. The carrier then creates BOTH of its files inside it — the cursor
+#   with `writeFileSync` and the stamps file with `appendFileSync`, both of
+#   which create on absence — so the recipe has no pre-creation act left.
+#
+#   ⛔ WHY `StateDirectory=mica` WOULD HAVE BEEN A DESTRUCTIVE CHANGE, recorded
+#   because it is the obvious first move and it is wrong: /var/lib/mica is
+#   root:root 0755 and holds TWELVE other principals' subdirectories
+#   (mica-arbiter, mica-clerk, mica-registrar, mica-witness, …). systemd chowns
+#   a StateDirectory to the unit's User=, so naming the shared directory would
+#   hand the whole tree to `mica`. The nested form touches only the innermost
+#   component, which is why it is the one used.
+#
+#   ⛔ AND THE MODE IS LOAD-BEARING, NOT COSMETIC. 0755 (systemd's default, and
+#   stated here rather than inherited) is what lets a NON-mica uid TRAVERSE the
+#   directory. The bridge's cursor witness is an `lstat`, and lstat needs only
+#   search permission on the parents — VERIFIED 2026-09-29 at bytes: the operator's uid
+#   cannot read the 0600 cursor (`Permission denied`) and `lstatSync` on it
+#   returns PRESENT. So NO ACL IS NEEDED ON THE CURSOR, and an earlier note of
+#   this seat's that named one (`setfacl -m u:mica-bridge:r`) is WITHDRAWN.
+#   If this directory were ever tightened to 0750, the bridge's witness would
+#   go from PRESENT to UNREADABLE, which SHAPE 3′ types as REFUSE — fail-closed
+#   and correct, but it would hold every act, and the cause would be this line.
+#
+#   THE STAMPS FILE IS NO LONGER PRE-SEEDED EITHER, and the argument that used
+#   to require it does not survive reading the door. That argument was: "a file
+#   this program created fresh under UMask would be the program vouching for
+#   its own provenance." THE CUSTODY DOOR CANNOT MAKE THAT DISTINCTION. At
+#   bytes, glue/clerk-clock-stamps-file.ts admits a stamps file on exactly two
+#   facts — `st.uid === <mica>` and the invoking uid cannot write it — plus a
+#   refusal of root. It never asks who created the file or when. A
+#   deployer-created 0644 mica file and a carrier-created 0644 mica file (UMask
+#   0022, below) are the SAME file to that door. Pre-creation therefore bought
+#   nothing the door reads, and it cost the one failure mode above.
+#
+#   ⚠ THE PATHS MOVE, AND THAT IS A DECLARATION ACT, NOT A UNIT CHANGE.
+#   `paths.clerkStamps` is DECLARED (relayed as S11) at the old location. This
+#   unit and that declaration must be relayed as one change, machine first. It
+#   lands naturally with T8's re-stamp, which discards every existing stamp
+#   anyway (none carries a chainIdentity), so the old file is not migrated —
+#   it is archived and the chain is stamped again from the beginning.
+#
+# ── EXIT CODES, so an operator reading `systemctl status` knows what happened
+#
+#   0 nothing to do, or every record in scope was submitted and stamped
+#   1 could not start (a flag; a CORRUPT cursor, refused not guessed past; the
+#     MICA log present and unreadable/malformed; a PARTIAL second triple; a
+#     stamps file inherited from another carry)
+#   2 the clerk refused or could not be reached partway through a batch —
+#     nothing from that run was written, the cursor is unmoved
+#
+#   WITH TWO JOBS the code is the WORST of the two, and EVERY JOB RUNS: job 1
+#   failing does not skip job 2. Read the messages, not only the code — a
+#   `status` showing 1 may mean the registrar journal refused while the subject
+#   chain was carried in full.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[Unit]
+Description=MICA S109-B — carry new log records to the clerk (a one-shot arm, not a daemon)
+Documentation=file:///opt/mica-machine/src/glue/mica-clerk-caller.ts
+RequiresMountsFor=/var/lib/mica
+# See the header note above: a real precondition, not a soft preference.
+After=mica-clerk.service
+Wants=mica-clerk.service
+
+[Service]
+Type=oneshot
+User=mica
+Group=mica
+
+WorkingDirectory=/opt/mica-machine
+# The binary directly, never `npx` — same reason mica-report.service and
+# mica-witnessd.service both give: an npx cache must not land in this
+# principal's home.
+ExecStart=/opt/mica-machine/node_modules/.bin/ts-node src/glue/mica-clerk-caller.ts \
+  --log /var/lib/mica/mica-log.jsonl \
+  --cursor /var/lib/mica/clerk-caller-cursor.json \
+  --stamps-out /var/lib/mica/clerk-clock-stamps.jsonl \
+  --clerk-store /var/lib/mica/clerk \
+  --clerk-socket /run/mica/clerk.sock \
+  --submitter-id mica --submitter-key /etc/mica/submitter-mica.key --channel mica-log \
+  --second-log /var/lib/mica-bridge/subject-events.jsonl \
+  --second-cursor /var/lib/mica/clerk-subject/cursor.json \
+  --second-stamps-out /var/lib/mica/clerk-subject/stamps.jsonl \
+  --second-channel mica-subject-log
+
+# 0022, not report's 0027: the stamps file is pre-created 0644 (owned mica) so
+# clerk-clock-stamps-file.ts's custody door can admit it from a DIFFERENT,
+# non-mica principal — that requires it world-readable, which 0027 would
+# defeat. No setgid dance is needed here the way the report's directory
+# needs one: both files this unit writes are pre-created by the deployer
+# (recipe act), never created fresh by this program.
+UMask=0022
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+# Beyond mica-report.service's own baseline, ADDED because it is genuinely
+# load-bearing here and was not for the report: this program's one real
+# network act is a Unix-domain socket to the clerk.
+RestrictAddressFamilies=AF_UNIX
+# The two files this unit writes, named individually rather than as a
+# directory — both are pre-created by the deployer (S109 receipt §6, acts 2
+# and 3), never conjured here.
+ReadWritePaths=/var/lib/mica/clerk-caller-cursor.json /var/lib/mica/clerk-clock-stamps.jsonl
+# ACT B / SHAPE 3′. The subject chain's pair has NO ReadWritePaths= entry, and
+# its absence is the change rather than an omission: StateDirectory= below
+# grants write access to the directory that holds both files, so naming them
+# here would be a second, drifting statement of the same grant — and naming a
+# FILE, as this line used to, is what forced the pre-creation this arm has now
+# dropped (ReadWritePaths= refuses to start a unit naming a file that does not
+# exist; that is the S110 F-1 constraint, and the `-` prefix was the patch for
+# it). The subject LOG itself is not writable here either: this unit reads it
+# and never writes it, and ProtectSystem=strict leaves the rest readable.
+#
+# 0755 IS DELIBERATE AND IS READ BY A SECOND PRINCIPAL — see the SHAPE 3′ block
+# in the header. The bridge lstat()s the cursor inside this directory as its
+# erasure witness, which needs traverse on the directory and NOTHING on the
+# file. Tightening this to 0750 types that witness UNREADABLE and holds acts.
+StateDirectory=mica/clerk-subject
+StateDirectoryMode=0755
+PrivateTmp=yes
+
+# NO [Install] SECTION, DELIBERATELY. See the header — mica-clerk-caller.timer
+# is what gets enabled.

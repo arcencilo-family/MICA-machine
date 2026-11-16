@@ -1,0 +1,12 @@
+{
+  "_note": "A discharge is evidence that a record-derived field's rotation rule has been satisfied AGAINST A NAMED CHAIN. `chain` is the retiredSha256 of the boundary record at position 0 \u2014 i.e. WHICH chain this evidence was taken on. A discharge for a different chain does not count, which is the whole point: the next rotation invalidates every row here automatically.",
+  "discharged": {
+    "readers.eng.minimumSampleSize": {
+      "chain": "00bf97cbcb6e89765ae11f25826f9c196c15a4f7734c5ec6744fc40519fe0b06",
+      "rule": "RE_SATISFY",
+      "evidence": "chain at 609 records >= declared 600; Eng SILENT at decision #427",
+      "measured": "2026-09-28T14:5xZ, /status instrument reason records=609 and /log sensorKinds",
+      "by": "build seat"
+    }
+  }
+}

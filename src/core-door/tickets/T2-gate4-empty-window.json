@@ -1,0 +1,26 @@
+{
+  "schema": "mica-core-door/ticket/1",
+  "id": "T2-gate4-empty-window",
+  "opens": [
+    "src/mica/gate4-sunset/index.ts",
+    "src/mica/gate4-sunset/gate4-sunset.test.ts",
+    "src/mica/gate2-direction/gate2-direction.test.ts",
+    "src/mica/gate-ceilings.test.ts"
+  ],
+  "defect": {
+    "summary": "Gate 4 leg A (assessHold) returns SILENT with 0 examined when the hold window contains no records. Ruling R7: an instrument that could not look must say CANNOT_ASSESS with the reason named, never SILENT. Expected fix: zero in-window records reads CANNOT_ASSESS, reason 'hold window empty'. Leg B stays vacuous; 'one leg wired, one leg vacant' stands. What a hold window IS in this deployment (R4) remains an open proxy definition; this fix makes the empty case honest without answering R4, and says so on the reader's own ceiling text.",
+    "ground": "ARC_MICA-PRICING_Gate4-LegA-PostHold_20260921 §D; ARC_MICA-BRIEF_Core-Repair-Window_20260922 §4; ruling R7 (S139-3)"
+  },
+  "expiresAt": "2026-09-29T18:00:00Z",
+  "arbiter": {
+    "word": "I open the core for this one defect, Gate 4 saying nothing wrong over an empty room. Could not look is could not look. Go as far as the reader honestly can, name the gap, close the door on the 29th.",
+    "date": "2026-09-22"
+  },
+  "conditions": [
+    "AMENDED 2026-09-22 by Frank (F1): gate2-direction.test.ts and gate-ceilings.test.ts are opened for THREE Gate 4 fixtures only (the autoimmunity-inverse contrast at :495-497, the floor-proof sibling at :583, and the silent surface at :343). No Gate 2 assertion changes. The autoimmunity-inverse check now asserts that BOTH gates refuse to read an empty scope as SILENT — Gate 4's side becomes CANNOT_ASSESS with G4_HOLD_WINDOW_EMPTY. That contrast recorded the defect as a design; it is corrected, not preserved.",
+    "The existing 20 frozen scenarios in src/mica/verdict-logic.frozen.json stay byte-identical. This ticket does NOT open that file.",
+    "The substrate snapshot is NOT opened by this ticket. If a new frozen Gate 4 scenario is wanted, the door will refuse the file and that is a ticket amendment by Frank, not a workaround.",
+    "Pre-registration before the change (brief §2): the reading on an empty window, on a window with one permitted act, and on a window with one breach, before and after. Expected movers: the empty-window case only.",
+    "The commit that ships the repair also re-pins every file it changed (npm run core-door -- --propose-repin T2-gate4-empty-window). One change per relay. Cold verifier before relay."
+  ]
+}
